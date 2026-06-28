@@ -1,4 +1,4 @@
-package ru.romzheln.listing.model.entity;
+package ru.romzheln.listing.model.entity.common;
 
 
 import jakarta.persistence.Embeddable;
