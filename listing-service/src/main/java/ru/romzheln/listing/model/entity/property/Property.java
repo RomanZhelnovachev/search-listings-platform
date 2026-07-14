@@ -4,18 +4,17 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import ru.romzheln.listing.model.entity.common.Mortgage;
-import ru.romzheln.listing.model.entity.common.Promotion;
+import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.apartment.Apartment;
 import ru.romzheln.listing.model.entity.commercial.Commercial;
 import ru.romzheln.listing.model.entity.house.House;
 import ru.romzheln.listing.model.entity.landplot.LandPlot;
-import ru.romzheln.listing.model.enums.DealType;
 import ru.romzheln.listing.model.enums.Own;
 import ru.romzheln.listing.model.enums.PropertyType;
 
-import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "property")
@@ -41,21 +40,6 @@ public class Property {
     @Column(name = "type", nullable = false)
     private PropertyType type;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "deal_type", nullable = false)
-    private DealType dealType;
-
-    @Column(name = "price", nullable = false)
-    private BigDecimal price;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mortgage_id")
-    private Mortgage mortgage;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "promotion_id")
-    private Promotion promotion;
-
     @OneToOne(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private Apartment apartment;
 
@@ -74,6 +58,10 @@ public class Property {
 
     @Column(name = "first_owner")
     private Boolean isFirstOwner;
+
+    @OneToMany(mappedBy = "property", orphanRemoval = true, cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Listing> listings = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
     @CreationTimestamp

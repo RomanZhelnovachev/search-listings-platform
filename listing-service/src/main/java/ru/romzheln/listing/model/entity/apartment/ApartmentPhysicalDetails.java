@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import ru.romzheln.listing.model.enums.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Embeddable
 @NoArgsConstructor

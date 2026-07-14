@@ -7,7 +7,6 @@ import ru.romzheln.listing.model.entity.common.Developer;
 import ru.romzheln.listing.model.entity.common.ResidentialComplex;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.ApartmentType;
-import ru.romzheln.listing.model.enums.Renovation;
 
 @Entity
 @Table(name = "apartment")
