@@ -12,6 +12,7 @@ import ru.romzheln.listing.model.entity.landplot.LandPlot;
 import ru.romzheln.listing.model.enums.Own;
 import ru.romzheln.listing.model.enums.PropertyType;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class Property {
     private Location location;
 
     @Column(name = "square", nullable = false)
-    private Double square;
+    private BigDecimal square;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
