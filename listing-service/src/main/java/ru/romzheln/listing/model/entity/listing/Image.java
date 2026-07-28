@@ -22,8 +22,15 @@ import java.util.Set;
 public class Image {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "image_seq"
+    )
+    @SequenceGenerator(
+            name = "image_seq",
+            sequenceName = "image_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false)

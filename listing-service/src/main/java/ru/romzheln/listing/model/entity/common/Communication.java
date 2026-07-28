@@ -1,10 +1,10 @@
-package ru.romzheln.listing.model.entity.house;
+package ru.romzheln.listing.model.entity.common;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import ru.romzheln.listing.model.entity.landplot.LandPlot;
+import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.CommunicationType;
 
 import java.time.Instant;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "communication")
+@Table(name = "communications")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,31 +21,27 @@ import java.util.Set;
 public class Communication {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "communication_seq"
+    )
+    @SequenceGenerator(
+            name = "communication_seq",
+            sequenceName = "communication_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "communication_type")
+    @Column(name = "communication_type", nullable = false)
     private CommunicationType communicationType;
 
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "communications_houses",
-            joinColumns = @JoinColumn(name = "communication_id"),
-            inverseJoinColumns = @JoinColumn(name = "house_id")
-    )
+    @ManyToMany(mappedBy = "communications")
     @Builder.Default
-    private Set<House> houses = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "communications_land_plots",
-            joinColumns = @JoinColumn(name = "communication_id"),
-            inverseJoinColumns = @JoinColumn(name = "land_plot_id")
-    )
-    @Builder.Default
-    private Set<LandPlot> landPlots = new HashSet<>();
+    private Set<Property> properties = new HashSet<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp

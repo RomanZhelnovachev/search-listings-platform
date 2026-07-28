@@ -13,9 +13,12 @@ import ru.romzheln.listing.model.enums.OwnerType;
 @Builder
 public class OwnerDetails {
 
+    @Id
+    private Long id;
+
     @OneToOne
     @MapsId
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "id")
     private Owner owner;
 
     @Enumerated(EnumType.STRING)

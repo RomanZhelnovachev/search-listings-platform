@@ -25,10 +25,10 @@ public class Location {
     @Column(name = "street")
     private String street;
 
-    @Column(name = "house")
+    @Column(name = "house_number")
     private String house;
 
-    @Column(name = "building")
+    @Column(name = "building_number")
     private String building;
 
     @Column(name = "apartment_number")

@@ -19,8 +19,15 @@ import java.util.Set;
 public class MortgageProgram {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "mortgage_program_seq"
+    )
+    @SequenceGenerator(
+            name = "mortgage_program_seq",
+            sequenceName = "mortgage_program_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false, unique = true)
@@ -30,11 +37,12 @@ public class MortgageProgram {
     private String description;
 
     @Column(name = "active", nullable = false)
-    private boolean active;
+    @Builder.Default
+    private Boolean active = true;
 
     @ManyToMany
     @JoinTable(
-            name = "mortgage_program_listing",
+            name = "mortgage_program_listings",
             joinColumns = @JoinColumn(name = "mortgage_program_id"),
             inverseJoinColumns = @JoinColumn(name = "listing_id")
     )

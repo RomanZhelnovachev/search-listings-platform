@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import ru.romzheln.listing.model.enums.*;
 
+import java.math.BigDecimal;
+
 
 @Embeddable
 @NoArgsConstructor
@@ -14,7 +16,7 @@ import ru.romzheln.listing.model.enums.*;
 public class ApartmentPhysicalDetails {
 
     @Column(name = "kitchen_square")
-    private Double kitchenSquare;
+    private BigDecimal kitchenSquare;
 
     @Column(name = "floor")
     private Integer floor;

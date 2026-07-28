@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import ru.romzheln.listing.model.entity.common.AdditionalBuilding;
 import ru.romzheln.listing.model.entity.common.CommonLandDetails;
-import ru.romzheln.listing.model.entity.house.Communication;
 import ru.romzheln.listing.model.entity.property.Property;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "land_plot")
+@Table(name = "land_plots")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -24,15 +23,11 @@ public class LandPlot {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "property_id")
+    @JoinColumn(name = "id")
     private Property property;
 
     @Embedded
     private CommonLandDetails commonLandDetails;
-
-    @ManyToMany(mappedBy = "landPlots")
-    @Builder.Default
-    private Set<Communication> communications = new HashSet<>();
 
     @OneToMany(mappedBy = "landPlot")
     @Builder.Default

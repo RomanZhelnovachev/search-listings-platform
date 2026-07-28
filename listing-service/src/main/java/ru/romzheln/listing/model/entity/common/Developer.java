@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "developer")
+@Table(name = "developers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,17 +23,24 @@ import java.util.List;
 public class Developer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "developer_seq"
+    )
+    @SequenceGenerator(
+            name = "developer_seq",
+            sequenceName = "developer_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "developer", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "developer")
     private List<Apartment> apartments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "developer", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "developer")
     private List<House> houses = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)

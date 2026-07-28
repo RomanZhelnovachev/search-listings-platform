@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="007-create-properties" author="RomanZhelnovachev">
+
+        <createTable tableName="properties">
+
+            <column name="id" type="BIGINT">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"/>
+            </column>
+
+            <column name="region" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="populated_area" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="street" type="VARCHAR(50)"/>
+
+            <column name="house_number" type="VARCHAR(10)"/>
+
+            <column name="building_number" type="VARCHAR(10)"/>
+
+            <column name="apartment_number" type="VARCHAR(10)"/>
+
+            <column name="square" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="property_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="own" type="VARCHAR(50)"/>
+
+            <column name="first_owner" type="BOOLEAN"/>
+
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE"/>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

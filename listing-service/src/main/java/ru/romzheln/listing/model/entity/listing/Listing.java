@@ -24,8 +24,15 @@ import java.util.Set;
 public class Listing {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "listing_seq"
+    )
+    @SequenceGenerator(
+            name = "listing_seq",
+            sequenceName = "listing_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "title", nullable = false)
@@ -40,7 +47,7 @@ public class Listing {
 
     @ManyToMany
     @JoinTable(
-            name = "image_listing",
+            name = "listing_images",
             joinColumns = @JoinColumn(name = "listing_id"),
             inverseJoinColumns = @JoinColumn(name = "image_id")
     )

@@ -2,7 +2,7 @@ package ru.romzheln.listing.model.enums;
 
 public enum CommunicationType {
 
-    WATTER_SUPPLY,
+    WATER_SUPPLY,
     ELECTRICITY,
     SEWERAGE,
     HEATING,

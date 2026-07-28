@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import lombok.*;
 import ru.romzheln.listing.model.enums.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Embeddable
@@ -24,7 +25,7 @@ public class CommonPhysicalDetails {
     private Integer roomsNumber;
 
     @Column(name = "ceiling_height")
-    private Double ceilingHeight;
+    private BigDecimal ceilingHeight;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "renovation")
@@ -46,10 +47,6 @@ public class CommonPhysicalDetails {
 
     @Column(name = "floors_number")
     private Integer floorsNumber;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "heating")
-    private Heating heating;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "view")

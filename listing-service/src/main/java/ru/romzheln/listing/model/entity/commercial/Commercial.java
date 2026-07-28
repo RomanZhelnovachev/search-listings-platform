@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "commercial")
+@Table(name = "commercials")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -25,7 +25,7 @@ public class Commercial {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "property_id")
+    @JoinColumn(name = "id")
     private Property property;
 
     @Column(name = "floor")
@@ -46,17 +46,17 @@ public class Commercial {
     @Column(name = "separate_entrance")
     private Boolean separateEntrance;
 
-    @Column(name = "hood")
-    private Boolean hood;
+    @Column(name = "ventilation_exists")
+    private Boolean ventilation;
 
     @Column(name = "tenant_exists")
     private Boolean tenantExists;
 
-    @Column(name = "inputs")
-    private Integer inputs;
+    @Column(name = "entrances_number")
+    private Integer entrancesNumber;
 
-    @Column(name = "electrical_power")
-    private Integer electricalPower;
+    @Column(name = "electrical_power_kw")
+    private Integer electricalPowerKw;
 
     @Embedded
     private CommonPhysicalDetails commonPhysicalDetails;

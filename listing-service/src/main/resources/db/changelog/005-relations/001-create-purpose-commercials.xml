@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="create-purpose-commercials" author="RomanZhelnovachev">
+
+        <createTable tableName="purpose_commercials">
+
+            <column name="purpose_id" type="BIGINT">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="fk_purpose_commercials_purpose"
+                        references="purposes(id)"/>
+            </column>
+
+            <column name="commercial_id" type="BIGINT">
+                <constraints
+                        nullable="false"
+                    foreignKeyName="fk_purpose_commercials_commercial"
+                    references="commercials(id)"/>
+            </column>
+
+        </createTable>
+
+        <addPrimaryKey
+                tableName="purpose_commercials"
+                columnNames="purpose_id, commercial_id"
+                constraintName="pk_purpose_commercials"/>
+
+    </changeSet>
+
+</databaseChangeLog>

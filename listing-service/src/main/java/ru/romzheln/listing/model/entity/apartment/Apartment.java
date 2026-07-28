@@ -9,7 +9,7 @@ import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.ApartmentType;
 
 @Entity
-@Table(name = "apartment")
+@Table(name = "apartments")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -22,12 +22,12 @@ public class Apartment {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "property_id")
+    @JoinColumn(name = "id")
     private Property property;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private ApartmentType type;
+    @Column(name = "apartment_type", nullable = false)
+    private ApartmentType apartmentType;
 
     @Embedded
     private CommonPhysicalDetails commonPhysicalDetails;

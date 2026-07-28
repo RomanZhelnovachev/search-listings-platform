@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "land_use")
+@Table(name = "land_use_types")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,7 +19,15 @@ import java.time.Instant;
 public class LandUse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "land_use_seq"
+    )
+    @SequenceGenerator(
+            name = "land_use_seq",
+            sequenceName = "land_use_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false, unique = true)

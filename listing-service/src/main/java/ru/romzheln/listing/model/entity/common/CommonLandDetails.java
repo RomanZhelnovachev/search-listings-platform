@@ -3,10 +3,6 @@ package ru.romzheln.listing.model.entity.common;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,6 +20,5 @@ public class CommonLandDetails {
 
     @Column(name = "fencing")
     private String fencing;
-
 
 }

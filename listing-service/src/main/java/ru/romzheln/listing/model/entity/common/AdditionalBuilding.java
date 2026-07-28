@@ -21,7 +21,15 @@ import java.time.Instant;
 public class AdditionalBuilding {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "additional_building_seq"
+    )
+    @SequenceGenerator(
+            name = "additional_building_seq",
+            sequenceName = "additional_building_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false)

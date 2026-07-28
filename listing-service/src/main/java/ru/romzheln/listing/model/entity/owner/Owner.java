@@ -20,11 +20,18 @@ import java.util.List;
 public class Owner {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "owner_seq"
+    )
+    @SequenceGenerator(
+            name = "owner_seq",
+            sequenceName = "owner_seq",
+            allocationSize = 1
+    )
     private Long id;
 
-    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "owner")
     private OwnerDetails ownerDetails;
 
     @OneToMany(mappedBy = "owner", orphanRemoval = true, cascade = CascadeType.ALL)

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="create-mortgage-programs" author="RomanZhelnovachev">
+
+        <createTable tableName="mortgage_programs">
+
+            <column name="id" type="BIGINT">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(255)">
+                <constraints
+                    nullable="false"
+                    unique="true"
+                    uniqueConstraintName="uq_mortgage_program_name"/>
+            </column>
+
+            <column name="description" type="TEXT"/>
+
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE"/>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

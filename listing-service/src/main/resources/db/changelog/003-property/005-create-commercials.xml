@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="011-create-commercials" author="RomanZhelnovachev">
+
+        <createTable tableName="commercials">
+
+            <column name="id" type="BIGINT">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"/>
+            </column>
+
+            <column name="floor" type="INT"/>
+
+            <column name="line" type="VARCHAR(50)"/>
+
+            <column name="property_location_type" type="VARCHAR(50)"/>
+
+            <column name="territorial_zone" type="VARCHAR(50)"/>
+
+            <column name="separate_entrance" type="BOOLEAN"/>
+
+            <column name="ventilation_exists" type="BOOLEAN"/>
+
+            <column name="tenant_exists" type="BOOLEAN"/>
+
+            <column name="entrances_number" type="INT"/>
+
+            <column name="electrical_power_kw" type="INT"/>
+
+            <column name="rooms_number" type="INT"/>
+
+            <column name="ceiling_height" type="DECIMAL(4, 2)"/>
+
+            <column name="renovation" type="VARCHAR(20)"/>
+
+            <column name="bathroom" type="VARCHAR(20)"/>
+
+            <column name="material" type="VARCHAR(50)"/>
+
+            <column name="completion_date" type="DATE"/>
+
+            <column name="year_built" type="INT"/>
+
+            <column name="floors_number" type="INT"/>
+
+            <column name="view" type="VARCHAR(255)"/>
+
+            <column name="balcony" type="VARCHAR(50)"/>
+
+            <column name="window_type" type="VARCHAR(20)"/>
+
+            <column name="window_material" type="VARCHAR(20)"/>
+
+            <column name="layout_feature" type="VARCHAR(50)"/>
+
+            <column name="layout_type" type="VARCHAR(20)"/>
+
+            <column name="railway_dead_end" type="BOOLEAN"/>
+
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="commercials"
+                baseColumnNames="id"
+                constraintName="fk_commercials_properties"
+                referencedTableName="properties"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

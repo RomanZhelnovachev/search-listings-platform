@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "purpose")
+@Table(name = "purposes")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,8 +19,15 @@ import java.util.Set;
 public class Purpose {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "purpose_seq"
+    )
+    @SequenceGenerator(
+            name = "purpose_seq",
+            sequenceName = "purpose_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false, unique = true)
@@ -31,7 +38,7 @@ public class Purpose {
 
     @ManyToMany
     @JoinTable(
-            name = "purpose_commercial",
+            name = "purpose_commercials",
             joinColumns = @JoinColumn(name = "purpose_id"),
             inverseJoinColumns = @JoinColumn(name = "commercial_id")
     )

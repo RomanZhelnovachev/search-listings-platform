@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "house")
+@Table(name = "houses")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -26,7 +26,7 @@ public class House {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "property_id")
+    @JoinColumn(name = "id")
     private Property property;
 
     @Embedded
@@ -38,10 +38,6 @@ public class House {
     @Enumerated(EnumType.STRING)
     @Column(name = "construction_stage")
     private ConstructionStage constructionStage;
-
-    @ManyToMany(mappedBy = "houses")
-    @Builder.Default
-    private Set<Communication> communications = new HashSet<>();
 
     @OneToMany(mappedBy = "house")
     @Builder.Default

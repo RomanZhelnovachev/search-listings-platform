@@ -21,8 +21,15 @@ import java.util.Set;
 public class Promotion {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "promotion_seq"
+    )
+    @SequenceGenerator(
+            name = "promotion_seq",
+            sequenceName = "promotion_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "name", nullable = false, unique = true)
@@ -39,7 +46,8 @@ public class Promotion {
     private BigDecimal discountValue;
 
     @Column(name = "active", nullable = false)
-    private boolean active;
+    @Builder.Default
+    private Boolean active = true;
 
     @OneToMany(mappedBy = "promotion")
     @Builder.Default

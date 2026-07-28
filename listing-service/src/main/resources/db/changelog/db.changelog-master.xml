@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <include file="db/changelog/001-sequences/001-create-sequences.xml"/>
+
+
+    <include file="db/changelog/002-reference/001-create-land-use-types.xml"/>
+    <include file="db/changelog/002-reference/002-create-communications.xml"/>
+    <include file="db/changelog/002-reference/003-create-owners.xml"/>
+    <include file="db/changelog/002-reference/004-create-owner-details.xml"/>
+    <include file="db/changelog/002-reference/005-create-developers.xml"/>
+    <include file="db/changelog/002-reference/006-create-residential-complexes.xml"/>
+    <include file="db/changelog/002-reference/007-create-purposes.xml"/>
+
+
+    <include file="db/changelog/003-property/001-create-properties.xml"/>
+    <include file="db/changelog/003-property/002-create-houses.xml"/>
+    <include file="db/changelog/003-property/003-create-land-plots.xml"/>
+    <include file="db/changelog/003-property/004-create-apartments.xml"/>
+    <include file="db/changelog/003-property/005-create-commercials.xml"/>
+    <include file="db/changelog/003-property/006-create-additional-buildings.xml"/>
+
+
+    <include file="db/changelog/004-listing/001-create-images.xml"/>
+    <include file="db/changelog/004-listing/002-create-mortgage_programs.xml"/>
+    <include file="db/changelog/004-listing/003-create-promotions.xml"/>
+    <include file="db/changelog/004-listing/004-create-listings.xml"/>
+
+
+    <include file="db/changelog/005-relations/001-create-purpose-commercials.xml"/>
+    <include file="db/changelog/005-relations/002-create-property-communications.xml"/>
+    <include file="db/changelog/005-relations/003-create-listing-images.xml"/>
+    <include file="db/changelog/005-relations/004-create-mortgage-program-listings.xml"/>
+
+
+</databaseChangeLog>
