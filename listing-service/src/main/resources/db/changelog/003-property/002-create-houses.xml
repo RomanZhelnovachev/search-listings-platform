@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="008-create-houses" author="RomanZhelnovachev">
+
+        <createTable tableName="houses">
+
+            <column name="id" type="BIGINT">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"/>
+            </column>
+            
+            <column name="rooms_number" type="INT"/>
+            
+            <column name="ceiling_height" type="DECIMAL(4, 2)"/>
+
+            <column name="renovation" type="VARCHAR(20)"/>
+
+            <column name="bathroom" type="VARCHAR(20)"/>
+
+            <column name="material" type="VARCHAR(50)"/>
+
+            <column name="completion_date" type="DATE"/>
+
+            <column name="year_built" type="INT"/>
+
+            <column name="floors_number" type="INT"/>
+            
+            <column name="view" type="VARCHAR(255)"/>
+            
+            <column name="balcony" type="VARCHAR(50)"/>
+
+            <column name="window_type" type="VARCHAR(20)"/>
+
+            <column name="window_material" type="VARCHAR(20)"/>
+
+            <column name="layout_feature" type="VARCHAR(50)"/>
+
+            <column name="layout_type" type="VARCHAR(20)"/>
+
+            <column name="land_use_id" type="BIGINT"/>
+
+            <column name="road" type="VARCHAR(255)"/>
+
+            <column name="fencing" type="VARCHAR(255)"/>
+
+            <column name="construction_stage" type="VARCHAR(50)"/>
+
+            <column name="land_plot_square" type="DECIMAL(10, 2)"/>
+
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="houses"
+                baseColumnNames="id"
+                referencedTableName="properties"
+                referencedColumnNames="id"
+                constraintName="fk_houses_properties"/>
+
+        <addForeignKeyConstraint
+                baseTableName="houses"
+                baseColumnNames="land_use_id"
+                referencedTableName="land_use_types"
+                referencedColumnNames="id"
+                constraintName="fk_houses_land_use_types"/>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="010-create-apartments" author="RomanZhelnovachev">
+
+        <createTable tableName="apartments">
+
+            <column name="id" type="BIGINT">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"/>
+            </column>
+
+            <column name="apartment_type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="rooms_number" type="INT"/>
+
+            <column name="ceiling_height" type="DECIMAL(4, 2)"/>
+
+            <column name="renovation" type="VARCHAR(50)"/>
+
+            <column name="bathroom" type="VARCHAR(50)"/>
+
+            <column name="material" type="VARCHAR(50)"/>
+
+            <column name="completion_date" type="DATE"/>
+
+            <column name="year_built" type="INT"/>
+
+            <column name="floors_number" type="INT"/>
+
+            <column name="view" type="VARCHAR(255)"/>
+
+            <column name="balcony" type="VARCHAR(50)"/>
+
+            <column name="window_type" type="VARCHAR(50)"/>
+
+            <column name="window_material" type="VARCHAR(50)"/>
+
+            <column name="layout_feature" type="VARCHAR(50)"/>
+
+            <column name="layout_type" type="VARCHAR(50)"/>
+
+            <column name="kitchen_square" type="DECIMAL(4, 2)"/>
+
+            <column name="floor" type="INT"/>
+
+            <column name="elevator" type="VARCHAR(50)"/>
+
+            <column name="ramp" type="VARCHAR(50)"/>
+
+            <column name="side" type="VARCHAR(50)"/>
+
+            <column name="developer_id" type="BIGINT"/>
+
+            <column name="complex_id" type="BIGINT"/>
+
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="apartments"
+                baseColumnNames="id"
+                constraintName="fk_apartments_properties"
+                referencedTableName="properties"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="apartments"
+                baseColumnNames="developer_id"
+                constraintName="fk_apartments_developers"
+                referencedTableName="developers"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="apartments"
+                baseColumnNames="complex_id"
+                constraintName="fk_apartments_residential_complexes"
+                referencedTableName="residential_complexes"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

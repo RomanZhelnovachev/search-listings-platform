@@ -1,0 +1,53 @@
+package ru.romzheln.listing.model.entity.common;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import ru.romzheln.listing.model.entity.apartment.Apartment;
+import ru.romzheln.listing.model.entity.house.House;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "developers")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Developer {
+
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "developer_seq"
+    )
+    @SequenceGenerator(
+            name = "developer_seq",
+            sequenceName = "developer_seq",
+            allocationSize = 1
+    )
+    private Long id;
+
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
+
+    @OneToMany(mappedBy = "developer")
+    private List<Apartment> apartments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "developer")
+    private List<House> houses = new ArrayList<>();
+
+    @Column(name = "created_at", nullable = false)
+    @CreationTimestamp
+    private Instant createdAt;
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Instant updatedAt;
+}

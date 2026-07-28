@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="create-additional-buildings" author="RomanZhelnovachev">
+
+        <createTable tableName="additional_buildings">
+
+            <column name="id" type="BIGINT">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="TEXT"/>
+
+            <column name="house_id" type="BIGINT"/>
+
+            <column name="land_plot_id" type="BIGINT"/>
+
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE"/>
+
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="additional_buildings"
+                baseColumnNames="house_id"
+                constraintName="fk_additional_buildings_houses"
+                referencedTableName="houses"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="additional_buildings"
+                baseColumnNames="land_plot_id"
+                constraintName="fk_additional_buildings_land_plots"
+                referencedTableName="land_plots"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>
