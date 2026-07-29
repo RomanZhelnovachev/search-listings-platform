@@ -29,7 +29,7 @@
         </createTable>
 
         <addPrimaryKey
-                tableName="property-communications"
+                tableName="property_communications"
                 columnNames="property_id, communication_id"
                 constraintName="pk_property-communications"/>
     </changeSet>

@@ -52,6 +52,10 @@
 
             <column name="fencing" type="VARCHAR(255)"/>
 
+            <column name="developer_id" type="BIGINT"/>
+
+            <column name="complex_id" type="BIGINT"/>
+
             <column name="construction_stage" type="VARCHAR(50)"/>
 
             <column name="land_plot_square" type="DECIMAL(10, 2)"/>
@@ -71,6 +75,20 @@
                 referencedTableName="land_use_types"
                 referencedColumnNames="id"
                 constraintName="fk_houses_land_use_types"/>
+
+        <addForeignKeyConstraint
+                baseTableName="houses"
+                baseColumnNames="developer_id"
+                constraintName="fk_houses_developers"
+                referencedTableName="developers"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="houses"
+                baseColumnNames="complex_id"
+                constraintName="fk_houses_residential_complexes"
+                referencedTableName="residential_complexes"
+                referencedColumnNames="id"/>
 
     </changeSet>
 

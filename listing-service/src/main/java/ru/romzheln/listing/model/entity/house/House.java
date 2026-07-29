@@ -2,9 +2,7 @@ package ru.romzheln.listing.model.entity.house;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ru.romzheln.listing.model.entity.common.AdditionalBuilding;
-import ru.romzheln.listing.model.entity.common.CommonLandDetails;
-import ru.romzheln.listing.model.entity.common.CommonPhysicalDetails;
+import ru.romzheln.listing.model.entity.common.*;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.ConstructionStage;
 
@@ -34,6 +32,14 @@ public class House {
 
     @Embedded
     private CommonLandDetails commonLandDetails;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "developer_id")
+    private Developer developer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "complex_id")
+    private ResidentialComplex complex;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "construction_stage")
