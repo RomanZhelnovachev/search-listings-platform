@@ -40,4 +40,8 @@
     <include file="db/changelog/005-relations/004-create-mortgage-program-listings.xml"/>
 
 
+
+    <include file="db/changelog/006-outbox/001-create-outbox-events.xml"/>
+
+
 </databaseChangeLog>

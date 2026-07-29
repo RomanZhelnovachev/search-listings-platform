@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import ru.romzheln.listing.dto.event.listing.ChangePriceEvent;
+import ru.romzheln.listing.exception.ChangeListingException;
+import ru.romzheln.listing.exception.UpdateListingException;
 import ru.romzheln.listing.model.entity.owner.Owner;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.DealType;
@@ -19,7 +22,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @Builder
 public class Listing {
 
@@ -84,4 +86,38 @@ public class Listing {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private Instant updatedAt;
+
+    public void changeTitle(String title){
+        validateEditable();
+        this.title = title;
+    }
+
+    public void changeDescription(String description){
+        validateEditable();
+        this.description = description;
+    }
+
+    public void changeDealType(DealType dealType){
+        validateEditable();
+        this.dealType = dealType;
+    }
+
+    public ChangePriceEvent changePrice(BigDecimal newPrice) {
+        validateEditable();
+        if (newPrice.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new UpdateListingException(id);
+        }
+        if (this.price.compareTo(newPrice) == 0) {
+            throw new ChangeListingException(id);
+        }
+        BigDecimal oldPrice = this.price;
+        this.price = newPrice;
+        return new ChangePriceEvent(oldPrice, newPrice);
+    }
+
+    private void validateEditable(){
+        if(status == ListingStatus.ARCHIVED || status == ListingStatus.REMOVED){
+            throw new ChangeListingException(id);
+        }
+    }
 }
