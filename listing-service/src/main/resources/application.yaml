@@ -1,3 +1,16 @@
 spring:
   application:
     name: listing-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/listings_db
+    username: postgres
+    password: Gelnova4ev
+
+  jpa:
+    hibernate:
+      ddl: validate
+
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.xml
