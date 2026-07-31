@@ -68,7 +68,7 @@ public class Property {
     private Own own;
 
     @Column(name = "first_owner")
-    private Boolean isFirstOwner;
+    private Boolean firstOwner;
 
     @ManyToMany
     @JoinTable(

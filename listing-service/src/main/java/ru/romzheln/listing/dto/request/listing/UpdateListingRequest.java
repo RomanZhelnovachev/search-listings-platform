@@ -1,4 +1,4 @@
-package ru.romzheln.listing.dto.request;
+package ru.romzheln.listing.dto.request.listing;
 
 import jakarta.validation.constraints.NotNull;
 import ru.romzheln.listing.model.enums.DealType;

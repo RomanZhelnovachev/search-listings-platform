@@ -1,7 +1,7 @@
 package ru.romzheln.listing.service;
 
-import ru.romzheln.listing.dto.request.CreateListingRequest;
-import ru.romzheln.listing.dto.request.UpdateListingRequest;
+import ru.romzheln.listing.dto.request.listing.CreateListingRequest;
+import ru.romzheln.listing.dto.request.listing.UpdateListingRequest;
 import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.model.entity.listing.Image;
 import ru.romzheln.listing.model.entity.listing.MortgageProgram;

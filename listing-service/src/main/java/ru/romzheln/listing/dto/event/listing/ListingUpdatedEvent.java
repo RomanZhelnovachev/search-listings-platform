@@ -1,5 +1,6 @@
 package ru.romzheln.listing.dto.event.listing;
 
+import ru.romzheln.listing.dto.event.OutboxPayload;
 import ru.romzheln.listing.model.enums.DealType;
 
 public record ListingUpdatedEvent(
@@ -9,5 +10,5 @@ public record ListingUpdatedEvent(
         String description,
 
         DealType dealType
-) {
+) implements OutboxPayload {
 }

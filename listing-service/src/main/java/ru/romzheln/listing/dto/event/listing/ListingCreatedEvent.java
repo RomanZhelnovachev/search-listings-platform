@@ -1,6 +1,7 @@
 package ru.romzheln.listing.dto.event.listing;
 
 import lombok.Builder;
+import ru.romzheln.listing.dto.event.OutboxPayload;
 import ru.romzheln.listing.model.enums.DealType;
 
 import java.math.BigDecimal;
@@ -20,5 +21,5 @@ public record ListingCreatedEvent(
 
         BigDecimal price
 
-) {
+) implements OutboxPayload {
 }
