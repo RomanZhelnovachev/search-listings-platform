@@ -1,4 +1,4 @@
-package ru.romzheln.listing.dto.request.property;
+package ru.romzheln.listing.dto.request.property.common;
 
 import ru.romzheln.listing.model.enums.Region;
 

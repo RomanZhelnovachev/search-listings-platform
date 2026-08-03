@@ -1,8 +1,5 @@
-package ru.romzheln.listing.dto.request.property;
+package ru.romzheln.listing.dto.request.property.apartment;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import ru.romzheln.listing.model.enums.Elevator;
 import ru.romzheln.listing.model.enums.Ramp;
 import ru.romzheln.listing.model.enums.Side;
