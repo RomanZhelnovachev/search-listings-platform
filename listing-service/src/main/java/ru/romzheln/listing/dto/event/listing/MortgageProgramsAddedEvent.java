@@ -1,0 +1,11 @@
+package ru.romzheln.listing.dto.event.listing;
+
+import ru.romzheln.listing.dto.event.OutboxPayload;
+
+import java.util.Set;
+
+public record MortgageProgramsAddedEvent(
+
+        Set<Long> mortgageProgramIds
+) implements OutboxPayload {
+}

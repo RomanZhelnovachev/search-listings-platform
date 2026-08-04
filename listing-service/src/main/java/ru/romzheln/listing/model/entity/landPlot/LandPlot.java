@@ -1,4 +1,4 @@
-package ru.romzheln.listing.model.entity.landplot;
+package ru.romzheln.listing.model.entity.landPlot;
 
 import jakarta.persistence.*;
 import lombok.*;

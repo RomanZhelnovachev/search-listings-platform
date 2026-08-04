@@ -70,6 +70,11 @@
                 startValue="1"
                 incrementBy="1"/>
 
+        <createSequence
+                sequenceName="outbox_seq"
+                startValue="1"
+                incrementBy="1"/>
+
     </changeSet>
 
 </databaseChangeLog>

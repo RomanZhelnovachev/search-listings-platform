@@ -3,7 +3,7 @@ package ru.romzheln.listing.model.enums;
 public enum ListingStatus {
 
     CREATED,
-    MODERATED,
+    APPROVED,
     PUBLISHED,
     ARCHIVED,
     REMOVED

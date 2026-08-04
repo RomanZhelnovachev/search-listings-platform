@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import ru.romzheln.listing.exception.ChangePropertyException;
+import ru.romzheln.listing.exception.ChangefirstOwnerException;
 import ru.romzheln.listing.model.entity.common.Communication;
 import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.apartment.Apartment;
 import ru.romzheln.listing.model.entity.commercial.Commercial;
 import ru.romzheln.listing.model.entity.house.House;
-import ru.romzheln.listing.model.entity.landplot.LandPlot;
+import ru.romzheln.listing.model.entity.landPlot.LandPlot;
 import ru.romzheln.listing.model.enums.Own;
 import ru.romzheln.listing.model.enums.PropertyType;
 
@@ -68,7 +70,8 @@ public class Property {
     private Own own;
 
     @Column(name = "first_owner")
-    private Boolean isFirstOwner;
+    @Setter(AccessLevel.NONE)
+    private Boolean firstOwner;
 
     @ManyToMany
     @JoinTable(
@@ -90,4 +93,14 @@ public class Property {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private Instant updatedAt;
+
+    public void changeFirstOwner(Boolean newData){
+        if (Boolean.FALSE.equals(this.firstOwner)){
+            throw new ChangefirstOwnerException("Невозможно изменить");
+        }
+        if(this.firstOwner.equals(newData)){
+            throw new ChangePropertyException(id);
+        }
+       this.firstOwner = newData;
+    }
 }

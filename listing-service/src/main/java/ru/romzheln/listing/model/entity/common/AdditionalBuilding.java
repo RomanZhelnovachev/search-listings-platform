@@ -8,7 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import ru.romzheln.listing.model.entity.house.House;
-import ru.romzheln.listing.model.entity.landplot.LandPlot;
+import ru.romzheln.listing.model.entity.landPlot.LandPlot;
 
 import java.time.Instant;
 

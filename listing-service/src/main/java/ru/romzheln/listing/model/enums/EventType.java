@@ -1,0 +1,18 @@
+package ru.romzheln.listing.model.enums;
+
+public enum EventType {
+
+    CREATED,
+    UPDATED,
+    REMOVED,
+    PRICE_CHANGED,
+    PROMOTION_ADDED,
+    PROMOTION_DISABLED,
+    MORTGAGE_PROGRAM_ADDED,
+    MORTGAGE_PROGRAMS_REMOVED,
+    PUBLISHED,
+    ARCHIVED,
+    APPROVED,
+    IMAGES_ADDED,
+    IMAGES_REMOVED
+}
