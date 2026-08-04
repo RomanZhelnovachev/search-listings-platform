@@ -1,10 +1,10 @@
 package ru.romzheln.listing.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.romzheln.listing.dto.request.property.apartment.ApartmentPhysicalDetailsRequest;
-import ru.romzheln.listing.dto.request.property.commercial.CommercialPhysicalDetailsRequest;
-import ru.romzheln.listing.dto.request.property.common.CommonLandDetailsRequest;
-import ru.romzheln.listing.dto.request.property.common.CommonPhysicalDetailsRequest;
+import ru.romzheln.listing.dto.common.ApartmentPhysicalDetailsDto;
+import ru.romzheln.listing.dto.common.CommercialPhysicalDetailsDto;
+import ru.romzheln.listing.dto.common.CommonLandDetailsDto;
+import ru.romzheln.listing.dto.common.CommonPhysicalDetailsDto;
 import ru.romzheln.listing.model.entity.apartment.ApartmentPhysicalDetails;
 import ru.romzheln.listing.model.entity.commercial.CommercialPhysicalDetails;
 import ru.romzheln.listing.model.entity.common.CommonLandDetails;
@@ -15,7 +15,7 @@ import ru.romzheln.listing.util.UpdateUtil;
 @Component
 public class PhysicalDetailsMapper {
 
-    public CommonPhysicalDetails buildCommonPhysicalDetails(CommonPhysicalDetailsRequest request){
+    public CommonPhysicalDetails buildCommonPhysicalDetails(CommonPhysicalDetailsDto request){
         return CommonPhysicalDetails.builder()
                 .roomsNumber(request.roomsNumber())
                 .ceilingHeight(request.ceilingHeight())
@@ -34,7 +34,7 @@ public class PhysicalDetailsMapper {
                 .build();
     }
 
-    public ApartmentPhysicalDetails buildApartmentPhysicalDetails(ApartmentPhysicalDetailsRequest request){
+    public ApartmentPhysicalDetails buildApartmentPhysicalDetails(ApartmentPhysicalDetailsDto request){
         return ApartmentPhysicalDetails.builder()
                 .kitchenSquare(request.kitchenSquare())
                 .floor(request.floor())
@@ -44,7 +44,7 @@ public class PhysicalDetailsMapper {
                 .build();
     }
 
-    public CommercialPhysicalDetails buildCommercialPhysicalDetails(CommercialPhysicalDetailsRequest request){
+    public CommercialPhysicalDetails buildCommercialPhysicalDetails(CommercialPhysicalDetailsDto request){
         return CommercialPhysicalDetails.builder()
                 .floor(request.floor())
                 .line(request.line())
@@ -59,7 +59,7 @@ public class PhysicalDetailsMapper {
                 .build();
     }
 
-    public CommonLandDetails buildCommonLandDetails(CommonLandDetailsRequest request, LandUse landUse){
+    public CommonLandDetails buildCommonLandDetails(CommonLandDetailsDto request, LandUse landUse){
         return CommonLandDetails.builder()
                 .landUse(landUse)
                 .road(request.road())
@@ -67,7 +67,7 @@ public class PhysicalDetailsMapper {
                 .build();
     }
 
-    public void updateCommonPhysicalDetails(CommonPhysicalDetails details, CommonPhysicalDetailsRequest request){
+    public void updateCommonPhysicalDetails(CommonPhysicalDetails details, CommonPhysicalDetailsDto request){
         UpdateUtil.setIfNotNull(request.roomsNumber(), details::setRoomsNumber);
         UpdateUtil.setIfNotNull(request.ceilingHeight(), details::setCeilingHeight);
         UpdateUtil.setIfNotNull(request.renovation(), details::setRenovation);
@@ -84,7 +84,7 @@ public class PhysicalDetailsMapper {
         UpdateUtil.setIfNotNull(request.layoutType(), details::setLayoutType);
     }
 
-    public void updateApartmentPhysicalDetails(ApartmentPhysicalDetails details, ApartmentPhysicalDetailsRequest request){
+    public void updateApartmentPhysicalDetails(ApartmentPhysicalDetails details, ApartmentPhysicalDetailsDto request){
         UpdateUtil.setIfNotNull(request.kitchenSquare(), details::setKitchenSquare);
         UpdateUtil.setIfNotNull(request.floor(), details::setFloor);
         UpdateUtil.setIfNotNull(request.elevator(), details::setElevator);
@@ -92,7 +92,7 @@ public class PhysicalDetailsMapper {
         UpdateUtil.setIfNotNull(request.side(), details::setSide);
     }
 
-    public void updateCommercialPhysicalDetails(CommercialPhysicalDetails details, CommercialPhysicalDetailsRequest request){
+    public void updateCommercialPhysicalDetails(CommercialPhysicalDetails details, CommercialPhysicalDetailsDto request){
         UpdateUtil.setIfNotNull(request.floor(), details::setFloor);
         UpdateUtil.setIfNotNull(request.line(), details::setLine);
         UpdateUtil.setIfNotNull(request.propertyLocationType(), details::setPropertyLocationType);
@@ -105,7 +105,7 @@ public class PhysicalDetailsMapper {
         UpdateUtil.setIfNotNull(request.railwayDeadEnd(), details::setRailwayDeadEnd);
     }
 
-    public void updateCommonLandDetails(CommonLandDetails details, CommonLandDetailsRequest request, LandUse landUse){
+    public void updateCommonLandDetails(CommonLandDetails details, CommonLandDetailsDto request, LandUse landUse){
         UpdateUtil.setIfNotNull(landUse, details::setLandUse);
         UpdateUtil.setIfNotNull(request.road(), details::setRoad);
         UpdateUtil.setIfNotNull(request.fencing(), details::setFencing);

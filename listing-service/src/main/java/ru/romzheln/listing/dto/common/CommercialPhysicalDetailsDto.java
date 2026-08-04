@@ -1,10 +1,12 @@
-package ru.romzheln.listing.dto.request.property.commercial;
+package ru.romzheln.listing.dto.common;
 
+import lombok.Builder;
 import ru.romzheln.listing.model.enums.Line;
 import ru.romzheln.listing.model.enums.PropertyLocationType;
 import ru.romzheln.listing.model.enums.TerritorialZone;
 
-public record CommercialPhysicalDetailsRequest(
+@Builder
+public record CommercialPhysicalDetailsDto(
 
         Integer floor,
 

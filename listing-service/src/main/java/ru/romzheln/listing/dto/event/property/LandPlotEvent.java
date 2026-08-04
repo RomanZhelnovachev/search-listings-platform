@@ -1,13 +1,14 @@
-package ru.romzheln.listing.dto.request.property.landPlot;
+package ru.romzheln.listing.dto.event.property;
 
+import lombok.Builder;
 import lombok.Getter;
 import ru.romzheln.listing.dto.common.CommonLandDetailsDto;
-import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 
 import java.util.Set;
 
 @Getter
-public class CreateLandPlotRequest extends CreatePropertyRequest {
+@Builder
+public class LandPlotEvent extends PropertyEvent {
 
     private CommonLandDetailsDto commonLandDetailsDto;
 

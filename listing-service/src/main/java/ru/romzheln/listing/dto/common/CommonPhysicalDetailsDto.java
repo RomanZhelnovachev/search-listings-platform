@@ -1,11 +1,13 @@
-package ru.romzheln.listing.dto.request.property.common;
+package ru.romzheln.listing.dto.common;
 
+import lombok.Builder;
 import ru.romzheln.listing.model.enums.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record CommonPhysicalDetailsRequest(
+@Builder
+public record CommonPhysicalDetailsDto(
 
         Integer roomsNumber,
 

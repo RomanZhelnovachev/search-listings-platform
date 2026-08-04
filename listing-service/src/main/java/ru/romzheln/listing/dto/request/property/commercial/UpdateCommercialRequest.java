@@ -1,7 +1,8 @@
 package ru.romzheln.listing.dto.request.property.commercial;
 
 import lombok.Getter;
-import ru.romzheln.listing.dto.request.property.common.CommonPhysicalDetailsRequest;
+import ru.romzheln.listing.dto.common.CommercialPhysicalDetailsDto;
+import ru.romzheln.listing.dto.common.CommonPhysicalDetailsDto;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 
 import java.util.Set;
@@ -9,9 +10,9 @@ import java.util.Set;
 @Getter
 public class UpdateCommercialRequest extends UpdatePropertyRequest {
 
-    private CommonPhysicalDetailsRequest commonPhysicalDetailsRequest;
+    private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
 
-    private CommercialPhysicalDetailsRequest commercialPhysicalDetailsRequest;
+    private CommercialPhysicalDetailsDto commercialPhysicalDetailsDto;
 
     private Set<Long> purposesIds;
 

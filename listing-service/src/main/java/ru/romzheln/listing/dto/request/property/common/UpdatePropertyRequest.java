@@ -1,6 +1,7 @@
 package ru.romzheln.listing.dto.request.property.common;
 
 import lombok.Getter;
+import ru.romzheln.listing.dto.common.LocationDto;
 import ru.romzheln.listing.model.enums.Own;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ public abstract class UpdatePropertyRequest {
 
     private Long id;
 
-    private LocationRequest locationRequest;
+    private LocationDto locationDto;
 
     private BigDecimal square;
 

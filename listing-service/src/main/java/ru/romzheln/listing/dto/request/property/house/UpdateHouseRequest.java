@@ -1,8 +1,8 @@
 package ru.romzheln.listing.dto.request.property.house;
 
 import lombok.Getter;
-import ru.romzheln.listing.dto.request.property.common.CommonLandDetailsRequest;
-import ru.romzheln.listing.dto.request.property.common.CommonPhysicalDetailsRequest;
+import ru.romzheln.listing.dto.common.CommonLandDetailsDto;
+import ru.romzheln.listing.dto.common.CommonPhysicalDetailsDto;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.model.enums.ConstructionStage;
 
@@ -12,9 +12,9 @@ import java.util.Set;
 @Getter
 public class UpdateHouseRequest extends UpdatePropertyRequest {
 
-    private CommonPhysicalDetailsRequest commonPhysicalDetailsRequest;
+    private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
 
-    private CommonLandDetailsRequest commonLandDetailsRequest;
+    private CommonLandDetailsDto commonLandDetailsDto;
 
     private Long developerId;
 

@@ -1,8 +1,10 @@
-package ru.romzheln.listing.dto.request.property.common;
+package ru.romzheln.listing.dto.common;
 
+import lombok.Builder;
 import ru.romzheln.listing.model.enums.Region;
 
-public record LocationRequest(
+@Builder
+public record LocationDto(
 
         Region region,
 

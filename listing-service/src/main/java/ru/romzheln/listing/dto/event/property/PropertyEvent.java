@@ -1,7 +1,10 @@
-package ru.romzheln.listing.dto.request.property.common;
+package ru.romzheln.listing.dto.event.property;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import ru.romzheln.listing.dto.common.LocationDto;
+import ru.romzheln.listing.dto.event.OutboxPayload;
 import ru.romzheln.listing.model.enums.Own;
 import ru.romzheln.listing.model.enums.PropertyType;
 
@@ -9,7 +12,9 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
-public abstract class CreatePropertyRequest {
+@Builder
+@Setter
+public abstract class PropertyEvent implements OutboxPayload {
 
     private PropertyType propertyType;
 

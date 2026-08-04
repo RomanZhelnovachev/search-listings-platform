@@ -1,7 +1,7 @@
 package ru.romzheln.listing.service.strategy;
 
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
-import ru.romzheln.listing.dto.request.property.common.LocationRequest;
+import ru.romzheln.listing.dto.common.LocationDto;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.exception.InvalidPropertyTypeException;
 import ru.romzheln.listing.exception.PropertyNotFoundByIdException;
@@ -17,8 +17,14 @@ import java.util.Set;
 
 public abstract class AbstractPropertyStrategy implements PropertyStrategy {
 
-    protected CommunicationRepository communicationRepository;
-    protected PropertyRepository propertyRepository;
+    protected final CommunicationRepository communicationRepository;
+    protected final PropertyRepository propertyRepository;
+
+    protected AbstractPropertyStrategy(CommunicationRepository communicationRepository,
+                                       PropertyRepository propertyRepository) {
+        this.communicationRepository = communicationRepository;
+        this.propertyRepository = propertyRepository;
+    }
 
     protected Property buildProperty(CreatePropertyRequest request){
         Location location = buildLocation(request.getLocation());
@@ -34,8 +40,8 @@ public abstract class AbstractPropertyStrategy implements PropertyStrategy {
     }
 
     protected void updateProperty(Property property, UpdatePropertyRequest request){
-        if(request.getLocationRequest() != null){
-            Location location = buildLocation(request.getLocationRequest());
+        if(request.getLocationDto() != null){
+            Location location = buildLocation(request.getLocationDto());
             property.setLocation(location);
         }
         if(request.getSquare() != null){
@@ -65,7 +71,7 @@ public abstract class AbstractPropertyStrategy implements PropertyStrategy {
         return propertyRepository.findById(id).orElseThrow(()-> new PropertyNotFoundByIdException(id));
     }
 
-    private Location buildLocation(LocationRequest request){
+    private Location buildLocation(LocationDto request){
         return Location.builder()
                 .region(request.region())
                 .populatedArea(request.populatedArea())

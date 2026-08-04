@@ -1,12 +1,14 @@
-package ru.romzheln.listing.dto.request.property.apartment;
+package ru.romzheln.listing.dto.common;
 
+import lombok.Builder;
 import ru.romzheln.listing.model.enums.Elevator;
 import ru.romzheln.listing.model.enums.Ramp;
 import ru.romzheln.listing.model.enums.Side;
 
 import java.math.BigDecimal;
 
-public record ApartmentPhysicalDetailsRequest(
+@Builder
+public record ApartmentPhysicalDetailsDto(
 
         BigDecimal kitchenSquare,
 

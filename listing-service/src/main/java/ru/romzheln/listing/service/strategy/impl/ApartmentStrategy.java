@@ -1,10 +1,10 @@
 package ru.romzheln.listing.service.strategy.impl;
 
-import lombok.RequiredArgsConstructor;
-import ru.romzheln.listing.dto.request.property.apartment.ApartmentPhysicalDetailsRequest;
+import org.springframework.stereotype.Component;
+import ru.romzheln.listing.dto.common.ApartmentPhysicalDetailsDto;
 import ru.romzheln.listing.dto.request.property.apartment.CreateApartmentRequest;
 import ru.romzheln.listing.dto.request.property.apartment.UpdateApartmentRequest;
-import ru.romzheln.listing.dto.request.property.common.CommonPhysicalDetailsRequest;
+import ru.romzheln.listing.dto.common.CommonPhysicalDetailsDto;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.model.entity.apartment.Apartment;
@@ -15,24 +15,36 @@ import ru.romzheln.listing.model.entity.common.ResidentialComplex;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
 import ru.romzheln.listing.mapper.PhysicalDetailsMapper;
+import ru.romzheln.listing.repository.CommunicationRepository;
+import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.resolver.PropertyReferenceResolver;
 import ru.romzheln.listing.service.strategy.AbstractPropertyStrategy;
 import ru.romzheln.listing.util.ClassCastUtil;
 
-@RequiredArgsConstructor
+@Component
 public class ApartmentStrategy extends AbstractPropertyStrategy {
 
     private final PropertyReferenceResolver resolver;
     private final PhysicalDetailsMapper mapper;
 
+    protected ApartmentStrategy(CommunicationRepository communicationRepository,
+                                PropertyRepository propertyRepository,
+                                PropertyReferenceResolver resolver,
+                                PhysicalDetailsMapper mapper) {
+        super(communicationRepository,
+                propertyRepository);
+        this.resolver = resolver;
+        this.mapper = mapper;
+    }
+
     @Override
     public Property create(CreatePropertyRequest request) {
-        Property property = super.buildProperty(request);
+        Property property = buildProperty(request);
         CreateApartmentRequest apartmentRequest = ClassCastUtil.requireType(request, CreateApartmentRequest.class);
-        CommonPhysicalDetailsRequest commonPhysicalDetailsRequest = apartmentRequest.getCommonPhysicalDetailsRequest();
-        ApartmentPhysicalDetailsRequest apartmentPhysicalDetailsRequest = apartmentRequest.getApartmentPhysicalDetailsRequest();
-        CommonPhysicalDetails commonPhysicalDetails = mapper.buildCommonPhysicalDetails(commonPhysicalDetailsRequest);
-        ApartmentPhysicalDetails apartmentPhysicalDetails = mapper.buildApartmentPhysicalDetails(apartmentPhysicalDetailsRequest);
+        CommonPhysicalDetailsDto commonPhysicalDetailsDto = apartmentRequest.getCommonPhysicalDetailsDto();
+        ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto = apartmentRequest.getApartmentPhysicalDetailsDto();
+        CommonPhysicalDetails commonPhysicalDetails = mapper.buildCommonPhysicalDetails(commonPhysicalDetailsDto);
+        ApartmentPhysicalDetails apartmentPhysicalDetails = mapper.buildApartmentPhysicalDetails(apartmentPhysicalDetailsDto);
         Apartment apartment = Apartment.builder()
                 .property(property)
                 .apartmentType(apartmentRequest.getApartmentType())
@@ -51,11 +63,11 @@ public class ApartmentStrategy extends AbstractPropertyStrategy {
         updateProperty(property, request);
         Apartment apartment = property.getApartment();
         UpdateApartmentRequest apartmentRequest = ClassCastUtil.requireType(request, UpdateApartmentRequest.class);
-        if(apartmentRequest.getCommonPhysicalDetailsRequest() != null){
-            mapper.updateCommonPhysicalDetails(apartment.getCommonPhysicalDetails(), apartmentRequest.getCommonPhysicalDetailsRequest());
+        if(apartmentRequest.getCommonPhysicalDetailsDto() != null){
+            mapper.updateCommonPhysicalDetails(apartment.getCommonPhysicalDetails(), apartmentRequest.getCommonPhysicalDetailsDto());
         }
-        if(apartmentRequest.getApartmentPhysicalDetailsRequest() != null){
-            mapper.updateApartmentPhysicalDetails(apartment.getApartmentPhysicalDetails(), apartmentRequest.getApartmentPhysicalDetailsRequest());
+        if(apartmentRequest.getApartmentPhysicalDetailsDto() != null){
+            mapper.updateApartmentPhysicalDetails(apartment.getApartmentPhysicalDetails(), apartmentRequest.getApartmentPhysicalDetailsDto());
         }
         if(apartmentRequest.getDeveloperId() != null){
             Developer developer = resolver.getDeveloper(apartmentRequest.getDeveloperId());
