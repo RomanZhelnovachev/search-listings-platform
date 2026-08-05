@@ -1,29 +1,23 @@
 package ru.romzheln.listing.service;
 
-import ru.romzheln.listing.dto.request.listing.CreateListingRequest;
-import ru.romzheln.listing.dto.request.listing.UpdateListingRequest;
+import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
-import ru.romzheln.listing.model.entity.listing.Image;
-import ru.romzheln.listing.model.entity.listing.MortgageProgram;
-
-import java.math.BigDecimal;
-import java.util.Set;
 
 public interface ListingService {
 
     ListingResponse createListing(CreateListingRequest request);
 
-    ListingResponse updateListing(UpdateListingRequest request);
+    ListingResponse updateListing(Long id, UpdateListingRequest request);
 
-    ListingResponse changePrice(Long id, BigDecimal price);
+    ListingResponse changePrice(Long id, ChangePriceRequest request);
 
-    void assignPromotion(Long id, Long promotionId);
+    void assignPromotion(Long id, ChangeListingPromotionRequest request);
 
     void disablePromotion(Long id);
 
-    void addMortgagePrograms(Long id, Set<MortgageProgram> mortgagePrograms);
+    void addMortgagePrograms(Long id, ChangeListingMortgageProgramsRequest request);
 
-    void removeMortgagePrograms(Long id, Set<MortgageProgram> mortgagePrograms);
+    void removeMortgagePrograms(Long id, ChangeListingMortgageProgramsRequest request);
 
     void publishListing(Long id);
 
@@ -31,11 +25,11 @@ public interface ListingService {
 
     void approveListing(Long id);
 
-    void addImages(Long id, Set<Image> images);
+    void addImages(Long id, ChangeListingImageRequest request);
 
-    void removeImages(Long id, Set<Image> images);
+    void removeImages(Long id, ChangeListingImageRequest request);
 
     ListingResponse findListingById(Long id);
 
-    void deleteListing(Long id, String reason);
+    void deleteListing(Long id, RemoveListingRequest request);
 }

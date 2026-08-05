@@ -6,6 +6,6 @@ import java.util.Set;
 
 public record MortgageProgramsAddedEvent(
 
-        Set<Long> mortgageProgramIds
+        Set<Long> mortgagePrograms
 ) implements OutboxPayload {
 }

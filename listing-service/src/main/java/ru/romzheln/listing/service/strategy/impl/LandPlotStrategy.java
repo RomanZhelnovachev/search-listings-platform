@@ -52,8 +52,8 @@ public class LandPlotStrategy extends AbstractPropertyStrategy {
     }
 
     @Override
-    public Property update(UpdatePropertyRequest request) {
-        Property property = findPropertyById(request.getId(), PropertyType.LAND_PLOT);
+    public Property update(Long id, UpdatePropertyRequest request) {
+        Property property = findPropertyById(id, PropertyType.LAND_PLOT);
         updateProperty(property,request);
         LandPlot landPlot = property.getLandPlot();
         UpdateLandPlotRequest landPlotRequest = ClassCastUtil.requireType(request, UpdateLandPlotRequest.class);

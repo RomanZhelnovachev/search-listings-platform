@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
-@Builder
 @Setter
 public abstract class PropertyResponse{
 

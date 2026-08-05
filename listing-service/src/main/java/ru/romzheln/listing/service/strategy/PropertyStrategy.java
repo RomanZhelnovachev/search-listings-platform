@@ -8,6 +8,6 @@ public interface PropertyStrategy {
 
     Property create(CreatePropertyRequest request);
 
-    Property update(UpdatePropertyRequest request);
+    Property update(Long id, UpdatePropertyRequest request);
 
 }

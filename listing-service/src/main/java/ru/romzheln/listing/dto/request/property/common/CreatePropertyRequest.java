@@ -1,5 +1,6 @@
 package ru.romzheln.listing.dto.request.property.common;
 
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import ru.romzheln.listing.dto.common.LocationDto;
 import ru.romzheln.listing.model.enums.Own;
@@ -15,6 +16,7 @@ public abstract class CreatePropertyRequest {
 
     private LocationDto location;
 
+    @Positive
     private BigDecimal square;
 
     private Own own;
