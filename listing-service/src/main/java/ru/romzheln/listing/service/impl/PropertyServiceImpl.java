@@ -7,23 +7,19 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.dto.response.PropertyResponse;
-import ru.romzheln.listing.exception.InvalidPropertyTypeException;
 import ru.romzheln.listing.exception.PropertyNotFoundByIdException;
 import ru.romzheln.listing.exception.PropertyStrategyNotFoundException;
 import ru.romzheln.listing.mapper.PropertyEventMapper;
 import ru.romzheln.listing.mapper.PropertyResponseMapper;
-import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.enums.PropertyType;
 import ru.romzheln.listing.repository.PropertyRepository;
-import ru.romzheln.listing.service.ListingService;
 import ru.romzheln.listing.service.OutboxEventService;
 import ru.romzheln.listing.service.PropertyService;
 import ru.romzheln.listing.service.strategy.PropertyStrategy;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -51,10 +47,10 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     @Transactional
-    public PropertyResponse updateProperty(UpdatePropertyRequest request) {
-        Property property = getProperty(request.getId());
+    public PropertyResponse updateProperty(Long id, UpdatePropertyRequest request) {
+        Property property = getProperty(id);
         PropertyStrategy strategy = getStrategy(property.getPropertyType());
-        strategy.update(request);
+        strategy.update(id, request);
         outboxEventService.save(AggregateType.PROPERTY,
                 property.getId(), EventType.UPDATED,
                 eventMapper.toPropertyEvent(property));

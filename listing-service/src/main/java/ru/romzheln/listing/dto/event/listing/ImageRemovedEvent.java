@@ -7,6 +7,6 @@ import java.util.Set;
 
 public record ImageRemovedEvent(
 
-        Set<Image> images
+        Set<Long> images
 ) implements OutboxPayload {
 }

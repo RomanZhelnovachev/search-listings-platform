@@ -58,8 +58,8 @@ public class ApartmentStrategy extends AbstractPropertyStrategy {
     }
 
     @Override
-    public Property update(UpdatePropertyRequest request) {
-        Property property = findPropertyById(request.getId(), PropertyType.APARTMENT);
+    public Property update(Long id, UpdatePropertyRequest request) {
+        Property property = findPropertyById(id, PropertyType.APARTMENT);
         updateProperty(property, request);
         Apartment apartment = property.getApartment();
         UpdateApartmentRequest apartmentRequest = ClassCastUtil.requireType(request, UpdateApartmentRequest.class);

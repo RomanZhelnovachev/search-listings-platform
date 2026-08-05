@@ -54,8 +54,8 @@ public class CommercialStrategy extends AbstractPropertyStrategy {
     }
 
     @Override
-    public Property update(UpdatePropertyRequest request) {
-        Property property = findPropertyById(request.getId(), PropertyType.COMMERCIAL);
+    public Property update(Long id, UpdatePropertyRequest request) {
+        Property property = findPropertyById(id, PropertyType.COMMERCIAL);
         updateProperty(property, request);
         Commercial commercial = property.getCommercial();
         UpdateCommercialRequest commercialRequest = ClassCastUtil.requireType(request, UpdateCommercialRequest.class);

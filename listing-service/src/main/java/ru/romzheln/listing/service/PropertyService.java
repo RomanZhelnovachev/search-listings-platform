@@ -9,7 +9,7 @@ public interface PropertyService {
 
     PropertyResponse createProperty(CreatePropertyRequest request);
 
-    PropertyResponse updateProperty(UpdatePropertyRequest request);
+    PropertyResponse updateProperty(Long id, UpdatePropertyRequest request);
 
     Property findPropertyById(Long id);
 }

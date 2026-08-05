@@ -7,6 +7,6 @@ import java.util.Set;
 
 public record MotgageProgramRemovedEvent(
 
-        Set<MortgageProgram> mortgagePrograms
+        Set<Long> mortgagePrograms
 ) implements OutboxPayload {
 }
