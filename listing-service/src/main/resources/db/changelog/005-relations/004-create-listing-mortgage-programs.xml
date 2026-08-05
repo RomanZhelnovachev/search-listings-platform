@@ -8,27 +8,27 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
 
-    <changeSet id="create-listing-images" author="RomanZhelnovachev">
+    <changeSet id="create-listing-mortgage-programs" author="RomanZhelnovachev">
 
-        <createTable tableName="listing_images">
+        <createTable tableName="listing_mortgage_programs">
 
             <column name="listing_id" type="BIGINT">
                 <constraints
                     nullable="false"
-                    foreignKeyName="fk_listing_images_listing"
+                    foreignKeyName="fk_listing_mortgage_programs_listing"
                     references="listings(id)"/>
             </column>
 
-            <column name="image_id" type="BIGINT">
+            <column name="mortgage_program_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
 
         </createTable>
 
         <addPrimaryKey
-                tableName="listing_images"
-                columnNames="listing_id, image_id"
-                constraintName="pk_listing_images"/>
+                tableName="listing_mortgage_programs"
+                columnNames="listing_id, mortgage_program_id"
+                constraintName="pk_listing_mortgage_programs"/>
 
     </changeSet>
 

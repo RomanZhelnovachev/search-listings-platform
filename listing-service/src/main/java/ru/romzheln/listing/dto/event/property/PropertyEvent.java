@@ -1,6 +1,5 @@
 package ru.romzheln.listing.dto.event.property;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import ru.romzheln.listing.dto.common.LocationDto;
@@ -12,7 +11,6 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
-@Builder
 @Setter
 public abstract class PropertyEvent implements OutboxPayload {
 

@@ -2,9 +2,6 @@ package ru.romzheln.listing.service;
 
 import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
-import ru.romzheln.listing.model.entity.listing.Image;
-
-import java.util.Set;
 
 public interface ListingService {
 

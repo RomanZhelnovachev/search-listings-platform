@@ -11,17 +11,13 @@ import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.exception.ListingNotFoundByIdException;
 import ru.romzheln.listing.exception.UpdateListingException;
 import ru.romzheln.listing.mapper.ListingMapper;
-import ru.romzheln.listing.model.entity.listing.Image;
 import ru.romzheln.listing.model.entity.listing.Listing;
-import ru.romzheln.listing.model.entity.listing.Promotion;
-import ru.romzheln.listing.model.entity.owner.Owner;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.DealType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.enums.ListingStatus;
 import ru.romzheln.listing.repository.ListingRepository;
-import ru.romzheln.listing.resolver.ListingEntityResolver;
 import ru.romzheln.listing.service.*;
 
 import java.math.BigDecimal;
@@ -35,19 +31,18 @@ public class ListingServiceImpl implements ListingService {
     private final ListingRepository listingRepository;
     private final OutboxEventService outboxEventService;
     private final ListingMapper mapper;
-    private final ListingEntityResolver resolver;
+    private final PropertyService propertyService;
 
 
     @Override
     @Transactional
     public ListingResponse createListing(CreateListingRequest request) {
-        Owner owner = resolver.getOwner(request.ownerId());
-        Property property = resolver.getProperty(request.propertyId());
+        Property property = propertyService.findPropertyById(request.propertyId());
         Listing listing = Listing.builder()
                 .title(request.title())
                 .description(request.description())
                 .status(ListingStatus.CREATED)
-                .owner(owner)
+                .ownerId(request.ownerId())
                 .property(property)
                 .dealType(request.dealType())
                 .price(request.price())
@@ -100,15 +95,13 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     @Transactional
-    public void assignPromotion(Long id,
-                                ChangeListingPromotionRequest request) {
+    public void assignPromotion(Long id, ChangeListingPromotionRequest request) {
         Listing listing = getListing(id);
-        Promotion promotion = resolver.getPromotion(request.promotionId());
-        listing.assignPromotion(promotion);
+        listing.assignPromotion(request.promotionId());
         publishEvent(id, EventType.PROMOTION_ADDED, new PromotionAddedEvent(request.promotionId()));
         log.info("Объявлению с ID {} добавлена промоакция - {}",
                 id,
-                promotion.getName());
+                request.promotionId());
     }
 
     @Override
@@ -122,10 +115,9 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     @Transactional
-    public void addMortgagePrograms(Long id,
-                                    ChangeListingMortgageProgramsRequest request) {
+    public void addMortgagePrograms(Long id, ChangeListingMortgageProgramsRequest request) {
         Listing listing = getListing(id);
-        listing.addMortgagePrograms(resolver.getMortgagePrograms(request.mortgageProgramIds()));
+        listing.addMortgagePrograms(request.mortgageProgramIds());
         log.info("Объявлению с ID {} добавлены следующие ипотечные программы - {}",
                     id, request.mortgageProgramIds());
         publishEvent(id, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsAddedEvent(request.mortgageProgramIds()));
@@ -135,9 +127,8 @@ public class ListingServiceImpl implements ListingService {
     @Transactional
     public void removeMortgagePrograms(Long id, ChangeListingMortgageProgramsRequest request) {
         Listing listing = getListing(id);
-        Set<Long> programs = request.mortgageProgramIds();
-        listing.removeMortgagePrograms(resolver.getMortgagePrograms(programs));
-        publishEvent(id, EventType.MORTGAGE_PROGRAMS_REMOVED, new MotgageProgramRemovedEvent(programs));
+        listing.removeMortgagePrograms(request.mortgageProgramIds());
+        publishEvent(id, EventType.MORTGAGE_PROGRAMS_REMOVED, new MotgageProgramRemovedEvent(request.mortgageProgramIds()));
         log.info("В объявлении с ID {} отключены следующие ипотечные программы - {} ", id, request.mortgageProgramIds());
 
     }
@@ -173,9 +164,8 @@ public class ListingServiceImpl implements ListingService {
     @Transactional
     public void addImages(Long id, ChangeListingImageRequest request) {
         Listing listing = getListing(id);
-        Set<Long> images = request.imageIds();
-        Set<Image> newImages = listing.addImages(resolver.getImages(images));
-        publishEvent(id, EventType.IMAGES_ADDED, new ImageAddedEvent(images));
+        Set<Long> newImages = listing.addImages(request.imageIds());
+        publishEvent(id, EventType.IMAGES_ADDED, new ImageAddedEvent(newImages));
         log.info("Объявлению с ID {} добавлено {} изображений", id, newImages.size());
     }
 
@@ -183,10 +173,9 @@ public class ListingServiceImpl implements ListingService {
     @Transactional
     public void removeImages(Long id, ChangeListingImageRequest request) {
         Listing listing = getListing(id);
-        Set<Long> imageIds = request.imageIds();
-        listing.removeImages(resolver.getImages(imageIds));
-        publishEvent(id, EventType.IMAGES_REMOVED, new ImageRemovedEvent(imageIds));
-        log.info("В объявлении с ID {} удалено {} изображений", id, imageIds.size());
+        listing.removeImages(request.imageIds());
+        publishEvent(id, EventType.IMAGES_REMOVED, new ImageRemovedEvent(request.imageIds()));
+        log.info("В объявлении с ID {} удалены следующие изображения {}", id, request.imageIds());
     }
 
     @Override

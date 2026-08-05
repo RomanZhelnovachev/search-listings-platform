@@ -6,11 +6,11 @@
         xsi:schemaLocation="
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
-    
-    
-    <changeSet id="create-promotions" author="RomanZhelnovachev">
-        
-        <createTable tableName="promotions">
+
+
+    <changeSet id="create-listings" author="RomanZhelnovachev">
+
+        <createTable tableName="listings">
             
             <column name="id" type="BIGINT">
                 <constraints
@@ -18,26 +18,31 @@
                     nullable="false"/>
             </column>
             
-            <column name="name" type="VARCHAR(255)">
-                <constraints
-                    nullable="false"
-                    unique="true"
-                    uniqueConstraintName="uq_promotions_name"/>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
             </column>
-            
+
             <column name="description" type="TEXT"/>
-            
-            <column name="discount_type" type="VARCHAR(50)">
+
+            <column name="status" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            
-            <column name="discount_value" type="DECIMAL(19,2)">
+
+            <column name="owner_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            
-            <column name="active" type="BOOLEAN">
+
+            <column name="property_id" type="BIGINT"/>
+
+            <column name="deal_type" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="price" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="promotion_id" type="BIGINT"/>
 
             <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
                 <constraints nullable="false"/>
@@ -46,7 +51,14 @@
             <column name="updated_at" type="TIMESTAMP WITH TIME ZONE"/>
             
         </createTable>
-            
+
+        <addForeignKeyConstraint
+                baseTableName="listings"
+                baseColumnNames="property_id"
+                constraintName="fk_listings_properties"
+                referencedTableName="properties"
+                referencedColumnNames="id"/>
+
     </changeSet>
-    
+
 </databaseChangeLog>

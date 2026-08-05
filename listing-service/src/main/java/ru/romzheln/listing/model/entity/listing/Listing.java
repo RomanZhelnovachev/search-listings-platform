@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import ru.romzheln.listing.exception.*;
-import ru.romzheln.listing.model.entity.owner.Owner;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.DealType;
 import ru.romzheln.listing.model.enums.ListingStatus;
@@ -50,18 +49,17 @@ public class Listing {
     @Column(name = "status", nullable = false)
     private ListingStatus status;
 
-    @ManyToMany
-    @JoinTable(
+    @ElementCollection
+    @CollectionTable(
             name = "listing_images",
-            joinColumns = @JoinColumn(name = "listing_id"),
-            inverseJoinColumns = @JoinColumn(name = "image_id")
+            joinColumns = @JoinColumn(name = "listing_id")
     )
+    @Column(name = "image_id")
     @Builder.Default
-    private Set<Image> images = new HashSet<>();
+    private Set<Long> imageIds = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
+    @Column(name = "owner_id", nullable = false)
+    private Long ownerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "property_id")
@@ -74,13 +72,17 @@ public class Listing {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "listings")
+    @ElementCollection
+    @CollectionTable(
+            name = "listing_mortgage_programs",
+            joinColumns = @JoinColumn(name = "listing_id")
+    )
+    @Column(name = "mortgage_program_id")
     @Builder.Default
-    private Set<MortgageProgram> mortgagePrograms = new HashSet<>();
+    private Set<Long> mortgageProgramIds = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "promotion_id")
-    private Promotion promotion;
+    @Column(name = "promotion_id")
+    private Long promotionId;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
@@ -118,47 +120,46 @@ public class Listing {
         return oldPrice;
     }
 
-    public void assignPromotion(Promotion promotion) {
+    public void assignPromotion(Long promotionId) {
+        if(promotionId == null){
+            throw new ChangeListingException(id);        }
         validateEditable();
-        if (Objects.equals(this.promotion,
-                promotion) || !promotion.getActive()) {
+        if (Objects.equals(this.promotionId,
+                promotionId)) {
             throw new ChangeListingException(id);
         }
-        this.promotion = promotion;
+        this.promotionId = promotionId;
     }
 
     public void disablePromotion(){
         validateEditable();
-        if(this.promotion == null){
+        if(this.promotionId == null){
             throw new PromotionAlreadyDisabled(id);
         }
-        this.promotion = null;
+        this.promotionId = null;
     }
 
-    public void addMortgagePrograms(Set<MortgageProgram> mortgagePrograms) {
+    public void addMortgagePrograms(Set<Long> mortgagePrograms) {
         validateEditable();
-        this.mortgagePrograms.addAll(mortgagePrograms.stream()
-                .filter(MortgageProgram::getActive)
-                .collect(Collectors.toSet())
-        );
+        this.mortgageProgramIds.addAll(mortgagePrograms);
     }
 
-    public void removeMortgagePrograms(Set<MortgageProgram> programs) {
+    public void removeMortgagePrograms(Set<Long> programs) {
         validateEditable();
-        if (!mortgagePrograms.containsAll(programs)) {
+        if (!mortgageProgramIds.containsAll(programs)) {
             throw new MortgageProgramsRemovedException("Невозможно удалить несуществующие ипотечные программы");
         }
-        mortgagePrograms.removeAll(programs);
+        mortgageProgramIds.removeAll(programs);
     }
 
-    public Set<Image> addImages(Set<Image> images) {
-        Set<Image> newImages = images.stream()
-                .filter(image -> !this.images.contains(image))
+    public Set<Long> addImages(Set<Long> images) {
+        Set<Long> newImages = images.stream()
+                .filter(image -> !this.imageIds.contains(image))
                 .collect(Collectors.toSet());
         switch (status) {
-            case CREATED -> this.images.addAll(newImages);
+            case CREATED -> this.imageIds.addAll(newImages);
             case PUBLISHED, APPROVED -> {
-                this.images.addAll(newImages);
+                this.imageIds.addAll(newImages);
                 this.status = ListingStatus.CREATED;
             }
             case ARCHIVED, REMOVED -> throw new ChangeListingException(id);
@@ -169,15 +170,15 @@ public class Listing {
         return newImages;
     }
 
-    public void removeImages(Set<Image> images) {
+    public void removeImages(Set<Long> images) {
         validateEditable();
-        Set<Image> missingImages = images.stream()
-                .filter(e -> !this.images.contains(e))
+        Set<Long> missingImages = images.stream()
+                .filter(e -> !this.imageIds.contains(e))
                 .collect(Collectors.toSet());
         if(!missingImages.isEmpty()){
             throw new ImageRemoveException("Невозможно удалить несуществующие изображения");
         }
-        this.images.removeAll(images);
+        this.imageIds.removeAll(images);
     }
 
     public void publish() {
