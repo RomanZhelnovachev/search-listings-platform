@@ -1,10 +1,14 @@
 package ru.romzheln.listing.mapper;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.event.listing.ListingCreatedEvent;
 import ru.romzheln.listing.dto.event.listing.ListingUpdatedEvent;
 import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.model.entity.listing.Listing;
+
+import java.util.List;
 
 @Component
 public class ListingMapper {
@@ -36,5 +40,14 @@ public class ListingMapper {
     public ListingUpdatedEvent toListingUpdatedEvent(Listing listing){
         return new ListingUpdatedEvent(listing.getTitle(),
                 listing.getDescription(), listing.getDealType());
+    }
+
+    public Page<ListingResponse> toPageResponse(Page<Listing> listings){
+        List<ListingResponse> responses = listings.getContent()
+                .stream()
+                .map(this::toResponse)
+                .toList();
+        return new PageImpl<>(responses, listings.getPageable(),
+                listings.getTotalElements());
     }
 }

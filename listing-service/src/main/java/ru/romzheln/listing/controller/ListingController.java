@@ -1,6 +1,8 @@
 package ru.romzheln.listing.controller;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
@@ -21,6 +23,9 @@ public interface ListingController {
 
     @GetMapping("/{id}")
     ListingResponse getListing(@PathVariable Long id);
+
+    @GetMapping
+    Page<ListingResponse> getAll(Pageable pageable);
 
     @PostMapping("/{id}/remove")
     void remove(@PathVariable Long id, @RequestBody RemoveListingRequest request);
@@ -53,6 +58,4 @@ public interface ListingController {
 
     @DeleteMapping("/{id}/images")
     void removeImages(@PathVariable Long id, @RequestBody ChangeListingImageRequest request);
-
-
 }

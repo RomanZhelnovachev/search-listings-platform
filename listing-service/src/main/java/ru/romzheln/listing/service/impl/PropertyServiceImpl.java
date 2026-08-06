@@ -2,6 +2,9 @@ package ru.romzheln.listing.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
@@ -20,6 +23,7 @@ import ru.romzheln.listing.service.OutboxEventService;
 import ru.romzheln.listing.service.PropertyService;
 import ru.romzheln.listing.service.strategy.PropertyStrategy;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -60,15 +64,24 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     @Transactional(readOnly = true)
-    public Property findPropertyById(Long id) {
-        return getProperty(id);
+    public PropertyResponse findById(Long id) {
+        log.info("Получен объект недвижимости с ID {}", id);
+        return responseMapper.toResponse(getProperty(id));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<PropertyResponse> getAll(Pageable pageable) {
+        log.info("Получен постраничный список объектов недвижимости");
+        return responseMapper.toPageResponse(propertyRepository.findAll(pageable));
+    }
+
+    @Override
+    public Property getProperty(Long id) {
+        return propertyRepository.findById(id).orElseThrow(()-> new PropertyNotFoundByIdException(id));
     }
 
     private PropertyStrategy getStrategy(PropertyType type){
         return Optional.ofNullable(strategies.get(type)).orElseThrow(()-> new PropertyStrategyNotFoundException(type));
-    }
-
-    private Property getProperty(Long id){
-        return propertyRepository.findById(id).orElseThrow(()-> new PropertyNotFoundByIdException(id));
     }
 }

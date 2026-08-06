@@ -11,9 +11,9 @@ import ru.romzheln.listing.model.entity.common.LandUse;
 import ru.romzheln.listing.model.entity.landPlot.LandPlot;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
-import ru.romzheln.listing.repository.CommunicationRepository;
 import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.resolver.PropertyReferenceResolver;
+import ru.romzheln.listing.service.impl.CommunicationServiceImpl;
 import ru.romzheln.listing.service.strategy.AbstractPropertyStrategy;
 import ru.romzheln.listing.util.ClassCastUtil;
 
@@ -23,11 +23,11 @@ public class LandPlotStrategy extends AbstractPropertyStrategy {
     private final PropertyReferenceResolver resolver;
     private final PhysicalDetailsMapper mapper;
 
-    protected LandPlotStrategy(CommunicationRepository communicationRepository,
+    protected LandPlotStrategy(CommunicationServiceImpl communicationService,
                                PropertyRepository propertyRepository,
                                PropertyReferenceResolver resolver,
                                PhysicalDetailsMapper mapper) {
-        super(communicationRepository,
+        super(communicationService,
                 propertyRepository);
         this.resolver = resolver;
         this.mapper = mapper;

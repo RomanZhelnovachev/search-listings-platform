@@ -1,6 +1,8 @@
 package ru.romzheln.listing.controller.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import ru.romzheln.listing.controller.PropertyController;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
@@ -23,5 +25,15 @@ public class PropertyControllerImpl implements PropertyController {
     public PropertyResponse update(Long id, @RequestBody
                                    UpdatePropertyRequest request){
         return service.updateProperty(id, request);
+    }
+
+    @Override
+    public PropertyResponse findProperty(Long id) {
+        return service.findById(id);
+    }
+
+    @Override
+    public Page<PropertyResponse> getAll(Pageable pageable) {
+        return service.getAll(pageable);
     }
 }

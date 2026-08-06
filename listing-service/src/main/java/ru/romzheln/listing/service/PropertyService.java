@@ -1,5 +1,7 @@
 package ru.romzheln.listing.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.dto.response.PropertyResponse;
@@ -11,5 +13,9 @@ public interface PropertyService {
 
     PropertyResponse updateProperty(Long id, UpdatePropertyRequest request);
 
-    Property findPropertyById(Long id);
+    PropertyResponse findById(Long id);
+
+    Page<PropertyResponse> getAll(Pageable pageable);
+
+    Property getProperty(Long id);
 }
