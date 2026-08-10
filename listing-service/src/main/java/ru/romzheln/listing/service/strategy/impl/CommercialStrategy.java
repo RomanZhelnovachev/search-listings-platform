@@ -12,9 +12,9 @@ import ru.romzheln.listing.model.entity.commercial.Purpose;
 import ru.romzheln.listing.model.entity.common.CommonPhysicalDetails;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
-import ru.romzheln.listing.repository.CommunicationRepository;
 import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.resolver.PropertyReferenceResolver;
+import ru.romzheln.listing.service.impl.CommunicationServiceImpl;
 import ru.romzheln.listing.service.strategy.AbstractPropertyStrategy;
 import ru.romzheln.listing.util.ClassCastUtil;
 
@@ -26,11 +26,11 @@ public class CommercialStrategy extends AbstractPropertyStrategy {
     private final PhysicalDetailsMapper mapper;
     private final PropertyReferenceResolver resolver;
 
-    protected CommercialStrategy(CommunicationRepository communicationRepository,
+    protected CommercialStrategy(CommunicationServiceImpl communicationService,
                                  PropertyRepository propertyRepository,
                                  PhysicalDetailsMapper mapper,
                                  PropertyReferenceResolver resolver) {
-        super(communicationRepository,
+        super(communicationService,
                 propertyRepository);
         this.mapper = mapper;
         this.resolver = resolver;

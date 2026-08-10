@@ -9,26 +9,25 @@ import ru.romzheln.listing.model.entity.common.Communication;
 import ru.romzheln.listing.model.entity.property.Location;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
-import ru.romzheln.listing.repository.CommunicationRepository;
 import ru.romzheln.listing.repository.PropertyRepository;
+import ru.romzheln.listing.service.impl.CommunicationServiceImpl;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public abstract class AbstractPropertyStrategy implements PropertyStrategy {
 
-    protected final CommunicationRepository communicationRepository;
+    protected final CommunicationServiceImpl communicationService;
     protected final PropertyRepository propertyRepository;
 
-    protected AbstractPropertyStrategy(CommunicationRepository communicationRepository,
+    protected AbstractPropertyStrategy(CommunicationServiceImpl communicationService,
                                        PropertyRepository propertyRepository) {
-        this.communicationRepository = communicationRepository;
+        this.communicationService = communicationService;
         this.propertyRepository = propertyRepository;
     }
 
     protected Property buildProperty(CreatePropertyRequest request){
         Location location = buildLocation(request.getLocation());
-        Set<Communication> communications = new HashSet<>(communicationRepository.findAllById(request.getCommunicationIds()));
+        Set<Communication> communications = communicationService.getAllCommunicationsByIds(request.getCommunicationIds());
         return Property.builder()
                 .location(location)
                 .square(request.getSquare())
@@ -54,7 +53,7 @@ public abstract class AbstractPropertyStrategy implements PropertyStrategy {
             property.changeFirstOwner(request.getFirstOwner());
         }
         if(request.getCommunicationIds() != null){
-            Set<Communication> communications = new HashSet<>(communicationRepository.findAllById(request.getCommunicationIds()));
+            Set<Communication> communications = communicationService.getAllCommunicationsByIds(request.getCommunicationIds());
             property.setCommunications(communications);
         }
     }

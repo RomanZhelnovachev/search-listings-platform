@@ -15,9 +15,9 @@ import ru.romzheln.listing.model.entity.common.ResidentialComplex;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
 import ru.romzheln.listing.mapper.PhysicalDetailsMapper;
-import ru.romzheln.listing.repository.CommunicationRepository;
 import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.resolver.PropertyReferenceResolver;
+import ru.romzheln.listing.service.impl.CommunicationServiceImpl;
 import ru.romzheln.listing.service.strategy.AbstractPropertyStrategy;
 import ru.romzheln.listing.util.ClassCastUtil;
 
@@ -27,11 +27,11 @@ public class ApartmentStrategy extends AbstractPropertyStrategy {
     private final PropertyReferenceResolver resolver;
     private final PhysicalDetailsMapper mapper;
 
-    protected ApartmentStrategy(CommunicationRepository communicationRepository,
+    protected ApartmentStrategy(CommunicationServiceImpl communicationService,
                                 PropertyRepository propertyRepository,
                                 PropertyReferenceResolver resolver,
                                 PhysicalDetailsMapper mapper) {
-        super(communicationRepository,
+        super(communicationService,
                 propertyRepository);
         this.resolver = resolver;
         this.mapper = mapper;

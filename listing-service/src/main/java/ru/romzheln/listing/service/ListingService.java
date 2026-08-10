@@ -1,5 +1,7 @@
 package ru.romzheln.listing.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
 
@@ -30,6 +32,8 @@ public interface ListingService {
     void removeImages(Long id, ChangeListingImageRequest request);
 
     ListingResponse findListingById(Long id);
+
+    Page<ListingResponse> getAll(Pageable pageable);
 
     void deleteListing(Long id, RemoveListingRequest request);
 }

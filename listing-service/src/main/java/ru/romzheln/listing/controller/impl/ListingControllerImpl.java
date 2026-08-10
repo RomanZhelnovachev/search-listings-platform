@@ -1,6 +1,8 @@
 package ru.romzheln.listing.controller.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RestController;
 import ru.romzheln.listing.controller.ListingController;
 import ru.romzheln.listing.dto.request.listing.*;
@@ -32,6 +34,11 @@ public class ListingControllerImpl implements ListingController {
     @Override
     public ListingResponse getListing(Long id) {
         return service.findListingById(id);
+    }
+
+    @Override
+    public Page<ListingResponse> getAll(Pageable pageable) {
+        return service.getAll(pageable);
     }
 
     @Override

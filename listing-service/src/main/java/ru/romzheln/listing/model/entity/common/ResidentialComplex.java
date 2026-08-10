@@ -1,10 +1,7 @@
 package ru.romzheln.listing.model.entity.common;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import ru.romzheln.listing.model.entity.apartment.Apartment;
@@ -20,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class ResidentialComplex {
 
     @Id
@@ -38,9 +36,11 @@ public class ResidentialComplex {
     private String name;
 
     @OneToMany(mappedBy = "complex")
+    @Builder.Default
     private List<Apartment> apartments = new ArrayList<>();
 
     @OneToMany(mappedBy = "complex")
+    @Builder.Default
     private List<House> houses = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)

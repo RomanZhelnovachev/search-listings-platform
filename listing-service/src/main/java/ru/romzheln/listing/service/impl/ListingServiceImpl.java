@@ -2,6 +2,8 @@ package ru.romzheln.listing.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.listing.*;
@@ -37,7 +39,7 @@ public class ListingServiceImpl implements ListingService {
     @Override
     @Transactional
     public ListingResponse createListing(CreateListingRequest request) {
-        Property property = propertyService.findPropertyById(request.propertyId());
+        Property property = propertyService.getProperty(request.propertyId());
         Listing listing = Listing.builder()
                 .title(request.title())
                 .description(request.description())
@@ -181,8 +183,16 @@ public class ListingServiceImpl implements ListingService {
     @Override
     @Transactional(readOnly = true)
     public ListingResponse findListingById(Long id) {
+        log.info("Получено объявление с ID {}", id);
         return mapper.toResponse(getListing(id));
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ListingResponse> getAll(Pageable pageable) {
+        log.info("Получен постраничный список всех объявлений");
+        return mapper.toPageResponse(listingRepository.findAll(pageable));
     }
 
     @Override

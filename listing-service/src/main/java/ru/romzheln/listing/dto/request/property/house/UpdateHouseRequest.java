@@ -1,6 +1,8 @@
 package ru.romzheln.listing.dto.request.property.house;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import ru.romzheln.listing.dto.common.CommonLandDetailsDto;
 import ru.romzheln.listing.dto.common.CommonPhysicalDetailsDto;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
@@ -10,6 +12,8 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UpdateHouseRequest extends UpdatePropertyRequest {
 
     private CommonPhysicalDetailsDto commonPhysicalDetailsDto;

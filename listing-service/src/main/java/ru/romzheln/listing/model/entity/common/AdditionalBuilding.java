@@ -1,10 +1,7 @@
 package ru.romzheln.listing.model.entity.common;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import ru.romzheln.listing.model.entity.house.House;
@@ -18,6 +15,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class AdditionalBuilding {
 
     @Id
