@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.dto.response.PropertyResponse;
+import ru.romzheln.listing.exception.InvalidPropertyTypeException;
 import ru.romzheln.listing.exception.PropertyNotFoundByIdException;
 import ru.romzheln.listing.exception.PropertyStrategyNotFoundException;
 import ru.romzheln.listing.mapper.PropertyEventMapper;
@@ -53,6 +54,9 @@ public class PropertyServiceImpl implements PropertyService {
     @Transactional
     public PropertyResponse updateProperty(Long id, UpdatePropertyRequest request) {
         Property property = getProperty(id);
+        if(request.getPropertyType() != property.getPropertyType()){
+            throw new InvalidPropertyTypeException(id, request.getPropertyType());
+        }
         PropertyStrategy strategy = getStrategy(property.getPropertyType());
         strategy.update(id, request);
         outboxEventService.save(AggregateType.PROPERTY,

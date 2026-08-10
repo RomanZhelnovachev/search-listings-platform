@@ -38,12 +38,10 @@ public class AdditionalBuilding {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "house_id")
-    @Builder.Default
     private House house;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "land_plot_id")
-    @Builder.Default
     private LandPlot landPlot;
 
     @Column(name = "created_at", nullable = false, updatable = false)
