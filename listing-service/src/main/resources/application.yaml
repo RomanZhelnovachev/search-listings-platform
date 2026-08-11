@@ -3,9 +3,9 @@ spring:
     name: listing-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/listings_db
-    username: postgres
-    password: Gelnova4ev
+    url: jdbc:postgresql://postgres:5432/listings_db
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
   jpa:
     hibernate:
@@ -16,12 +16,18 @@ spring:
     change-log: db/changelog/db.changelog-master.xml
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     topic:
       listing-events: listing-events
+
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: http://auth-mock:8080/api/v1/auth/oauth2/jwks
 
 outbox:
   scheduler:

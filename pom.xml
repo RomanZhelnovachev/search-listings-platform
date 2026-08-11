@@ -23,6 +23,7 @@
 
     <modules>
         <module>listing-service</module>
+        <module>auth-mock</module>
     </modules>
 
 </project>

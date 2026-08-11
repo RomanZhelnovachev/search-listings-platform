@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.reference.LandUseRequest;
 import ru.romzheln.listing.dto.response.LandUseResponse;
-import ru.romzheln.listing.exception.LandUseNotFoundException;
+import ru.romzheln.listing.exception.notFound.LandUseNotFoundException;
 import ru.romzheln.listing.mapper.LandUseMapper;
 import ru.romzheln.listing.model.entity.common.LandUse;
 import ru.romzheln.listing.model.enums.AggregateType;

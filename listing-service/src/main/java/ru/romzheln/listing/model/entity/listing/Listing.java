@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import ru.romzheln.listing.exception.*;
+import ru.romzheln.listing.exception.badRequest.*;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.DealType;
 import ru.romzheln.listing.model.enums.ListingStatus;

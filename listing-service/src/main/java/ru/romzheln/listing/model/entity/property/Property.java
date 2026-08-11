@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import ru.romzheln.listing.exception.ChangePropertyException;
-import ru.romzheln.listing.exception.ChangefirstOwnerException;
+import ru.romzheln.listing.exception.badRequest.ChangePropertyException;
+import ru.romzheln.listing.exception.badRequest.ChangeFirstOwnerException;
 import ru.romzheln.listing.model.entity.common.Communication;
 import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.apartment.Apartment;
@@ -96,7 +96,7 @@ public class Property {
 
     public void changeFirstOwner(Boolean newData){
         if (Boolean.FALSE.equals(this.firstOwner)){
-            throw new ChangefirstOwnerException("Невозможно изменить");
+            throw new ChangeFirstOwnerException("Невозможно изменить");
         }
         if(this.firstOwner.equals(newData)){
             throw new ChangePropertyException(id);

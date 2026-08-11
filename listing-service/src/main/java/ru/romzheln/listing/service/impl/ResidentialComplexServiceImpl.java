@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.reference.ResidentialComplexRequest;
 import ru.romzheln.listing.dto.response.ResidentialComplexResponse;
-import ru.romzheln.listing.exception.ResidentialComplexNotFoundException;
+import ru.romzheln.listing.exception.notFound.ResidentialComplexNotFoundException;
 import ru.romzheln.listing.mapper.ResidentialComplexMapper;
 import ru.romzheln.listing.model.entity.common.ResidentialComplex;
 import ru.romzheln.listing.model.enums.AggregateType;

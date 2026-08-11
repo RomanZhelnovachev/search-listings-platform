@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.reference.PurposeRequest;
 import ru.romzheln.listing.dto.response.PurposeResponse;
-import ru.romzheln.listing.exception.PurposeNotFoundException;
+import ru.romzheln.listing.exception.notFound.PurposeNotFoundException;
 import ru.romzheln.listing.mapper.PurposeMapper;
 import ru.romzheln.listing.model.entity.commercial.Purpose;
 import ru.romzheln.listing.model.enums.AggregateType;
