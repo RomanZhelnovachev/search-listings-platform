@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.reference.CommunicationRequest;
 import ru.romzheln.listing.dto.response.CommunicationResponse;
-import ru.romzheln.listing.exception.CommunicationNotFoundException;
+import ru.romzheln.listing.exception.notFound.CommunicationNotFoundException;
 import ru.romzheln.listing.mapper.CommunicationMapper;
 import ru.romzheln.listing.model.entity.common.Communication;
 import ru.romzheln.listing.model.enums.AggregateType;

@@ -3,16 +3,15 @@ package ru.romzheln.listing.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.dto.response.PropertyResponse;
-import ru.romzheln.listing.exception.InvalidPropertyTypeException;
-import ru.romzheln.listing.exception.PropertyNotFoundByIdException;
-import ru.romzheln.listing.exception.PropertyStrategyNotFoundException;
+import ru.romzheln.listing.exception.badRequest.InvalidPropertyTypeException;
+import ru.romzheln.listing.exception.notFound.PropertyNotFoundByIdException;
+import ru.romzheln.listing.exception.notFound.PropertyStrategyNotFoundException;
 import ru.romzheln.listing.mapper.PropertyEventMapper;
 import ru.romzheln.listing.mapper.PropertyResponseMapper;
 import ru.romzheln.listing.model.entity.property.Property;
@@ -24,7 +23,6 @@ import ru.romzheln.listing.service.OutboxEventService;
 import ru.romzheln.listing.service.PropertyService;
 import ru.romzheln.listing.service.strategy.PropertyStrategy;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

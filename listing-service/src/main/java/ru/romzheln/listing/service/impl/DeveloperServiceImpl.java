@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.reference.DeveloperRequest;
 import ru.romzheln.listing.dto.response.DeveloperResponse;
-import ru.romzheln.listing.exception.DeveloperNotFoundException;
+import ru.romzheln.listing.exception.notFound.DeveloperNotFoundException;
 import ru.romzheln.listing.mapper.DeveloperMapper;
 import ru.romzheln.listing.model.entity.common.Developer;
 import ru.romzheln.listing.model.enums.AggregateType;

@@ -1,7 +1,7 @@
 package ru.romzheln.listing.util;
 
 import lombok.experimental.UtilityClass;
-import ru.romzheln.listing.exception.InvalidCastException;
+import ru.romzheln.listing.exception.serverError.InvalidCastException;
 
 @UtilityClass
 public class ClassCastUtil {
