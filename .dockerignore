@@ -1,4 +1,3 @@
-**/target/
 
 .git/
 **/.gitignore
@@ -15,9 +14,6 @@ Thumbs.db
 .env
 
 docker-compose*.yml
-
-*.jar
-*.war
 
 **/surefire-reports/
 **/failsafe-reports/

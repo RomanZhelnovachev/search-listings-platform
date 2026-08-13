@@ -1,11 +1,8 @@
 package ru.romzheln.controller;
 
-import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.jwk.JWKSet;
 import org.springframework.web.bind.annotation.*;
 import ru.romzheln.dto.TokenRequest;
 import ru.romzheln.dto.TokenResponse;
-import ru.romzheln.security.KeyProvider;
 import ru.romzheln.service.AuthService;
 
 import java.util.Map;
