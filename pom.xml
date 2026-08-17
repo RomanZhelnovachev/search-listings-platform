@@ -24,6 +24,7 @@
     <modules>
         <module>listing-service</module>
         <module>auth-mock</module>
+        <module>search-service</module>
     </modules>
 
 </project>

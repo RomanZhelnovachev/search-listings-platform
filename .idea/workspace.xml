@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Написал модель для объявления квартир">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/AdditionalBuilding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Commercial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommercialPhysicalDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonLandDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Communication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Developer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/House.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/LandPlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/LandUse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Listing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Purpose.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/ResidentialComplex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingCommercialReadModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingHouseReadModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingLandPlotReadModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Apartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Apartment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Property.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RomanZhelnovachev&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RomanZhelnovachev/search-listings-platform.git&quot;,
+    &quot;accountId&quot;: &quot;4452773d-c86b-41d7-a706-503c2467deb1&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3HriNYYE7y1Gv3MazD8dNVrt63k" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;search-service&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Etagi/search-listings-platform&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;google-java-format.settings&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="" />
+      <created>1786632548671</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1786632548671</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Написал модель для объявления квартир">
+      <option name="closed" value="true" />
+      <created>1786641367315</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1786641367315</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Написал модель для объявления квартир" />
+    <option name="LAST_COMMIT_MESSAGE" value="Написал модель для объявления квартир" />
+  </component>
+</project>
