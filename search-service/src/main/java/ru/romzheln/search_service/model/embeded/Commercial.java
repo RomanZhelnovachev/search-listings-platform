@@ -3,7 +3,6 @@ package ru.romzheln.search_service.model.embeded;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,27 +12,21 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-public class Property {
+public class Commercial {
 
     @Embedded
-    private Location location;
+    private CommonPhysicalDetails commonPhysicalDetails;
 
-    @Column(name = "square")
-    private BigDecimal square;
-
-    @Column(name = "own")
-    private String own;
-
-    @Column(name = "first_owner")
-    private Boolean firstOwner;
+    @Embedded
+    private CommercialPhysicalDetails commercialPhysicalDetails;
 
     @ElementCollection
     @CollectionTable(
-            name = "property_communication",
+            name = "property_purposes",
             joinColumns = @JoinColumn(
                     name = "property_id",
                     referencedColumnName = "property_id")
     )
     @Builder.Default
-    Set<Communication> communicationIds = new HashSet<>();
+    private Set<Purpose> purposes = new HashSet<>();
 }

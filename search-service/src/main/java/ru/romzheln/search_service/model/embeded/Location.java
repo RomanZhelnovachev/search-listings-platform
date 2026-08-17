@@ -2,8 +2,6 @@ package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 
 @Embeddable

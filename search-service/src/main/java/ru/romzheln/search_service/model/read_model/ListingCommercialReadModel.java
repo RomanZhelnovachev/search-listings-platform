@@ -2,18 +2,18 @@ package ru.romzheln.search_service.model.read_model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ru.romzheln.search_service.model.embeded.Apartment;
+import ru.romzheln.search_service.model.embeded.Commercial;
 import ru.romzheln.search_service.model.embeded.Listing;
 import java.time.Instant;
 
 @Entity
-@Table(name = "listing_apartment_search")
+@Table(name = "listing_commercial_search")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class ListingApartmentReadModel {
+public class ListingCommercialReadModel {
 
     @Id
     private Long id;
@@ -22,7 +22,7 @@ public class ListingApartmentReadModel {
     private Listing listing;
 
     @Embedded
-    private Apartment apartment;
+    private Commercial commercial;
 
     @Column(name = "created_at")
     private Instant createdAt;

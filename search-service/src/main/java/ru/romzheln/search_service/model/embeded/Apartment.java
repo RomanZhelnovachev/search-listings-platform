@@ -23,6 +23,12 @@ public class Apartment {
     @Column(name = "developer_id")
     private Long developerId;
 
+    @Embedded
+    private Developer developer;
+
     @Column(name = "complex_id")
     private Long complexId;
+
+    @Embedded
+    private ResidentialComplex complex;
 }

@@ -23,7 +23,6 @@ public class CommonPhysicalDetails {
     @Column(name = "ceiling_height")
     private BigDecimal ceilingHeight;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "renovation")
     private String renovation;
 
