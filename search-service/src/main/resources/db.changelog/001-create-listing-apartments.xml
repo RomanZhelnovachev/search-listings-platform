@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+    
+    <changeSet id="001-create-listing-apartments" author="RomanZhelnovachev">
+        
+        <createTable tableName="listing_apartment_search">
+            
+            <column name="id" type="BIGINT">
+                <constraints 
+                        primaryKey="true"
+                        nullable="false"/>
+            </column>
+            
+            <column name="title" type="VARCHAR(255)"/>
+            
+            <column name="description" type="TEXT"/>
+            
+            <column name="listing_status" type="VARCHAR(50)"/>
+            
+            <column name="owner_id" type="BIGINT"/>
+            
+            <column name="property_id" type="BIGINT"/>
+            
+            <column name="region" type="VARCHAR(50)"/>
+            
+            <column name="populated_area" type="VARCHAR(255)"/>
+            
+            <column name="street" type="VARCHAR(255)"/>
+            
+            <column name="house_number" type="VARCHAR(50)"/>
+            
+            <column name="building_number" type="VARCHAR(50)"/>
+            
+            <column name="apartment_number" type="VARCHAR(50)"/>
+            
+            <column name="square" type="DECIMAL(10, 2)"/>
+            
+            <column name="own" type="VARCHAR(50)"/>
+            
+            <column name="first_owner" type="BOOLEAN"/>
+            
+            <column name="deal_type" type="VARCHAR(50)"/>
+            
+            <column name="price" type="DECIMAL(19, 2)"/>
+            
+            <column name="promotion_id" type="BIGINT"/>
+            
+            <column name="apartment_type" type="VARCHAR(50)"/>
+
+            <column name="rooms_number" type="INT"/>
+
+            <column name="ceiling_height" type="DECIMAL(4, 2)"/>
+
+            <column name="renovation" type="VARCHAR(50)"/>
+
+            <column name="bathroom" type="VARCHAR(50)"/>
+
+            <column name="material" type="VARCHAR(50)"/>
+
+            <column name="completion_date" type="DATE"/>
+
+            <column name="year_built" type="INT"/>
+
+            <column name="floors_number" type="INT"/>
+
+            <column name="view" type="VARCHAR(255)"/>
+
+            <column name="balcony" type="VARCHAR(50)"/>
+
+            <column name="window_type" type="VARCHAR(50)"/>
+
+            <column name="window_material" type="VARCHAR(50)"/>
+
+            <column name="layout_feature" type="VARCHAR(50)"/>
+
+            <column name="layout_type" type="VARCHAR(50)"/>
+
+            <column name="kitchen_square" type="DECIMAL(4, 2)"/>
+
+            <column name="floor" type="INT"/>
+
+            <column name="elevator" type="VARCHAR(50)"/>
+
+            <column name="ramp" type="VARCHAR(50)"/>
+
+            <column name="side" type="VARCHAR(50)"/>
+
+            <column name="developer_id" type="BIGINT"/>
+
+            <column name="developer_name" type="VARCHAR(255)"/>
+
+            <column name="complex_id" type="BIGINT"/>
+
+            <column name="complex_name" type="VARCHAR(255)"/>
+
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE"/>
+
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE"/>
+            
+        </createTable>
+            
+    </changeSet>
+    
+</databaseChangeLog>

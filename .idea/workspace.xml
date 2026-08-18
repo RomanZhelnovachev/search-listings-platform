@@ -4,27 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Написал модель для объявления квартир">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/AdditionalBuilding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Commercial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommercialPhysicalDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonLandDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Communication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Developer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/House.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/LandPlot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/LandUse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Listing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Purpose.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/ResidentialComplex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingCommercialReadModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingHouseReadModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingLandPlotReadModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Apartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Apartment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Property.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Дописал рид-модели">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-create-listing-apartments.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-create-listing-commercials.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-create-listing-houses.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/004-create-listing-land-plots.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/db.changelog-master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +44,9 @@
     &quot;accountId&quot;: &quot;4452773d-c86b-41d7-a706-503c2467deb1&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
