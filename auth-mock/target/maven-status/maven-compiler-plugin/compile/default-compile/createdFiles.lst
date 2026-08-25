@@ -1,0 +1,7 @@
+ru\romzheln\controller\AuthMockController.class
+ru\romzheln\service\AuthService.class
+ru\romzheln\security\Role.class
+ru\romzheln\dto\TokenResponse.class
+ru\romzheln\AuthMockApplication.class
+ru\romzheln\security\KeyProvider.class
+ru\romzheln\dto\TokenRequest.class

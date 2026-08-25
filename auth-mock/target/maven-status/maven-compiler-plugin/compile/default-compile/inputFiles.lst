@@ -1,0 +1,7 @@
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\AuthMockApplication.java
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\controller\AuthMockController.java
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\dto\TokenRequest.java
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\dto\TokenResponse.java
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\security\KeyProvider.java
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\security\Role.java
+C:\Etagi\search-listings-platform\auth-mock\src\main\java\ru\romzheln\service\AuthService.java
