@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="002-partition-listing-commercials" author="RomanZhelnovachev">
+
+        <sql>
+
+            CREATE TABLE listing_commercial_search_adigea
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_АДЫГЕЯ');
+
+            CREATE TABLE listing_commercial_search_bashkortostan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_БАШКОРТОСТАН');
+
+            CREATE TABLE listing_commercial_search_buryatia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_БУРЯТИЯ');
+
+            CREATE TABLE listing_commercial_search_altay
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_АЛТАЙ_ГОРНЫЙ_АЛТАЙ');
+
+            CREATE TABLE listing_commercial_search_dagestan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_ДАГЕСТАН');
+
+            CREATE TABLE listing_commercial_search_ingushetia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_ИНГУШЕТИЯ');
+
+            CREATE TABLE listing_commercial_search_kabardino_balkaria
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КАБАРДИНО_БАЛКАРСКАЯ_РЕСПУБЛИКА');
+
+            CREATE TABLE listing_commercial_search_kalmykia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_КАЛМЫКИЯ');
+
+            CREATE TABLE listing_commercial_search_karachaevo_cherkessia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_КАРАЧАЕВО_ЧЕРКЕССИЯ');
+
+            CREATE TABLE listing_commercial_search_karelia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_КАРЕЛИЯ');
+
+            CREATE TABLE listing_commercial_search_komi
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_КОМИ');
+
+            CREATE TABLE listing_commercial_search_mari-el
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_МАРИЙ_ЭЛ');
+
+            CREATE TABLE listing_commercial_search_mordovia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_МОРДОВИЯ');
+
+            CREATE TABLE listing_commercial_search_sakha
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_САХА_ЯКУТИЯ');
+
+            CREATE TABLE listing_commercial_search_alania
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_СЕВЕРНАЯ_ОСЕТИЯ_АЛАНИЯ');
+
+            CREATE TABLE listing_commercial_search_tatarstan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_ТАТАРСТАН');
+
+            CREATE TABLE listing_commercial_search_tuva
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_ТЫВА');
+
+            CREATE TABLE listing_commercial_search_udmurtia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('УДМУРТСКАЯ_РЕСПУБЛИКА');
+
+            CREATE TABLE listing_commercial_search_hakasia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_ХАКАСИЯ');
+
+            CREATE TABLE listing_commercial_search_chuvashia
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЧУВАШСКАЯ_РЕСПУБЛИКА');
+
+            CREATE TABLE listing_commercial_search_altay_kray
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('АЛТАЙСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_krasnodar
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КРАСНОДАРСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_krasnoyarsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КРАСНОЯРСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_primorye
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ПРИМОРСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_stavropol
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('СТАВРОПОЛЬСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_khabarovsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ХАБАРОВСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_amur
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('АМУРСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_arkhangelsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('АРХАНГЕЛЬСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_astrakhan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('АСТРАХАНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_belgorod
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('БЕЛГОРОДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_bryansk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('БРЯНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_vladimir
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ВЛАДИМИРСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_volgograd
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ВОЛГОГРАДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_vologda
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ВОЛОГОДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_voronezh
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ВОРОНЕЖСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_ivanovo
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ИВАНОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_irkutsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ИРКУТСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kaliningrad
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КАЛИНИНГРАДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kaluga
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КАЛУЖСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kamchatka
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КАМЧАТСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_kemerovo
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КЕМЕРОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kirovsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КИРОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kostroma
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КОСТРОМСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kurgan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КУРГАНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_kursk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('КУРСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_spb_obl
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЛЕНИНГРАДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_lipetsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЛИПЕЦКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_magadan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('МАГАДАНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_msk_obl
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('МОСКОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_murmansk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('МУРМАНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_nizhniy_novgorod
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('НИЖЕГОРОДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_novgorod
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('НОВГОРОДСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_novosibirsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('НОВОСИБИРСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_omsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ОМСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_orenburg
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ОРЕНБУРГСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_orel
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ОРЛОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_penza
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ПЕНЗЕНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_perm
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ПЕРМСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_pskov
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ПСКОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_rostov
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РОСТОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_ryazan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЯЗАНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_samara
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('САМАРСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_saratov
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('САРАТОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_sakhalin
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('САХАЛИНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_ekb
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('СВЕРДЛОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_smolensk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('СМОЛЕНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_tombov
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ТОМБОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_tver
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ТВЕРСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_tomsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ТОМСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_tula
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ТУЛЬСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_tumen
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ТЮМЕНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_ulyanovsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('УЛЬЯНОВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_chelyabinsk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЧЕЛЯБИНСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_zabaykalye
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЗАБАЙКАЛЬСКИЙ_КРАЙ');
+
+            CREATE TABLE listing_commercial_search_yaroslavl
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЯРОСЛАВСКАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_msk
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ГОРОД_МОСКВА');
+
+            CREATE TABLE listing_commercial_search_spb
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ГОРОД_САНКТ_ПЕТЕРБУРГ');
+
+            CREATE TABLE listing_commercial_search_birobidjan
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЕВРЕЙСКАЯ_АВТОНОМНАЯ_ОБЛАСТЬ');
+
+            CREATE TABLE listing_commercial_search_krym
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('РЕСПУБЛИКА_КРЫМ');
+
+            CREATE TABLE listing_commercial_search_naryan_mar
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('НЕНЕЦКИЙ_АВТОНОМНЫЙ_ОКРУГ');
+
+            CREATE TABLE listing_commercial_search_yugra
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ХАНТЫ_МАНСИЙСКИЙ_АВТОНОМНЫЙ_ОКРУГ_ЮГРА');
+
+            CREATE TABLE listing_commercial_search_chukotka
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЧУКОТСКИЙ_АВТОНОМНЫЙ_ОКРУГ');
+
+            CREATE TABLE listing_commercial_search_yamal
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЯМАЛО_НЕНЕЦКИЙ_АВТОНОМНЫЙ_ОКРУГ');
+
+            CREATE TABLE listing_commercial_search_sevastopol
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ГОРОД_СЕВАСТОПОЛЬ');
+
+            CREATE TABLE listing_commercial_search_chechnya
+            PARTITION OF listing_commercial_search
+            FOR VALUES IN ('ЧЕЧЕНСКАЯ_РЕСПУБЛИКА');
+
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

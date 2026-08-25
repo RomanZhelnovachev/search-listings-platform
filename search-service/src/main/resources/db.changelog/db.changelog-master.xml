@@ -8,10 +8,15 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
 
-    <include file="db/changelog/001-create-listing-apartments.xml"/>
-    <include file="db/changelog/002-create-listing-commercials.xml"/>
-    <include file="db/changelog/003-create-listing-houses.xml"/>
-    <include file="db/changelog/004-create-listing-land-plots.xml"/>
+    <include file="db/changelog/001-read-models/001-create-listing-apartments.xml"/>
+    <include file="db/changelog/001-read-models/002-create-listing-commercials.xml"/>
+    <include file="db/changelog/001-read-models/003-create-listing-houses.xml"/>
+    <include file="db/changelog/001-read-models/004-create-listing-land-plots.xml"/>
+
+    <include file="db/changelog/002-partitions/001-partition-listing-apartments.xml"/>
+    <include file="db/changelog/002-partitions/002-partition-listing-commercials.xml"/>
+    <include file="db/changelog/002-partitions/003-partition-listing-houses.xml"/>
+    <include file="db/changelog/002-partitions/004-partition-listing-land-plots.xml"/>
 
 
 </databaseChangeLog>

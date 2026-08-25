@@ -7,10 +7,10 @@
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <changeSet id="002-create-listing-commercials" author="RomanZhelnovachev">
+    <changeSet id="003-create-listing-houses" author="RomanZhelnovachev">
 
         <sql>
-            CREATE TABLE listing_commercial_search (
+            CREATE TABLE listing_house_search (
 
             id BIGINT NOT NULL,
 
@@ -50,21 +50,24 @@
             layout_feature VARCHAR(50),
             layout_type VARCHAR(50),
 
-            floor INT,
-            line VARCHAR(50),
-            property_location_type VARCHAR(50),
-            territorial_zone VARCHAR(50),
-            separate_entrance BOOLEAN,
-            ventilation_exists BOOLEAN,
-            tenant_exists BOOLEAN,
-            entrances_number INT,
-            electrical_power_kw INT,
-            railway_dead_end BOOLEAN,
+            land_use_id BIGINT,
+            land_use_name VARCHAR(50),
+            land_use_description TEXT,
+            road VARCHAR(50),
+            fencing VARCHAR(50),
+
+            developer_id BIGINT,
+            developer_name VARCHAR(255),
+            complex_id BIGINT,
+            complex_name VARCHAR(255),
+
+            construction_stage VARCHAR(50),
+            land_plot_square DECIMAL(10, 2),
 
             created_at TIMESTAMP WITH TIME ZONE,
             updated_at TIMESTAMP WITH TIME ZONE,
 
-            CONSTRAINT pk_listing_apartment_search
+            CONSTRAINT pk_listing_house_search
             PRIMARY KEY (id, region)
             ) PARTITION BY LIST (region);
         </sql>

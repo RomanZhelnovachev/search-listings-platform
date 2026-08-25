@@ -7,10 +7,10 @@
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <changeSet id="001-create-listing-land-plots" author="RomanZhelnovachev">
+    <changeSet id="002-create-listing-commercials" author="RomanZhelnovachev">
 
         <sql>
-            CREATE TABLE listing_land_plot_search (
+            CREATE TABLE listing_commercial_search (
 
             id BIGINT NOT NULL,
 
@@ -35,16 +35,36 @@
             price DECIMAL(19, 2),
             promotion_id BIGINT,
 
-            land_use_id BIGINT,
-            land_use_name VARCHAR(50),
-            land_use_description TEXT,
-            road VARCHAR(50),
-            fencing VARCHAR(50),
+            rooms_number INT,
+            ceiling_height DECIMAL(4, 2),
+            renovation VARCHAR(50),
+            bathroom VARCHAR(50),
+            material VARCHAR(50),
+            completion_date DATE,
+            year_built INT,
+            floors_number INT,
+            view VARCHAR(255),
+            balcony VARCHAR(50),
+            window_type VARCHAR(50),
+            window_material VARCHAR(50),
+            layout_feature VARCHAR(50),
+            layout_type VARCHAR(50),
+
+            floor INT,
+            line VARCHAR(50),
+            property_location_type VARCHAR(50),
+            territorial_zone VARCHAR(50),
+            separate_entrance BOOLEAN,
+            ventilation_exists BOOLEAN,
+            tenant_exists BOOLEAN,
+            entrances_number INT,
+            electrical_power_kw INT,
+            railway_dead_end BOOLEAN,
 
             created_at TIMESTAMP WITH TIME ZONE,
             updated_at TIMESTAMP WITH TIME ZONE,
 
-            CONSTRAINT pk_listing_apartment_search
+            CONSTRAINT pk_listing_commercial_search
             PRIMARY KEY (id, region)
             ) PARTITION BY LIST (region);
         </sql>
