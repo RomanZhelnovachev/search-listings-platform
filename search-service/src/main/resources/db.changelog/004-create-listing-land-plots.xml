@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="001-create-listing-land-plots" author="RomanZhelnovachev">
+
+        <sql>
+            CREATE TABLE listing_land_plot_search (
+
+            id BIGINT NOT NULL,
+
+            title VARCHAR(255),
+            description TEXT,
+            listing_status VARCHAR(50),
+            owner_id BIGINT,
+            property_id BIGINT,
+
+            region VARCHAR(50) NOT NULL,
+            populated_area VARCHAR(255),
+            street VARCHAR(255),
+            house_number VARCHAR(50),
+            building_number VARCHAR(50),
+            apartment_number VARCHAR(50),
+
+            square DECIMAL(10, 2),
+            own VARCHAR(50),
+            first_owner BOOLEAN,
+
+            deal_type VARCHAR(50),
+            price DECIMAL(19, 2),
+            promotion_id BIGINT,
+
+            land_use_id BIGINT,
+            land_use_name VARCHAR(50),
+            land_use_description TEXT,
+            road VARCHAR(50),
+            fencing VARCHAR(50),
+
+            created_at TIMESTAMP WITH TIME ZONE,
+            updated_at TIMESTAMP WITH TIME ZONE,
+
+            CONSTRAINT pk_listing_apartment_search
+            PRIMARY KEY (id, region)
+            ) PARTITION BY LIST (region);
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

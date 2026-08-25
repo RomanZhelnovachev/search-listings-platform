@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Дописал рид-модели">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-create-listing-apartments.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-create-listing-commercials.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-create-listing-houses.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/004-create-listing-land-plots.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/db.changelog-master.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Пишу миграции">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-create-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-create-listing-apartments.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-create-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-create-listing-commercials.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-create-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-create-listing-houses.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/004-create-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/004-create-listing-land-plots.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,11 +79,20 @@
       <option name="project" value="LOCAL" />
       <updated>1786641367315</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Пишу миграции">
+      <option name="closed" value="true" />
+      <created>1787047054393</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1787047054393</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Написал модель для объявления квартир" />
-    <option name="LAST_COMMIT_MESSAGE" value="Написал модель для объявления квартир" />
+    <MESSAGE value="Пишу миграции" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пишу миграции" />
   </component>
 </project>

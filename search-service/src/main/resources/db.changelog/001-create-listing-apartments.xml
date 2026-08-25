@@ -6,105 +6,71 @@
         xsi:schemaLocation="
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
-    
+
     <changeSet id="001-create-listing-apartments" author="RomanZhelnovachev">
-        
-        <createTable tableName="listing_apartment_search">
-            
-            <column name="id" type="BIGINT">
-                <constraints 
-                        primaryKey="true"
-                        nullable="false"/>
-            </column>
-            
-            <column name="title" type="VARCHAR(255)"/>
-            
-            <column name="description" type="TEXT"/>
-            
-            <column name="listing_status" type="VARCHAR(50)"/>
-            
-            <column name="owner_id" type="BIGINT"/>
-            
-            <column name="property_id" type="BIGINT"/>
-            
-            <column name="region" type="VARCHAR(50)"/>
-            
-            <column name="populated_area" type="VARCHAR(255)"/>
-            
-            <column name="street" type="VARCHAR(255)"/>
-            
-            <column name="house_number" type="VARCHAR(50)"/>
-            
-            <column name="building_number" type="VARCHAR(50)"/>
-            
-            <column name="apartment_number" type="VARCHAR(50)"/>
-            
-            <column name="square" type="DECIMAL(10, 2)"/>
-            
-            <column name="own" type="VARCHAR(50)"/>
-            
-            <column name="first_owner" type="BOOLEAN"/>
-            
-            <column name="deal_type" type="VARCHAR(50)"/>
-            
-            <column name="price" type="DECIMAL(19, 2)"/>
-            
-            <column name="promotion_id" type="BIGINT"/>
-            
-            <column name="apartment_type" type="VARCHAR(50)"/>
 
-            <column name="rooms_number" type="INT"/>
+        <sql>
+            CREATE TABLE listing_apartment_search (
 
-            <column name="ceiling_height" type="DECIMAL(4, 2)"/>
+            id BIGINT NOT NULL,
 
-            <column name="renovation" type="VARCHAR(50)"/>
+            title VARCHAR(255),
+            description TEXT,
+            listing_status VARCHAR(50),
+            owner_id BIGINT,
+            property_id BIGINT,
 
-            <column name="bathroom" type="VARCHAR(50)"/>
+            region VARCHAR(50) NOT NULL,
+            populated_area VARCHAR(255),
+            street VARCHAR(255),
+            house_number VARCHAR(50),
+            building_number VARCHAR(50),
+            apartment_number VARCHAR(50),
 
-            <column name="material" type="VARCHAR(50)"/>
+            square DECIMAL(10, 2),
+            own VARCHAR(50),
+            first_owner BOOLEAN,
 
-            <column name="completion_date" type="DATE"/>
+            deal_type VARCHAR(50),
+            price DECIMAL(19, 2),
+            promotion_id BIGINT,
 
-            <column name="year_built" type="INT"/>
+            apartment_type VARCHAR(50),
 
-            <column name="floors_number" type="INT"/>
+            rooms_number INT,
+            ceiling_height DECIMAL(4, 2),
+            renovation VARCHAR(50),
+            bathroom VARCHAR(50),
+            material VARCHAR(50),
+            completion_date DATE,
+            year_built INT,
+            floors_number INT,
+            view VARCHAR(255),
+            balcony VARCHAR(50),
+            window_type VARCHAR(50),
+            window_material VARCHAR(50),
+            layout_feature VARCHAR(50),
+            layout_type VARCHAR(50),
 
-            <column name="view" type="VARCHAR(255)"/>
+            kitchen_square DECIMAL(4, 2),
+            floor INT,
+            elevator VARCHAR(50),
+            ramp VARCHAR(50),
+            side VARCHAR(50),
 
-            <column name="balcony" type="VARCHAR(50)"/>
+            developer_id BIGINT,
+            developer_name VARCHAR(255),
+            complex_id BIGINT,
+            complex_name VARCHAR(255),
 
-            <column name="window_type" type="VARCHAR(50)"/>
+            created_at TIMESTAMP WITH TIME ZONE,
+            updated_at TIMESTAMP WITH TIME ZONE,
 
-            <column name="window_material" type="VARCHAR(50)"/>
+            CONSTRAINT pk_listing_apartment_search
+            PRIMARY KEY (id, region)
+            ) PARTITION BY LIST (region);
+        </sql>
 
-            <column name="layout_feature" type="VARCHAR(50)"/>
-
-            <column name="layout_type" type="VARCHAR(50)"/>
-
-            <column name="kitchen_square" type="DECIMAL(4, 2)"/>
-
-            <column name="floor" type="INT"/>
-
-            <column name="elevator" type="VARCHAR(50)"/>
-
-            <column name="ramp" type="VARCHAR(50)"/>
-
-            <column name="side" type="VARCHAR(50)"/>
-
-            <column name="developer_id" type="BIGINT"/>
-
-            <column name="developer_name" type="VARCHAR(255)"/>
-
-            <column name="complex_id" type="BIGINT"/>
-
-            <column name="complex_name" type="VARCHAR(255)"/>
-
-            <column name="created_at" type="TIMESTAMP WITH TIME ZONE"/>
-
-            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE"/>
-            
-        </createTable>
-            
     </changeSet>
     
 </databaseChangeLog>
