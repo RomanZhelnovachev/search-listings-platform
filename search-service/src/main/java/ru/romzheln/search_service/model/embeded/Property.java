@@ -27,13 +27,15 @@ public class Property {
     @Column(name = "first_owner")
     private Boolean firstOwner;
 
+    @Builder.Default
     @ElementCollection
     @CollectionTable(
-            name = "property_communication",
-            joinColumns = @JoinColumn(
-                    name = "property_id",
-                    referencedColumnName = "property_id")
+            name = "listing_communications",
+            joinColumns = {
+                    @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "region", referencedColumnName = "region")
+            }
     )
-    @Builder.Default
-    Set<Communication> communicationIds = new HashSet<>();
+    @Column(name = "communication_id")
+    Set<Long> communicationIds = new HashSet<>();
 }

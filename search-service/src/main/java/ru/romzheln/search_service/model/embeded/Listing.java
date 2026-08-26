@@ -27,7 +27,10 @@ public class Listing {
     @ElementCollection
     @CollectionTable(
             name = "listing_images",
-            joinColumns = @JoinColumn(name = "listing_id")
+            joinColumns = {
+                    @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "region", referencedColumnName = "region")
+            }
     )
     @Column(name = "image_id")
     @Builder.Default
@@ -51,7 +54,10 @@ public class Listing {
     @ElementCollection
     @CollectionTable(
             name = "listing_mortgage_programs",
-            joinColumns = @JoinColumn(name = "listing_id")
+            joinColumns = {
+                    @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "region", referencedColumnName = "region")
+            }
     )
     @Column(name = "mortgage_program_id")
     @Builder.Default

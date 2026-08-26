@@ -19,11 +19,13 @@ public class LandPlot {
 
     @ElementCollection
     @CollectionTable(
-            name = "property_additional_building",
-            joinColumns = @JoinColumn(
-                    name = "property_id",
-                    referencedColumnName = "property_id")
+            name = "listing_additional_buildings",
+            joinColumns = {
+                    @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "region", referencedColumnName = "region")
+            }
     )
+    @Column(name = "additional_building_id")
     @Builder.Default
-    private Set<AdditionalBuilding> additionalBuildings = new HashSet<>();
+    private Set<Long> additionalBuildings = new HashSet<>();
 }

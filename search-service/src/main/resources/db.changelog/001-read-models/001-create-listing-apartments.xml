@@ -69,6 +69,7 @@
             CONSTRAINT pk_listing_apartment_search
             PRIMARY KEY (id, region)
             ) PARTITION BY LIST (region);
+
         </sql>
 
     </changeSet>

@@ -22,11 +22,13 @@ public class Commercial {
 
     @ElementCollection
     @CollectionTable(
-            name = "property_purposes",
-            joinColumns = @JoinColumn(
-                    name = "property_id",
-                    referencedColumnName = "property_id")
+            name = "listing_purposes",
+            joinColumns = {
+                    @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "region", referencedColumnName = "region")
+            }
     )
+    @Column(name = "purpose_id")
     @Builder.Default
-    private Set<Purpose> purposes = new HashSet<>();
+    private Set<Long> purposeIds = new HashSet<>();
 }

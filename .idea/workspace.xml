@@ -4,17 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Написал миграции без партиционирования для рид-моделей">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/001-partition-listing-apartments.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/002-partition-listing-commercials.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/003-partition-listing-houses.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/004-partition-listing-land-plots.xml" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Реализовал партиционирование, не индексировал">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/001-create-listing-images.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/002-create-listing-mortgage-programs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/003-create-listing-communications.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/004-create-listing-purposes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/005-create-listing-additional-buildings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/enums/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/enums/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-create-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/001-create-listing-apartments.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-create-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/002-create-listing-commercials.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-create-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/003-create-listing-houses.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/004-create-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/004-create-listing-land-plots.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/AdditionalBuilding.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Commercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Commercial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Communication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/House.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/LandPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/LandPlot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Property.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Purpose.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/001-create-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/001-create-listing-apartments.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/db.changelog-master.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +113,33 @@
       <option name="project" value="LOCAL" />
       <updated>1787669846855</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Реализовал партиционирование, не индексировал">
+      <option name="closed" value="true" />
+      <created>1787677168647</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1787677168647</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Написал модель для объявления квартир" />
     <MESSAGE value="Пишу миграции" />
     <MESSAGE value="Написал миграции без партиционирования для рид-моделей" />
-    <option name="LAST_COMMIT_MESSAGE" value="Написал миграции без партиционирования для рид-моделей" />
+    <MESSAGE value="Реализовал партиционирование, не индексировал" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализовал партиционирование, не индексировал" />
   </component>
 </project>
