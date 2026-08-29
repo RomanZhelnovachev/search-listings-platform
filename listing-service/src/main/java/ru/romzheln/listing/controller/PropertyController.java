@@ -11,17 +11,15 @@ import ru.romzheln.listing.dto.response.PropertyResponse;
 @RequestMapping("/api/v1/properties")
 public interface PropertyController {
 
-    @PostMapping
-    PropertyResponse create(@Valid @RequestBody CreatePropertyRequest request);
+  @PostMapping
+  PropertyResponse create(@Valid @RequestBody CreatePropertyRequest request);
 
-    @PutMapping("/{id}")
-    PropertyResponse update(@PathVariable Long id, @Valid @RequestBody
-    UpdatePropertyRequest request);
+  @PutMapping("/{id}")
+  PropertyResponse update(@PathVariable Long id, @Valid @RequestBody UpdatePropertyRequest request);
 
-    @GetMapping("/{id}")
-    PropertyResponse findProperty(@PathVariable Long id);
+  @GetMapping("/{id}")
+  PropertyResponse findProperty(@PathVariable Long id);
 
-    @GetMapping
-    Page<PropertyResponse> getAll(Pageable pageable);
-
+  @GetMapping
+  Page<PropertyResponse> getAll(Pageable pageable);
 }

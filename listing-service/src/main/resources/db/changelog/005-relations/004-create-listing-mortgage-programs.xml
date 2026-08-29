@@ -14,9 +14,9 @@
 
             <column name="listing_id" type="BIGINT">
                 <constraints
-                    nullable="false"
-                    foreignKeyName="fk_listing_mortgage_programs_listing"
-                    references="listings(id)"/>
+                        nullable="false"
+                        foreignKeyName="fk_listing_mortgage_programs_listing"
+                        references="listings(id)"/>
             </column>
 
             <column name="mortgage_program_id" type="BIGINT">

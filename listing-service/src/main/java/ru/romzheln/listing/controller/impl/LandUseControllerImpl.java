@@ -14,25 +14,25 @@ import ru.romzheln.listing.service.CrudService;
 @RequiredArgsConstructor
 public class LandUseControllerImpl implements LandUseController {
 
-    private final CrudService<LandUse, LandUseRequest, LandUseResponse> service;
+  private final CrudService<LandUse, LandUseRequest, LandUseResponse> service;
 
-    @Override
-    public LandUseResponse create(LandUseRequest request) {
-        return service.create(request);
-    }
+  @Override
+  public LandUseResponse create(LandUseRequest request) {
+    return service.create(request);
+  }
 
-    @Override
-    public LandUseResponse update(Long id, LandUseRequest request) {
-        return service.update(id, request);
-    }
+  @Override
+  public LandUseResponse update(Long id, LandUseRequest request) {
+    return service.update(id, request);
+  }
 
-    @Override
-    public LandUseResponse findById(Long id) {
-        return service.findById(id);
-    }
+  @Override
+  public LandUseResponse findById(Long id) {
+    return service.findById(id);
+  }
 
-    @Override
-    public Page<LandUseResponse> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+  @Override
+  public Page<LandUseResponse> getAll(Pageable pageable) {
+    return service.getAll(pageable);
+  }
 }

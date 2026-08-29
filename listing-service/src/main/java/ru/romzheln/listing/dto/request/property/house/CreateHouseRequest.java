@@ -16,17 +16,17 @@ import java.util.Set;
 @AllArgsConstructor
 public class CreateHouseRequest extends CreatePropertyRequest {
 
-    private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
+  private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
 
-    private CommonLandDetailsDto commonLandDetailsDto;
+  private CommonLandDetailsDto commonLandDetailsDto;
 
-    private Long developerId;
+  private Long developerId;
 
-    private Long complexId;
+  private Long complexId;
 
-    private ConstructionStage constructionStage;
+  private ConstructionStage constructionStage;
 
-    private Set<Long> additionalBuildings;
+  private Set<Long> additionalBuildings;
 
-    private BigDecimal landPlotSquare;
+  private BigDecimal landPlotSquare;
 }

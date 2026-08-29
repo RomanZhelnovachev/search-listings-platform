@@ -1,5 +1,6 @@
 package ru.romzheln.listing.mapper;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
@@ -7,8 +8,6 @@ import ru.romzheln.listing.dto.event.listing.ListingCreatedEvent;
 import ru.romzheln.listing.dto.event.listing.ListingUpdatedEvent;
 import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.model.entity.listing.Listing;
-
-import java.util.List;
 
 @Component
 public class ListingMapper {

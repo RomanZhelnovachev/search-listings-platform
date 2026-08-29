@@ -12,33 +12,33 @@ import lombok.*;
 @Builder
 public class CommercialPhysicalDetails {
 
-    @Column(name = "floor")
-    private Integer floor;
+  @Column(name = "floor")
+  private Integer floor;
 
-    @Column(name = "line")
-    private String line;
+  @Column(name = "line")
+  private String line;
 
-    @Column(name = "property_location_type")
-    private String propertyLocationType;
+  @Column(name = "property_location_type")
+  private String propertyLocationType;
 
-    @Column(name = "territorial_zone")
-    private String territorialZone;
+  @Column(name = "territorial_zone")
+  private String territorialZone;
 
-    @Column(name = "separate_entrance")
-    private Boolean separateEntrance;
+  @Column(name = "separate_entrance")
+  private Boolean separateEntrance;
 
-    @Column(name = "ventilation_exists")
-    private Boolean ventilation;
+  @Column(name = "ventilation_exists")
+  private Boolean ventilation;
 
-    @Column(name = "tenant_exists")
-    private Boolean tenantExists;
+  @Column(name = "tenant_exists")
+  private Boolean tenantExists;
 
-    @Column(name = "entrances_number")
-    private Integer entrancesNumber;
+  @Column(name = "entrances_number")
+  private Integer entrancesNumber;
 
-    @Column(name = "electrical_power_kw")
-    private Integer electricalPowerKw;
+  @Column(name = "electrical_power_kw")
+  private Integer electricalPowerKw;
 
-    @Column(name = "railway_dead_end")
-    private Boolean railwayDeadEnd;
+  @Column(name = "railway_dead_end")
+  private Boolean railwayDeadEnd;
 }

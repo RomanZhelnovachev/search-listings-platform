@@ -2,6 +2,7 @@ package ru.romzheln.listing.mapper;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.event.OutboxPayload;
@@ -9,8 +10,6 @@ import ru.romzheln.listing.dto.kafka.EventMessage;
 import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.outbox.OutboxEvent;
-
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor

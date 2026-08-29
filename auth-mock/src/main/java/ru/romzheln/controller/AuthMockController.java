@@ -1,11 +1,10 @@
 package ru.romzheln.controller;
 
+import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 import ru.romzheln.dto.TokenRequest;
 import ru.romzheln.dto.TokenResponse;
 import ru.romzheln.service.AuthService;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth")

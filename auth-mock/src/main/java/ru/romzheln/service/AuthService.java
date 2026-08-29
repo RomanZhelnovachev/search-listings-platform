@@ -7,17 +7,15 @@ import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jwt.JWTClaimsSet;
-
 import com.nimbusds.jwt.SignedJWT;
-import org.springframework.stereotype.Service;
-import ru.romzheln.dto.TokenRequest;
-import ru.romzheln.dto.TokenResponse;
-import ru.romzheln.security.KeyProvider;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
+import org.springframework.stereotype.Service;
+import ru.romzheln.dto.TokenRequest;
+import ru.romzheln.dto.TokenResponse;
+import ru.romzheln.security.KeyProvider;
 
 @Service
 public class AuthService {

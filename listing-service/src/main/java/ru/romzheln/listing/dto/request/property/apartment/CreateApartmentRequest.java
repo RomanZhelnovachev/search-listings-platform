@@ -13,13 +13,13 @@ import ru.romzheln.listing.model.enums.ApartmentType;
 @AllArgsConstructor
 public class CreateApartmentRequest extends CreatePropertyRequest {
 
-    private ApartmentType apartmentType;
+  private ApartmentType apartmentType;
 
-    private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
+  private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
 
-    private ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto;
+  private ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto;
 
-    private Long developerId;
+  private Long developerId;
 
-    private Long complexId;
+  private Long complexId;
 }

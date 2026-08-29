@@ -12,6 +12,6 @@ import lombok.*;
 @Builder
 public class ResidentialComplex {
 
-    @Column(name = "complex_name")
-    private String complexName;
+  @Column(name = "complex_name")
+  private String complexName;
 }

@@ -21,59 +21,61 @@ import ru.romzheln.listing.service.OutboxEventService;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ResidentialComplexServiceImpl implements CrudService<ResidentialComplex, ResidentialComplexRequest, ResidentialComplexResponse> {
+public class ResidentialComplexServiceImpl
+    implements CrudService<
+        ResidentialComplex, ResidentialComplexRequest, ResidentialComplexResponse> {
 
-    private final ResidentialComplexRepository repository;
-    private final ResidentialComplexMapper mapper;
-    private final OutboxEventService outboxEventService;
+  private final ResidentialComplexRepository repository;
+  private final ResidentialComplexMapper mapper;
+  private final OutboxEventService outboxEventService;
 
-    @Override
-    @Transactional
-    public ResidentialComplexResponse create(ResidentialComplexRequest request) {
-        ResidentialComplex complex = ResidentialComplex.builder()
-                .name(request.name())
-                .build();
-        ResidentialComplex savedComplex = repository.save(complex);
-        publish(EventType.CREATED, savedComplex);
-        log.info("Жилой комплекс с ID {} успешно сохранён", savedComplex.getId());
-        return mapper.toResponse(savedComplex);
-    }
+  @Override
+  @Transactional
+  public ResidentialComplexResponse create(ResidentialComplexRequest request) {
+    ResidentialComplex complex = ResidentialComplex.builder().name(request.name()).build();
+    ResidentialComplex savedComplex = repository.save(complex);
+    publish(EventType.CREATED, savedComplex);
+    log.info("Жилой комплекс с ID {} успешно сохранён", savedComplex.getId());
+    return mapper.toResponse(savedComplex);
+  }
 
-    @Override
-    @Transactional
-    public ResidentialComplexResponse update(Long id, ResidentialComplexRequest request) {
-      ResidentialComplex complex = get(id);
-      complex.setName(request.name());
-      publish(EventType.UPDATED, complex);
-      log.info("Жилой комплекс с ID {} успешно переименован в {}", id, complex.getName());
-      return mapper.toResponse(complex);
-    }
+  @Override
+  @Transactional
+  public ResidentialComplexResponse update(Long id, ResidentialComplexRequest request) {
+    ResidentialComplex complex = get(id);
+    complex.setName(request.name());
+    publish(EventType.UPDATED, complex);
+    log.info("Жилой комплекс с ID {} успешно переименован в {}", id, complex.getName());
+    return mapper.toResponse(complex);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public ResidentialComplexResponse findById(Long id) {
-        ResidentialComplex complex = get(id);
-        log.info("Получен жилой комплекс с ID {}", id);
-        return mapper.toResponse(complex);
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public ResidentialComplexResponse findById(Long id) {
+    ResidentialComplex complex = get(id);
+    log.info("Получен жилой комплекс с ID {}", id);
+    return mapper.toResponse(complex);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<ResidentialComplexResponse> getAll(Pageable pageable) {
-        Page<ResidentialComplex> complexes = repository.findAll(pageable);
-        log.info("Получен постраничный список всех жилых комплексов: page = {}, size = {}", pageable.getPageNumber(), pageable.getPageSize());
-        return mapper.toPageResponse(complexes);
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Page<ResidentialComplexResponse> getAll(Pageable pageable) {
+    Page<ResidentialComplex> complexes = repository.findAll(pageable);
+    log.info(
+        "Получен постраничный список всех жилых комплексов: page = {}, size = {}",
+        pageable.getPageNumber(),
+        pageable.getPageSize());
+    return mapper.toPageResponse(complexes);
+  }
 
-    @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    public ResidentialComplex get(Long id) {
-        return repository.findById(id).orElseThrow(()-> new ResidentialComplexNotFoundException(id));
-    }
+  @Override
+  @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+  public ResidentialComplex get(Long id) {
+    return repository.findById(id).orElseThrow(() -> new ResidentialComplexNotFoundException(id));
+  }
 
-    private void publish(EventType type, ResidentialComplex complex){
-        outboxEventService.save(AggregateType.RESIDENTIAL_COMPLEX,
-                complex.getId(), type, mapper.toEvent(complex));
-    }
-
+  private void publish(EventType type, ResidentialComplex complex) {
+    outboxEventService.save(
+        AggregateType.RESIDENTIAL_COMPLEX, complex.getId(), type, mapper.toEvent(complex));
+  }
 }

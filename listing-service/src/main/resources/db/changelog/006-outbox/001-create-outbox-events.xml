@@ -14,14 +14,14 @@
 
             <column name="id" type="BIGINT">
                 <constraints
-                    primaryKey="true"
-                    nullable="false"/>
+                        primaryKey="true"
+                        nullable="false"/>
             </column>
 
             <column name="event_id" type="UUID">
                 <constraints
-                    nullable="false"
-                    unique="true"/>
+                        nullable="false"
+                        unique="true"/>
             </column>
 
             <column name="aggregate_type" type="VARCHAR(50)">

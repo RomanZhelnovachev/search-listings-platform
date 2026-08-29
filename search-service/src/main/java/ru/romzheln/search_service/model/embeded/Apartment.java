@@ -11,24 +11,20 @@ import lombok.*;
 @Builder
 public class Apartment {
 
-    @Column(name = "apartment_type")
-    private String apartmentType;
+  @Column(name = "apartment_type")
+  private String apartmentType;
 
-    @Embedded
-    private CommonPhysicalDetails commonPhysicalDetails;
+  @Embedded private CommonPhysicalDetails commonPhysicalDetails;
 
-    @Embedded
-    private ApartmentPhysicalDetails apartmentPhysicalDetails;
+  @Embedded private ApartmentPhysicalDetails apartmentPhysicalDetails;
 
-    @Column(name = "developer_id")
-    private Long developerId;
+  @Column(name = "developer_id")
+  private Long developerId;
 
-    @Embedded
-    private Developer developer;
+  @Embedded private Developer developer;
 
-    @Column(name = "complex_id")
-    private Long complexId;
+  @Column(name = "complex_id")
+  private Long complexId;
 
-    @Embedded
-    private ResidentialComplex complex;
+  @Embedded private ResidentialComplex complex;
 }

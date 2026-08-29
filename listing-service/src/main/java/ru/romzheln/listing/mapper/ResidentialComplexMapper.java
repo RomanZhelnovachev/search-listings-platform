@@ -1,13 +1,12 @@
 package ru.romzheln.listing.mapper;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.event.ResidentialComplexEvent;
 import ru.romzheln.listing.dto.response.ResidentialComplexResponse;
 import ru.romzheln.listing.model.entity.common.ResidentialComplex;
-
-import java.util.List;
 
 @Component
 public class ResidentialComplexMapper implements ReferenceMapper<ResidentialComplex, ResidentialComplexResponse, ResidentialComplexEvent>{

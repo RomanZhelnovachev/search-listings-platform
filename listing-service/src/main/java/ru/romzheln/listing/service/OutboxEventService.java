@@ -1,11 +1,10 @@
 package ru.romzheln.listing.service;
 
+import java.util.List;
 import ru.romzheln.listing.dto.event.OutboxPayload;
 import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.outbox.OutboxEvent;
-
-import java.util.List;
 
 public interface OutboxEventService {
 

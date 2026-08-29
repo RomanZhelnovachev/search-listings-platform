@@ -1,8 +1,7 @@
 package ru.romzheln.listing.util;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.function.Consumer;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UpdateUtil {

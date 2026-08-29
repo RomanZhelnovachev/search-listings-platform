@@ -10,15 +10,16 @@ import ru.romzheln.listing.dto.response.CommunicationResponse;
 @RequestMapping("/api/v1/properties/communication")
 public interface CommunicationController {
 
-    @PostMapping
-    CommunicationResponse create(@Valid @RequestBody CommunicationRequest request);
+  @PostMapping
+  CommunicationResponse create(@Valid @RequestBody CommunicationRequest request);
 
-    @PutMapping("/{id}")
-    CommunicationResponse update(@PathVariable Long id, @Valid @RequestBody CommunicationRequest request);
+  @PutMapping("/{id}")
+  CommunicationResponse update(
+      @PathVariable Long id, @Valid @RequestBody CommunicationRequest request);
 
-    @GetMapping("/{id}")
-    CommunicationResponse findById(@PathVariable Long id);
+  @GetMapping("/{id}")
+  CommunicationResponse findById(@PathVariable Long id);
 
-    @GetMapping
-    Page<CommunicationResponse> getAll(Pageable pageable);
+  @GetMapping
+  Page<CommunicationResponse> getAll(Pageable pageable);
 }

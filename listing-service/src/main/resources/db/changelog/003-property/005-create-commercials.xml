@@ -14,8 +14,8 @@
 
             <column name="id" type="BIGINT">
                 <constraints
-                    primaryKey="true"
-                    nullable="false"/>
+                        primaryKey="true"
+                        nullable="false"/>
             </column>
 
             <column name="floor" type="INT"/>

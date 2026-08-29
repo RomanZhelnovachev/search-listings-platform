@@ -15,18 +15,15 @@ import java.time.Instant;
 @Builder
 public class ListingCommercialReadModel {
 
-    @Id
-    private Long id;
+  @Id private Long id;
 
-    @Embedded
-    private Listing listing;
+  @Embedded private Listing listing;
 
-    @Embedded
-    private Commercial commercial;
+  @Embedded private Commercial commercial;
 
-    @Column(name = "created_at")
-    private Instant createdAt;
+  @Column(name = "created_at")
+  private Instant createdAt;
 
-    @Column(name = "updated_at")
-    private Instant updatedAt;
+  @Column(name = "updated_at")
+  private Instant updatedAt;
 }

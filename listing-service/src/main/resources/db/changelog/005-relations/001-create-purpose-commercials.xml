@@ -22,8 +22,8 @@
             <column name="commercial_id" type="BIGINT">
                 <constraints
                         nullable="false"
-                    foreignKeyName="fk_purpose_commercials_commercial"
-                    references="commercials(id)"/>
+                        foreignKeyName="fk_purpose_commercials_commercial"
+                        references="commercials(id)"/>
             </column>
 
         </createTable>

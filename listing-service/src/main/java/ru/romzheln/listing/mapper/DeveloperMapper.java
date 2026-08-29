@@ -1,13 +1,12 @@
 package ru.romzheln.listing.mapper;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.event.DeveloperEvent;
 import ru.romzheln.listing.dto.response.DeveloperResponse;
 import ru.romzheln.listing.model.entity.common.Developer;
-
-import java.util.List;
 
 @Component
 public class DeveloperMapper implements ReferenceMapper<Developer, DeveloperResponse, DeveloperEvent>{

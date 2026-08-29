@@ -1,5 +1,6 @@
 package ru.romzheln.listing.mapper;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,8 +13,6 @@ import ru.romzheln.listing.model.entity.house.House;
 import ru.romzheln.listing.model.entity.landPlot.LandPlot;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
-
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor

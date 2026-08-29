@@ -9,7 +9,6 @@ import ru.romzheln.listing.dto.request.reference.AdditionalBuildingRequest;
 import ru.romzheln.listing.dto.response.AdditionalBuildingResponse;
 import ru.romzheln.listing.model.entity.common.AdditionalBuilding;
 import ru.romzheln.listing.service.CrudService;
-import ru.romzheln.listing.service.impl.AdditionalBuildingsServiceImpl;
 
 @RestController
 @RequiredArgsConstructor

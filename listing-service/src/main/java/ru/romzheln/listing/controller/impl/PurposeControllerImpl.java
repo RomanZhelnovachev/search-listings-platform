@@ -14,25 +14,25 @@ import ru.romzheln.listing.service.CrudService;
 @RequiredArgsConstructor
 public class PurposeControllerImpl implements PurposeController {
 
-    private final CrudService<Purpose, PurposeRequest, PurposeResponse> service;
+  private final CrudService<Purpose, PurposeRequest, PurposeResponse> service;
 
-    @Override
-    public PurposeResponse create(PurposeRequest request) {
-        return service.create(request);
-    }
+  @Override
+  public PurposeResponse create(PurposeRequest request) {
+    return service.create(request);
+  }
 
-    @Override
-    public PurposeResponse update(Long id, PurposeRequest request) {
-        return service.update(id, request);
-    }
+  @Override
+  public PurposeResponse update(Long id, PurposeRequest request) {
+    return service.update(id, request);
+  }
 
-    @Override
-    public PurposeResponse findById(Long id) {
-        return service.findById(id);
-    }
+  @Override
+  public PurposeResponse findById(Long id) {
+    return service.findById(id);
+  }
 
-    @Override
-    public Page<PurposeResponse> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+  @Override
+  public Page<PurposeResponse> getAll(Pageable pageable) {
+    return service.getAll(pageable);
+  }
 }

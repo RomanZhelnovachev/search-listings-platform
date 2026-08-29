@@ -1,10 +1,10 @@
 package ru.romzheln.search_service.model.read_model;
 
 import jakarta.persistence.*;
+import java.time.Instant;
 import lombok.*;
 import ru.romzheln.search_service.model.embeded.House;
 import ru.romzheln.search_service.model.embeded.Listing;
-import java.time.Instant;
 
 @Entity
 @Table(name = "listing_house_search")
@@ -15,18 +15,15 @@ import java.time.Instant;
 @Builder
 public class ListingHouseReadModel {
 
-    @Id
-    private Long id;
+  @Id private Long id;
 
-    @Embedded
-    private Listing listing;
+  @Embedded private Listing listing;
 
-    @Embedded
-    private House house;
+  @Embedded private House house;
 
-    @Column(name = "created_at")
-    private Instant createdAt;
+  @Column(name = "created_at")
+  private Instant createdAt;
 
-    @Column(name = "updated_at")
-    private Instant updatedAt;
+  @Column(name = "updated_at")
+  private Instant updatedAt;
 }

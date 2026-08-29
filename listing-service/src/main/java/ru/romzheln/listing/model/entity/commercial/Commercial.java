@@ -1,12 +1,11 @@
 package ru.romzheln.listing.model.entity.commercial;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.*;
 import ru.romzheln.listing.model.entity.common.CommonPhysicalDetails;
 import ru.romzheln.listing.model.entity.property.Property;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "commercials")

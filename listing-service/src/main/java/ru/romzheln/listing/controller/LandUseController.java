@@ -10,15 +10,15 @@ import ru.romzheln.listing.dto.response.LandUseResponse;
 @RequestMapping("/api/v1/land_uses")
 public interface LandUseController {
 
-    @PostMapping
-    LandUseResponse create(@Valid @RequestBody LandUseRequest request);
+  @PostMapping
+  LandUseResponse create(@Valid @RequestBody LandUseRequest request);
 
-    @PutMapping("/{id}")
-    LandUseResponse update(@PathVariable Long id, @Valid @RequestBody LandUseRequest request);
+  @PutMapping("/{id}")
+  LandUseResponse update(@PathVariable Long id, @Valid @RequestBody LandUseRequest request);
 
-    @GetMapping("/{id}")
-    LandUseResponse findById(@PathVariable Long id);
+  @GetMapping("/{id}")
+  LandUseResponse findById(@PathVariable Long id);
 
-    @GetMapping
-    Page<LandUseResponse> getAll(Pageable pageable);
+  @GetMapping
+  Page<LandUseResponse> getAll(Pageable pageable);
 }

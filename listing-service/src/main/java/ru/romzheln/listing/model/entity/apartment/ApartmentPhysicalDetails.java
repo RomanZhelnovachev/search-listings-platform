@@ -1,11 +1,9 @@
 package ru.romzheln.listing.model.entity.apartment;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import lombok.*;
 import ru.romzheln.listing.model.enums.*;
-
-import java.math.BigDecimal;
-
 
 @Embeddable
 @NoArgsConstructor

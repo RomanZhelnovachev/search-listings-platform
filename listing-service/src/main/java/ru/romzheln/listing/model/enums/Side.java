@@ -1,7 +1,6 @@
 package ru.romzheln.listing.model.enums;
 
 public enum Side {
-
-    SUNNY,
-    SHADY
+  SUNNY,
+  SHADY
 }

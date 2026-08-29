@@ -1,5 +1,8 @@
 package ru.romzheln.listing.mapper;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.common.*;
 import ru.romzheln.listing.model.entity.apartment.ApartmentPhysicalDetails;
@@ -12,10 +15,6 @@ import ru.romzheln.listing.model.entity.common.CommonPhysicalDetails;
 import ru.romzheln.listing.model.entity.common.Communication;
 import ru.romzheln.listing.model.entity.property.Location;
 import ru.romzheln.listing.model.entity.property.Property;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class PropertyCommonMapper {

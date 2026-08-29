@@ -1,11 +1,6 @@
 package ru.romzheln.listing.dto.event.listing;
 
+import java.util.Set;
 import ru.romzheln.listing.dto.event.OutboxPayload;
 
-import java.util.Set;
-
-public record MotgageProgramRemovedEvent(
-
-        Set<Long> mortgagePrograms
-) implements OutboxPayload {
-}
+public record MotgageProgramRemovedEvent(Set<Long> mortgagePrograms) implements OutboxPayload {}

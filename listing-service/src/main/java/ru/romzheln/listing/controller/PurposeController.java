@@ -10,15 +10,15 @@ import ru.romzheln.listing.dto.response.PurposeResponse;
 @RequestMapping("/api/v1/properties/purposes")
 public interface PurposeController {
 
-    @PostMapping
-    PurposeResponse create(@Valid @RequestBody PurposeRequest request);
+  @PostMapping
+  PurposeResponse create(@Valid @RequestBody PurposeRequest request);
 
-    @PutMapping("/{id}")
-    PurposeResponse update(@PathVariable Long id, @Valid @RequestBody PurposeRequest request);
+  @PutMapping("/{id}")
+  PurposeResponse update(@PathVariable Long id, @Valid @RequestBody PurposeRequest request);
 
-    @GetMapping("/{id}")
-    PurposeResponse findById(@PathVariable Long id);
+  @GetMapping("/{id}")
+  PurposeResponse findById(@PathVariable Long id);
 
-    @GetMapping
-    Page<PurposeResponse> getAll(Pageable pageable);
+  @GetMapping
+  Page<PurposeResponse> getAll(Pageable pageable);
 }

@@ -14,26 +14,25 @@ import ru.romzheln.listing.service.PropertyService;
 @RequiredArgsConstructor
 public class PropertyControllerImpl implements PropertyController {
 
-    private final PropertyService service;
+  private final PropertyService service;
 
-    @Override
-    public PropertyResponse create(CreatePropertyRequest request){
-        return service.createProperty(request);
-    }
+  @Override
+  public PropertyResponse create(CreatePropertyRequest request) {
+    return service.createProperty(request);
+  }
 
-    @Override
-    public PropertyResponse update(Long id, @RequestBody
-                                   UpdatePropertyRequest request){
-        return service.updateProperty(id, request);
-    }
+  @Override
+  public PropertyResponse update(Long id, @RequestBody UpdatePropertyRequest request) {
+    return service.updateProperty(id, request);
+  }
 
-    @Override
-    public PropertyResponse findProperty(Long id) {
-        return service.findById(id);
-    }
+  @Override
+  public PropertyResponse findProperty(Long id) {
+    return service.findById(id);
+  }
 
-    @Override
-    public Page<PropertyResponse> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+  @Override
+  public Page<PropertyResponse> getAll(Pageable pageable) {
+    return service.getAll(pageable);
+  }
 }

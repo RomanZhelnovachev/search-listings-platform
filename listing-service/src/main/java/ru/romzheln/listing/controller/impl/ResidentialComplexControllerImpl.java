@@ -14,25 +14,27 @@ import ru.romzheln.listing.service.CrudService;
 @RequiredArgsConstructor
 public class ResidentialComplexControllerImpl implements ResidentialComplexController {
 
-    private final CrudService<ResidentialComplex, ResidentialComplexRequest, ResidentialComplexResponse> service;
+  private final CrudService<
+          ResidentialComplex, ResidentialComplexRequest, ResidentialComplexResponse>
+      service;
 
-    @Override
-    public ResidentialComplexResponse create(ResidentialComplexRequest request) {
-        return service.create(request);
-    }
+  @Override
+  public ResidentialComplexResponse create(ResidentialComplexRequest request) {
+    return service.create(request);
+  }
 
-    @Override
-    public ResidentialComplexResponse update(Long id, ResidentialComplexRequest request) {
-        return service.update(id, request);
-    }
+  @Override
+  public ResidentialComplexResponse update(Long id, ResidentialComplexRequest request) {
+    return service.update(id, request);
+  }
 
-    @Override
-    public ResidentialComplexResponse findById(Long id) {
-        return service.findById(id);
-    }
+  @Override
+  public ResidentialComplexResponse findById(Long id) {
+    return service.findById(id);
+  }
 
-    @Override
-    public Page<ResidentialComplexResponse> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+  @Override
+  public Page<ResidentialComplexResponse> getAll(Pageable pageable) {
+    return service.getAll(pageable);
+  }
 }

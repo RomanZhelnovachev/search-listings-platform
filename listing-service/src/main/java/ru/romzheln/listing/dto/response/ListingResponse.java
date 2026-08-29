@@ -8,21 +8,11 @@ import java.math.BigDecimal;
 
 @Builder
 public record ListingResponse(
-
-        Long id,
-
-        String title,
-
-        String description,
-
-        ListingStatus status,
-
-        Long ownerId,
-
-        Long propertyId,
-
-        DealType dealType,
-
-        BigDecimal price
-) {
-}
+    Long id,
+    String title,
+    String description,
+    ListingStatus status,
+    Long ownerId,
+    Long propertyId,
+    DealType dealType,
+    BigDecimal price) {}

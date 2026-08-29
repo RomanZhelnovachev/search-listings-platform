@@ -16,28 +16,26 @@ import java.util.List;
 @Slf4j
 public class EventPublisherImpl implements EventPublisher {
 
-    private final OutboxEventMapper mapper;
-    private final EventProducer producer;
-    private final OutboxEventService service;
+  private final OutboxEventMapper mapper;
+  private final EventProducer producer;
+  private final OutboxEventService service;
 
-    @Override
-    public void publish() {
-        List<OutboxEvent> events = service.getNotPublishedEvents();
-        if(events.isEmpty()){
-            log.debug("Нет новых событий для публикации");
-            return;
-        }
-        for(OutboxEvent event : events){
-            producer.send(mapper.toEventMessage(event))
-                    .thenRun(() -> service.markAsProcessed(event.getId()))
-                    .exceptionally(ex -> {
-                        log.error(
-                                "Ошибка публикации события {}",
-                                event.getId(),
-                                ex
-                        );
-                        return null;
-                    });
-        }
+  @Override
+  public void publish() {
+    List<OutboxEvent> events = service.getNotPublishedEvents();
+    if (events.isEmpty()) {
+      log.debug("Нет новых событий для публикации");
+      return;
     }
+    for (OutboxEvent event : events) {
+      producer
+          .send(mapper.toEventMessage(event))
+          .thenRun(() -> service.markAsProcessed(event.getId()))
+          .exceptionally(
+              ex -> {
+                log.error("Ошибка публикации события {}", event.getId(), ex);
+                return null;
+              });
+    }
+  }
 }

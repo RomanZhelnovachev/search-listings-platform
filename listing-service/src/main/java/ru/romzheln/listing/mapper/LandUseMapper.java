@@ -1,13 +1,12 @@
 package ru.romzheln.listing.mapper;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.event.LandUseEvent;
 import ru.romzheln.listing.dto.response.LandUseResponse;
 import ru.romzheln.listing.model.entity.common.LandUse;
-
-import java.util.List;
 
 @Component
 public class LandUseMapper implements ReferenceMapper<LandUse, LandUseResponse, LandUseEvent>{

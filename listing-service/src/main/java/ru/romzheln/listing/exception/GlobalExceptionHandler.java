@@ -1,5 +1,6 @@
 package ru.romzheln.listing.exception;
 
+import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.romzheln.listing.exception.badRequest.*;
 import ru.romzheln.listing.exception.notFound.*;
 import ru.romzheln.listing.exception.serverError.InternalServerException;
-
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

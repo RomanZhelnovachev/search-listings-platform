@@ -11,11 +11,11 @@ import ru.romzheln.listing.service.EventPublisher;
 @Slf4j
 public class OutboxScheduler {
 
-    private final EventPublisher publisher;
+  private final EventPublisher publisher;
 
-    @Scheduled(fixedDelayString = "${outbox.scheduler.delay}")
-    public void publishEvents(){
-        log.info("Запущен процесс публикации событий");
-        publisher.publish();
-    }
+  @Scheduled(fixedDelayString = "${outbox.scheduler.delay}")
+  public void publishEvents() {
+    log.info("Запущен процесс публикации событий");
+    publisher.publish();
+  }
 }

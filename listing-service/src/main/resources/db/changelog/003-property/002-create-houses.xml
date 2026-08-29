@@ -14,12 +14,12 @@
 
             <column name="id" type="BIGINT">
                 <constraints
-                    primaryKey="true"
-                    nullable="false"/>
+                        primaryKey="true"
+                        nullable="false"/>
             </column>
-            
+
             <column name="rooms_number" type="INT"/>
-            
+
             <column name="ceiling_height" type="DECIMAL(4, 2)"/>
 
             <column name="renovation" type="VARCHAR(20)"/>
@@ -33,9 +33,9 @@
             <column name="year_built" type="INT"/>
 
             <column name="floors_number" type="INT"/>
-            
+
             <column name="view" type="VARCHAR(255)"/>
-            
+
             <column name="balcony" type="VARCHAR(50)"/>
 
             <column name="window_type" type="VARCHAR(20)"/>

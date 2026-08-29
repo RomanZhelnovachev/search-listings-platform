@@ -1,17 +1,19 @@
 package ru.romzheln.listing.service.impl;
 
+import java.math.BigDecimal;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.event.OutboxPayload;
 import ru.romzheln.listing.dto.event.listing.*;
+import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
-import ru.romzheln.listing.exception.notFound.ListingNotFoundByIdException;
 import ru.romzheln.listing.exception.badRequest.UpdateListingException;
+import ru.romzheln.listing.exception.notFound.ListingNotFoundByIdException;
 import ru.romzheln.listing.mapper.ListingMapper;
 import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.property.Property;
@@ -21,9 +23,6 @@ import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.enums.ListingStatus;
 import ru.romzheln.listing.repository.ListingRepository;
 import ru.romzheln.listing.service.*;
-
-import java.math.BigDecimal;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
