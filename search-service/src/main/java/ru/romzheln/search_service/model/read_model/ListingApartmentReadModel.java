@@ -5,6 +5,7 @@ import java.time.Instant;
 import lombok.*;
 import ru.romzheln.search_service.model.embeded.Apartment;
 import ru.romzheln.search_service.model.embeded.Listing;
+import ru.romzheln.search_service.model.embeded.ListingKey;
 
 @Entity
 @Table(name = "listing_apartment_search")
@@ -15,8 +16,8 @@ import ru.romzheln.search_service.model.embeded.Listing;
 @Builder
 public class ListingApartmentReadModel {
 
-    @Id
-    private Long id;
+    @EmbeddedId
+    private ListingKey key;
 
     @Embedded
     private Listing listing;

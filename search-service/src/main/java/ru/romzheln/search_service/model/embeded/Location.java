@@ -12,7 +12,7 @@ import lombok.*;
 @Builder
 public class Location {
 
-  @Column(name = "region")
+  @Column(name = "region", insertable = false, updatable = false)
   private String region;
 
   @Column(name = "populated_area")

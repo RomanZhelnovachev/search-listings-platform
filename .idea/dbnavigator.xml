@@ -11,19 +11,19 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="499a759e-5fd5-41eb-ac63-16966c3e54a6" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
-        <tools />
-        <mcp-servers />
-      </assistant-state>
       <assistant-state connection-id="499a759e-5fd5-41eb-ac63-16966c3e54a6" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
         <mcp-servers />
       </assistant-state>
-      <assistant-state connection-id="78ff9547-c761-477f-a20a-54dc1e2b5ab9" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="499a759e-5fd5-41eb-ac63-16966c3e54a6" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
         <mcp-servers />
       </assistant-state>
       <assistant-state connection-id="78ff9547-c761-477f-a20a-54dc1e2b5ab9" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+        <tools />
+        <mcp-servers />
+      </assistant-state>
+      <assistant-state connection-id="78ff9547-c761-477f-a20a-54dc1e2b5ab9" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
         <mcp-servers />
       </assistant-state>
@@ -61,13 +61,18 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="78ff9547-c761-477f-a20a-54dc1e2b5ab9" dataset="public.listing_images" active-filter-id="" />
+    <filter-actions connection-id="78ff9547-c761-477f-a20a-54dc1e2b5ab9" dataset="public.listing_apartment_search" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
   <component name="DBNavigator.Project.Settings">
-    <states />
+    <states>
+      <state category="SECRET_STORAGE_MIGRATION">
+        <migrated value="true" />
+      </state>
+    </states>
     <connections>
       <connection source-id="" id="499a759e-5fd5-41eb-ac63-16966c3e54a6" active="true" signed="true">
         <database>
@@ -200,8 +205,8 @@
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="localhost" />
-          <port value="5432" />
-          <database value="listings_db" />
+          <port value="5433" />
+          <database value="search_db" />
           <tns-folder value="" />
           <tns-profile value="" />
           <server-type value="" />

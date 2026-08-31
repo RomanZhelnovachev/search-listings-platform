@@ -5,6 +5,7 @@ import java.time.Instant;
 import lombok.*;
 import ru.romzheln.search_service.model.embeded.LandPlot;
 import ru.romzheln.search_service.model.embeded.Listing;
+import ru.romzheln.search_service.model.embeded.ListingKey;
 
 @Entity
 @Table(name = "listing_land_plot_search")
@@ -15,18 +16,15 @@ import ru.romzheln.search_service.model.embeded.Listing;
 @Builder
 public class ListingLandPlotReadModel {
 
-    @Id
-    private Long id;
+  @EmbeddedId private ListingKey key;
 
-   @Embedded
-   private Listing listing;
+  @Embedded private Listing listing;
 
-    @Embedded
-    private LandPlot landPlot;
+  @Embedded private LandPlot landPlot;
 
-    @Column(name = "created_at")
-    private Instant createdAt;
+  @Column(name = "created_at")
+  private Instant createdAt;
 
-    @Column(name = "updated_at")
-    private Instant updatedAt;
+  @Column(name = "updated_at")
+  private Instant updatedAt;
 }

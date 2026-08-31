@@ -12,13 +12,13 @@ RUN mvn dependency:go-offline
 
 COPY . .
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package -pl search-service -am -DskipTests
 
 FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-COPY --from=build /app/search-service/target/search-service-1.0.0-SNAPSHOT.jar app.jar
+COPY --from=build /app/search-service/target/search-service-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 

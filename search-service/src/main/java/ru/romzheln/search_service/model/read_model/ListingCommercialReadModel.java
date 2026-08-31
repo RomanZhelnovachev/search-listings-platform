@@ -1,10 +1,11 @@
 package ru.romzheln.search_service.model.read_model;
 
 import jakarta.persistence.*;
+import java.time.Instant;
 import lombok.*;
 import ru.romzheln.search_service.model.embeded.Commercial;
 import ru.romzheln.search_service.model.embeded.Listing;
-import java.time.Instant;
+import ru.romzheln.search_service.model.embeded.ListingKey;
 
 @Entity
 @Table(name = "listing_commercial_search")
@@ -15,7 +16,7 @@ import java.time.Instant;
 @Builder
 public class ListingCommercialReadModel {
 
-  @Id private Long id;
+  @EmbeddedId private ListingKey key;
 
   @Embedded private Listing listing;
 
