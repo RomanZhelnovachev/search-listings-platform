@@ -4,8 +4,4 @@ import ru.romzheln.listing.dto.event.OutboxPayload;
 
 import java.time.Instant;
 
-public record ListingRemovedEvent(
-
-        String reason
-) implements OutboxPayload {
-}
+public record ListingRemovedEvent(String reason) implements OutboxPayload {}

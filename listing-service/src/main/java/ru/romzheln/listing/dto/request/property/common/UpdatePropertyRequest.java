@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import java.math.BigDecimal;
+import java.util.Set;
 import lombok.Getter;
 import ru.romzheln.listing.dto.common.LocationDto;
 import ru.romzheln.listing.dto.request.property.apartment.UpdateApartmentRequest;
@@ -12,9 +14,6 @@ import ru.romzheln.listing.dto.request.property.house.UpdateHouseRequest;
 import ru.romzheln.listing.dto.request.property.landPlot.UpdateLandPlotRequest;
 import ru.romzheln.listing.model.enums.Own;
 import ru.romzheln.listing.model.enums.PropertyType;
-
-import java.math.BigDecimal;
-import java.util.Set;
 
 @Getter
 @JsonTypeInfo(

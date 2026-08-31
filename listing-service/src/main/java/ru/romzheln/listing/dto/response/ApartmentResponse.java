@@ -10,15 +10,15 @@ import ru.romzheln.listing.model.enums.ApartmentType;
 @Getter
 @Builder
 @Setter
-public class ApartmentResponse extends PropertyResponse{
+public class ApartmentResponse extends PropertyResponse {
 
-    private ApartmentType apartmentType;
+  private ApartmentType apartmentType;
 
-    private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
+  private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
 
-    private ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto;
+  private ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto;
 
-    private Long developerId;
+  private Long developerId;
 
-    private Long complexId;
+  private Long complexId;
 }

@@ -17,36 +17,36 @@ import ru.romzheln.listing.model.enums.TerritorialZone;
 @Builder
 public class CommercialPhysicalDetails {
 
-    @Column(name = "floor")
-    private Integer floor;
+  @Column(name = "floor")
+  private Integer floor;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "line")
-    private Line line;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "line")
+  private Line line;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "property_location_type")
-    private PropertyLocationType propertyLocationType;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "property_location_type")
+  private PropertyLocationType propertyLocationType;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "territorial_zone")
-    private TerritorialZone territorialZone;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "territorial_zone")
+  private TerritorialZone territorialZone;
 
-    @Column(name = "separate_entrance")
-    private Boolean separateEntrance;
+  @Column(name = "separate_entrance")
+  private Boolean separateEntrance;
 
-    @Column(name = "ventilation_exists")
-    private Boolean ventilation;
+  @Column(name = "ventilation_exists")
+  private Boolean ventilation;
 
-    @Column(name = "tenant_exists")
-    private Boolean tenantExists;
+  @Column(name = "tenant_exists")
+  private Boolean tenantExists;
 
-    @Column(name = "entrances_number")
-    private Integer entrancesNumber;
+  @Column(name = "entrances_number")
+  private Integer entrancesNumber;
 
-    @Column(name = "electrical_power_kw")
-    private Integer electricalPowerKw;
+  @Column(name = "electrical_power_kw")
+  private Integer electricalPowerKw;
 
-    @Column(name = "railway_dead_end")
-    private Boolean railwayDeadEnd;
+  @Column(name = "railway_dead_end")
+  private Boolean railwayDeadEnd;
 }

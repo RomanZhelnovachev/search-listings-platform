@@ -14,18 +14,18 @@ import java.math.BigDecimal;
 @Builder
 public class ApartmentPhysicalDetails {
 
-    @Column(name = "kitchen_square")
-    private BigDecimal kitchenSquare;
+  @Column(name = "kitchen_square")
+  private BigDecimal kitchenSquare;
 
-    @Column(name = "floor")
-    private Integer floor;
+  @Column(name = "floor")
+  private Integer floor;
 
-    @Column(name = "elevator")
-    private String elevator;
+  @Column(name = "elevator")
+  private String elevator;
 
-    @Column(name = "ramp")
-    private String ramp;
+  @Column(name = "ramp")
+  private String ramp;
 
-    @Column(name = "side")
-    private String side;
+  @Column(name = "side")
+  private String side;
 }

@@ -10,15 +10,15 @@ import ru.romzheln.listing.dto.response.DeveloperResponse;
 @RequestMapping("/api/v1/developers")
 public interface DeveloperController {
 
-    @PostMapping
-    DeveloperResponse create(@Valid @RequestBody DeveloperRequest request);
+  @PostMapping
+  DeveloperResponse create(@Valid @RequestBody DeveloperRequest request);
 
-    @PutMapping("/{id}")
-    DeveloperResponse update(@PathVariable Long id, @Valid @RequestBody DeveloperRequest request);
+  @PutMapping("/{id}")
+  DeveloperResponse update(@PathVariable Long id, @Valid @RequestBody DeveloperRequest request);
 
-    @GetMapping("/{id}")
-    DeveloperResponse findById(@PathVariable Long id);
+  @GetMapping("/{id}")
+  DeveloperResponse findById(@PathVariable Long id);
 
-    @GetMapping
-    Page<DeveloperResponse> getAll(Pageable pageable);
+  @GetMapping
+  Page<DeveloperResponse> getAll(Pageable pageable);
 }

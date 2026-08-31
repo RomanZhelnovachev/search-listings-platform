@@ -2,15 +2,14 @@ package ru.romzheln.listing.model.outbox;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.EventType;
-
-import java.time.Instant;
-import java.util.UUID;
 
 @Entity
 @Table(name = "outbox_events")

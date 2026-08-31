@@ -1,5 +1,6 @@
 package ru.romzheln.listing.service.strategy.impl;
 
+import java.util.Set;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.dto.request.property.commercial.CreateCommercialRequest;
 import ru.romzheln.listing.dto.request.property.commercial.UpdateCommercialRequest;
@@ -17,8 +18,6 @@ import ru.romzheln.listing.resolver.PropertyReferenceResolver;
 import ru.romzheln.listing.service.impl.CommunicationServiceImpl;
 import ru.romzheln.listing.service.strategy.AbstractPropertyStrategy;
 import ru.romzheln.listing.util.ClassCastUtil;
-
-import java.util.Set;
 
 @Component
 public class CommercialStrategy extends AbstractPropertyStrategy {

@@ -10,15 +10,16 @@ import ru.romzheln.listing.dto.response.ResidentialComplexResponse;
 @RequestMapping("/api/v1/properties/complexes")
 public interface ResidentialComplexController {
 
-    @PostMapping
-    ResidentialComplexResponse create(@Valid @RequestBody ResidentialComplexRequest request);
+  @PostMapping
+  ResidentialComplexResponse create(@Valid @RequestBody ResidentialComplexRequest request);
 
-    @PutMapping("/{id}")
-    ResidentialComplexResponse update(@PathVariable Long id, @Valid @RequestBody ResidentialComplexRequest request);
+  @PutMapping("/{id}")
+  ResidentialComplexResponse update(
+      @PathVariable Long id, @Valid @RequestBody ResidentialComplexRequest request);
 
-    @GetMapping("/{id}")
-    ResidentialComplexResponse findById(@PathVariable Long id);
+  @GetMapping("/{id}")
+  ResidentialComplexResponse findById(@PathVariable Long id);
 
-    @GetMapping
-    Page<ResidentialComplexResponse> getAll(Pageable pageable);
+  @GetMapping
+  Page<ResidentialComplexResponse> getAll(Pageable pageable);
 }

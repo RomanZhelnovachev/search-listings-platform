@@ -12,6 +12,6 @@ import lombok.*;
 @Builder
 public class Developer {
 
-    @Column(name = "developer_name")
-    private String developerName;
+  @Column(name = "developer_name")
+  private String developerName;
 }

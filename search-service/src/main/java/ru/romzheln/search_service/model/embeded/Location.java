@@ -12,21 +12,21 @@ import lombok.*;
 @Builder
 public class Location {
 
-    @Column(name = "region")
-    private String region;
+  @Column(name = "region", insertable = false, updatable = false)
+  private String region;
 
-    @Column(name = "populated_area")
-    private String populatedArea;
+  @Column(name = "populated_area")
+  private String populatedArea;
 
-    @Column(name = "street")
-    private String street;
+  @Column(name = "street")
+  private String street;
 
-    @Column(name = "house_number")
-    private String house;
+  @Column(name = "house_number")
+  private String house;
 
-    @Column(name = "building_number")
-    private String building;
+  @Column(name = "building_number")
+  private String building;
 
-    @Column(name = "apartment_number")
-    private String apartment;
+  @Column(name = "apartment_number")
+  private String apartment;
 }

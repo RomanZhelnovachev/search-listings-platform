@@ -12,9 +12,9 @@ import lombok.*;
 @Builder
 public class LandUse {
 
-    @Column(name = "land_use_name")
-    private String landUseName;
+  @Column(name = "land_use_name")
+  private String landUseName;
 
-    @Column(name = "land_use_description")
-    private String landUseDescription;
+  @Column(name = "land_use_description")
+  private String landUseDescription;
 }

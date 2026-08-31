@@ -14,26 +14,25 @@ import ru.romzheln.listing.service.CrudService;
 @RequiredArgsConstructor
 public class CommunicationControllerImpl implements CommunicationController {
 
-    private final CrudService<Communication, CommunicationRequest, CommunicationResponse> service;
+  private final CrudService<Communication, CommunicationRequest, CommunicationResponse> service;
 
+  @Override
+  public CommunicationResponse create(CommunicationRequest request) {
+    return service.create(request);
+  }
 
-    @Override
-    public CommunicationResponse create(CommunicationRequest request) {
-        return service.create(request);
-    }
+  @Override
+  public CommunicationResponse update(Long id, CommunicationRequest request) {
+    return service.update(id, request);
+  }
 
-    @Override
-    public CommunicationResponse update(Long id, CommunicationRequest request) {
-        return service.update(id, request);
-    }
+  @Override
+  public CommunicationResponse findById(Long id) {
+    return service.findById(id);
+  }
 
-    @Override
-    public CommunicationResponse findById(Long id) {
-        return service.findById(id);
-    }
-
-    @Override
-    public Page<CommunicationResponse> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+  @Override
+  public Page<CommunicationResponse> getAll(Pageable pageable) {
+    return service.getAll(pageable);
+  }
 }

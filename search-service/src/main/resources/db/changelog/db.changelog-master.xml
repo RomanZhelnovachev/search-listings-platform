@@ -18,5 +18,16 @@
     <include file="db/changelog/002-partitions/003-partition-listing-houses.xml"/>
     <include file="db/changelog/002-partitions/004-partition-listing-land-plots.xml"/>
 
+    <include file="db/changelog/003-relations/001-create-listing-images.xml"/>
+    <include file="db/changelog/003-relations/002-create-listing-mortgage-programs.xml"/>
+    <include file="db/changelog/003-relations/003-create-listing-communications.xml"/>
+    <include file="db/changelog/003-relations/004-create-listing-purposes.xml"/>
+    <include file="db/changelog/003-relations/005-create-listing-additional-buildings.xml"/>
+
+    <include file="db/changelog/004-states/001-create-pending-entity-state.xml"/>
+
+    <include file="db/changelog/005-projections/001-create-communication-projection.xml"/>
+    <include file="db/changelog/005-projections/002-create-purpose-projection.xml"/>
+
 
 </databaseChangeLog>

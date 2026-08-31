@@ -1,26 +1,25 @@
 package ru.romzheln.listing.model.entity.property;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import ru.romzheln.listing.exception.badRequest.ChangePropertyException;
-import ru.romzheln.listing.exception.badRequest.ChangeFirstOwnerException;
-import ru.romzheln.listing.model.entity.common.Communication;
-import ru.romzheln.listing.model.entity.listing.Listing;
-import ru.romzheln.listing.model.entity.apartment.Apartment;
-import ru.romzheln.listing.model.entity.commercial.Commercial;
-import ru.romzheln.listing.model.entity.house.House;
-import ru.romzheln.listing.model.entity.landPlot.LandPlot;
-import ru.romzheln.listing.model.enums.Own;
-import ru.romzheln.listing.model.enums.PropertyType;
-
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import ru.romzheln.listing.exception.badRequest.ChangeFirstOwnerException;
+import ru.romzheln.listing.exception.badRequest.ChangePropertyException;
+import ru.romzheln.listing.model.entity.apartment.Apartment;
+import ru.romzheln.listing.model.entity.commercial.Commercial;
+import ru.romzheln.listing.model.entity.common.Communication;
+import ru.romzheln.listing.model.entity.house.House;
+import ru.romzheln.listing.model.entity.landPlot.LandPlot;
+import ru.romzheln.listing.model.entity.listing.Listing;
+import ru.romzheln.listing.model.enums.Own;
+import ru.romzheln.listing.model.enums.PropertyType;
 
 @Entity
 @Table(name = "properties")

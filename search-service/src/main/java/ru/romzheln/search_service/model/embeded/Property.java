@@ -1,11 +1,10 @@
 package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.*;
 
 @Embeddable
 @NoArgsConstructor
@@ -15,25 +14,25 @@ import java.util.Set;
 @Builder
 public class Property {
 
-    @Embedded
-    private Location location;
+  @Embedded private Location location;
 
-    @Column(name = "square")
-    private BigDecimal square;
+  @Column(name = "square")
+  private BigDecimal square;
 
-    @Column(name = "own")
-    private String own;
+  @Column(name = "own")
+  private String own;
 
-    @Column(name = "first_owner")
-    private Boolean firstOwner;
+  @Column(name = "first_owner")
+  private Boolean firstOwner;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "property_communication",
-            joinColumns = @JoinColumn(
-                    name = "property_id",
-                    referencedColumnName = "property_id")
-    )
-    @Builder.Default
-    Set<Communication> communicationIds = new HashSet<>();
+  @Builder.Default
+  @ElementCollection
+  @CollectionTable(
+      name = "listing_communications",
+      joinColumns = {
+        @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+        @JoinColumn(name = "region", referencedColumnName = "region")
+      })
+  @Column(name = "communication_id")
+  Set<Long> communicationIds = new HashSet<>();
 }

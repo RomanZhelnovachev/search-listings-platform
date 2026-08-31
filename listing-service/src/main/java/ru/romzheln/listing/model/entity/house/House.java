@@ -1,14 +1,13 @@
 package ru.romzheln.listing.model.entity.house;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.*;
 import ru.romzheln.listing.model.entity.common.*;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.ConstructionStage;
-
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "houses")

@@ -14,12 +14,12 @@
 
             <column name="id" type="BIGINT">
                 <constraints
-                    primaryKey="true"
-                    nullable="false"/>
+                        primaryKey="true"
+                        nullable="false"/>
             </column>
 
             <column name="communication_type" type="VARCHAR(50)">
-               <constraints nullable="false"/>
+                <constraints nullable="false"/>
             </column>
 
             <column name="description" type="TEXT"/>

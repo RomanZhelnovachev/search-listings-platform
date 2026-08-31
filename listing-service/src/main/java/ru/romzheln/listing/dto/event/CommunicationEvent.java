@@ -4,10 +4,5 @@ import lombok.Builder;
 import ru.romzheln.listing.model.enums.CommunicationType;
 
 @Builder
-public record CommunicationEvent(
-
-        CommunicationType type,
-
-        String description
-) implements OutboxPayload{
-}
+public record CommunicationEvent(CommunicationType type, String description)
+    implements OutboxPayload {}

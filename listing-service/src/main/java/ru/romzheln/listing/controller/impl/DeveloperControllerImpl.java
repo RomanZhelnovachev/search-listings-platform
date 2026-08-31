@@ -14,25 +14,25 @@ import ru.romzheln.listing.service.CrudService;
 @RequiredArgsConstructor
 public class DeveloperControllerImpl implements DeveloperController {
 
-    private final CrudService<Developer, DeveloperRequest, DeveloperResponse> service;
+  private final CrudService<Developer, DeveloperRequest, DeveloperResponse> service;
 
-    @Override
-    public DeveloperResponse create(DeveloperRequest request) {
-        return service.create(request);
-    }
+  @Override
+  public DeveloperResponse create(DeveloperRequest request) {
+    return service.create(request);
+  }
 
-    @Override
-    public DeveloperResponse update(Long id, DeveloperRequest request) {
-        return service.update(id, request);
-    }
+  @Override
+  public DeveloperResponse update(Long id, DeveloperRequest request) {
+    return service.update(id, request);
+  }
 
-    @Override
-    public DeveloperResponse findById(Long id) {
-        return service.findById(id);
-    }
+  @Override
+  public DeveloperResponse findById(Long id) {
+    return service.findById(id);
+  }
 
-    @Override
-    public Page<DeveloperResponse> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
+  @Override
+  public Page<DeveloperResponse> getAll(Pageable pageable) {
+    return service.getAll(pageable);
+  }
 }

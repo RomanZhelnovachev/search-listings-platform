@@ -12,11 +12,11 @@ import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 @NoArgsConstructor
 public class UpdateApartmentRequest extends UpdatePropertyRequest {
 
-    private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
+  private CommonPhysicalDetailsDto commonPhysicalDetailsDto;
 
-    private ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto;
+  private ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto;
 
-    private Long developerId;
+  private Long developerId;
 
-    private Long complexId;
+  private Long complexId;
 }

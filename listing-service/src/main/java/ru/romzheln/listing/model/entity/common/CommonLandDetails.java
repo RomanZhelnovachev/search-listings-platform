@@ -11,14 +11,13 @@ import lombok.*;
 @Builder
 public class CommonLandDetails {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "land_use_id")
-    private LandUse landUse;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "land_use_id")
+  private LandUse landUse;
 
-    @Column(name = "road")
-    private String road;
+  @Column(name = "road")
+  private String road;
 
-    @Column(name = "fencing")
-    private String fencing;
-
+  @Column(name = "fencing")
+  private String fencing;
 }

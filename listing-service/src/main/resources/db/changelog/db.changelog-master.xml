@@ -35,7 +35,6 @@
     <include file="db/changelog/005-relations/004-create-listing-mortgage-programs.xml"/>
 
 
-
     <include file="db/changelog/006-outbox/001-create-outbox-events.xml"/>
 
 

@@ -1,5 +1,6 @@
 package ru.romzheln.listing.config;
 
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +10,6 @@ import ru.romzheln.listing.service.strategy.impl.ApartmentStrategy;
 import ru.romzheln.listing.service.strategy.impl.CommercialStrategy;
 import ru.romzheln.listing.service.strategy.impl.HouseStrategy;
 import ru.romzheln.listing.service.strategy.impl.LandPlotStrategy;
-
-import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor

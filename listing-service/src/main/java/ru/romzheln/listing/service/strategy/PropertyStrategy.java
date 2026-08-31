@@ -6,8 +6,7 @@ import ru.romzheln.listing.model.entity.property.Property;
 
 public interface PropertyStrategy {
 
-    Property create(CreatePropertyRequest request);
+  Property create(CreatePropertyRequest request);
 
-    Property update(Long id, UpdatePropertyRequest request);
-
+  Property update(Long id, UpdatePropertyRequest request);
 }

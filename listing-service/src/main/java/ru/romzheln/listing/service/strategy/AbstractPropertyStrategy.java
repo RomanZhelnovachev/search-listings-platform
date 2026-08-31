@@ -1,7 +1,8 @@
 package ru.romzheln.listing.service.strategy;
 
-import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
+import java.util.Set;
 import ru.romzheln.listing.dto.common.LocationDto;
+import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.exception.badRequest.InvalidPropertyTypeException;
 import ru.romzheln.listing.exception.notFound.PropertyNotFoundByIdException;
@@ -11,8 +12,6 @@ import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.PropertyType;
 import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.service.impl.CommunicationServiceImpl;
-
-import java.util.Set;
 
 public abstract class AbstractPropertyStrategy implements PropertyStrategy {
 

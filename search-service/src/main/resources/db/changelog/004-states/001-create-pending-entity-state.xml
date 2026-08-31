@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="001-create-pending-entity-state" author="RomanZhelnovachev">
+
+        <createTable tableName="pending_entity_state">
+
+            <column name="entity_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="payload" type="JSONB">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addPrimaryKey
+                tableName="pending_entity_state"
+                columnNames="entity_type, id"
+                constraintName="pk_pending_entity_state"/>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,8 +1,8 @@
 package ru.romzheln.listing.model.enums;
 
 public enum DealType {
-    BUY,
-    SELL,
-    RENT,
-    LEASE
+  BUY,
+  SELL,
+  RENT,
+  LEASE
 }

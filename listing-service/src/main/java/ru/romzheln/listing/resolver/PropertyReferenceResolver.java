@@ -1,5 +1,6 @@
 package ru.romzheln.listing.resolver;
 
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.romzheln.listing.model.entity.commercial.Purpose;
@@ -9,8 +10,6 @@ import ru.romzheln.listing.model.entity.common.LandUse;
 import ru.romzheln.listing.model.entity.common.ResidentialComplex;
 import ru.romzheln.listing.repository.*;
 import ru.romzheln.listing.service.impl.*;
-
-import java.util.Set;
 
 @Component
 @RequiredArgsConstructor

@@ -1,11 +1,10 @@
 package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.*;
 
 @Embeddable
 @NoArgsConstructor
@@ -38,13 +37,15 @@ public class House {
 
     @ElementCollection
     @CollectionTable(
-            name = "property_additional_building",
-            joinColumns = @JoinColumn(
-                    name = "property_id",
-                    referencedColumnName = "property_id")
+            name = "listing_additional_buildings",
+            joinColumns = {
+                    @JoinColumn(name = "listing_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "region", referencedColumnName = "region")
+            }
     )
+    @Column(name = "additional_building_id")
     @Builder.Default
-    private Set<AdditionalBuilding> additionalBuildings = new HashSet<>();
+    private Set<Long> additionalBuildings = new HashSet<>();
 
     @Column(name = "land_plot_square")
     private BigDecimal landPlotSquare;

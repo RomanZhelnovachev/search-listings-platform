@@ -9,13 +9,13 @@ import ru.romzheln.listing.model.entity.property.Property;
 
 public interface PropertyService {
 
-    PropertyResponse createProperty(CreatePropertyRequest request);
+  PropertyResponse createProperty(CreatePropertyRequest request);
 
-    PropertyResponse updateProperty(Long id, UpdatePropertyRequest request);
+  PropertyResponse updateProperty(Long id, UpdatePropertyRequest request);
 
-    PropertyResponse findById(Long id);
+  PropertyResponse findById(Long id);
 
-    Page<PropertyResponse> getAll(Pageable pageable);
+  Page<PropertyResponse> getAll(Pageable pageable);
 
-    Property getProperty(Long id);
+  Property getProperty(Long id);
 }

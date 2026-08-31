@@ -55,7 +55,7 @@
             PARTITION OF listing_house_search
             FOR VALUES IN ('РЕСПУБЛИКА_КОМИ');
 
-            CREATE TABLE listing_house_search_mari-el
+            CREATE TABLE listing_house_search_mari_el
             PARTITION OF listing_house_search
             FOR VALUES IN ('РЕСПУБЛИКА_МАРИЙ_ЭЛ');
 

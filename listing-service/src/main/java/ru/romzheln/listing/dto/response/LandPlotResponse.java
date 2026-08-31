@@ -8,9 +8,9 @@ import java.util.Set;
 
 @Getter
 @Builder
-public class LandPlotResponse extends PropertyResponse{
+public class LandPlotResponse extends PropertyResponse {
 
-    private CommonLandDetailsDto commonLandDetailsDto;
+  private CommonLandDetailsDto commonLandDetailsDto;
 
-    private Set<Long> additionalBuildings;
+  private Set<Long> additionalBuildings;
 }

@@ -17,29 +17,26 @@ import ru.romzheln.listing.model.enums.ApartmentType;
 @Builder
 public class Apartment {
 
-    @Id
-    private Long id;
+  @Id private Long id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Property property;
+  @OneToOne
+  @MapsId
+  @JoinColumn(name = "id")
+  private Property property;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "apartment_type", nullable = false)
-    private ApartmentType apartmentType;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "apartment_type", nullable = false)
+  private ApartmentType apartmentType;
 
-    @Embedded
-    private CommonPhysicalDetails commonPhysicalDetails;
+  @Embedded private CommonPhysicalDetails commonPhysicalDetails;
 
-    @Embedded
-    private ApartmentPhysicalDetails apartmentPhysicalDetails;
+  @Embedded private ApartmentPhysicalDetails apartmentPhysicalDetails;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "developer_id")
-    private Developer developer;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "developer_id")
+  private Developer developer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "complex_id")
-    private ResidentialComplex complex;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "complex_id")
+  private ResidentialComplex complex;
 }
