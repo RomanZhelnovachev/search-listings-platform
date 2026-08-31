@@ -4,40 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Пишу инфраструктуру для search 2">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/ListingKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/PendingEntityStateKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/EntityType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/projection/CommunicationProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/projection/PurposeProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/state/PendingEntityState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/004-states/001-create-pending-entity-state.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/005-projections/001-create-communication-projection.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/005-projections/002-create-purpose-projection.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/Dockerfile" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Дописал проекции и стэйт">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/config/HandlerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/EventMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/UnknownAggregateType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/CommunicationHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/DeveloperHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/LandUseHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/ListingHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/PropertyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/PurposeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/ResidentialComplexHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/kafka/EventConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/AggregateType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/EventType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingCommercialReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingCommercialReadModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingHouseReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingHouseReadModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingLandPlotReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingLandPlotReadModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/001-create-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/001-create-listing-apartments.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/002-create-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/002-create-listing-commercials.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/003-create-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/003-create-listing-houses.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/004-create-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/004-create-listing-land-plots.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/001-partition-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/001-partition-listing-apartments.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/002-partition-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/002-partition-listing-commercials.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/003-partition-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/003-partition-listing-houses.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/004-partition-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/004-partition-listing-land-plots.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/001-create-listing-images.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/001-create-listing-images.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/002-create-listing-mortgage-programs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/002-create-listing-mortgage-programs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/003-create-listing-communications.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/003-create-listing-communications.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/004-create-listing-purposes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/004-create-listing-purposes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/005-create-listing-additional-buildings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/005-create-listing-additional-buildings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +46,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="Class" />
+        <option value="Record" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -181,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788164190710</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Дописал проекции и стэйт">
+      <option name="closed" value="true" />
+      <created>1788190914252</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1788190914252</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +197,7 @@
     <MESSAGE value="Написал миграции для таблиц связей" />
     <MESSAGE value="Пишу инфраструктуру для search" />
     <MESSAGE value="Пишу инфраструктуру для search 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Пишу инфраструктуру для search 2" />
+    <MESSAGE value="Дописал проекции и стэйт" />
+    <option name="LAST_COMMIT_MESSAGE" value="Дописал проекции и стэйт" />
   </component>
 </project>
