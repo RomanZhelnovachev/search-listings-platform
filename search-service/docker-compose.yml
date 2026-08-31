@@ -1,0 +1,21 @@
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  search-service:
+    build:
+      context: ..
+      dockerfile: search-service/Dockerfile
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
