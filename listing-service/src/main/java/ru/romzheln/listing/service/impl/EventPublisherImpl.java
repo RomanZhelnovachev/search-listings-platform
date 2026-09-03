@@ -29,7 +29,7 @@ public class EventPublisherImpl implements EventPublisher {
     }
     for (OutboxEvent event : events) {
       producer
-          .send(mapper.toEventMessage(event))
+          .send(mapper.toMessage(event))
           .thenRun(() -> service.markAsProcessed(event.getId()))
           .exceptionally(
               ex -> {

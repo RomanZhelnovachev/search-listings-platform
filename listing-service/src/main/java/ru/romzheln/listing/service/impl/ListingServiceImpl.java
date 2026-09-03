@@ -1,6 +1,7 @@
 package ru.romzheln.listing.service.impl;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,16 +9,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.romzheln.listing.dto.event.OutboxPayload;
+import ru.romzheln.listing.dto.event.ListingPayload;
+import ru.romzheln.listing.dto.event.PropertyPayload;
 import ru.romzheln.listing.dto.event.listing.*;
 import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.exception.badRequest.UpdateListingException;
 import ru.romzheln.listing.exception.notFound.ListingNotFoundByIdException;
 import ru.romzheln.listing.mapper.ListingMapper;
+import ru.romzheln.listing.mapper.PropertyEventMapper;
 import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.property.Property;
-import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.DealType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.enums.ListingStatus;
@@ -31,7 +33,8 @@ public class ListingServiceImpl implements ListingService {
 
     private final ListingRepository listingRepository;
     private final OutboxEventService outboxEventService;
-    private final ListingMapper mapper;
+    private final ListingMapper listingMapper;
+    private final PropertyEventMapper propertyMapper;
     private final PropertyService propertyService;
 
 
@@ -49,11 +52,11 @@ public class ListingServiceImpl implements ListingService {
                 .price(request.price())
                 .build();
         Listing savedListing = listingRepository.save(listing);
-        publishEvent(savedListing.getId(), EventType.CREATED,
-                mapper.toListingCreatedEvent(savedListing));
+        publishEvent(savedListing, EventType.CREATED,
+                listingMapper.toListingCreatedEvent(savedListing));
         log.info("Объявление с ID {} успешно сохранено",
                 savedListing.getId());
-        return mapper.toResponse(savedListing);
+        return listingMapper.toResponse(savedListing);
     }
 
     @Override
@@ -76,10 +79,24 @@ public class ListingServiceImpl implements ListingService {
         if (dealType != null) {
             listing.changeDealType(dealType);
         }
-        publishEvent(listing.getId(), EventType.UPDATED, mapper.toListingUpdatedEvent(listing));
+        publishEvent(listing, EventType.UPDATED, listingMapper.toListingUpdatedEvent(listing));
         log.info("Объявление с ID {} успешно обновлено",
                 listing.getId());
-        return mapper.toResponse(listing);
+        return listingMapper.toResponse(listing);
+    }
+
+    @Override
+    @Transactional
+    public void updateProperty(EventType type, Long propertyId, PropertyPayload propertyPayload) {
+        List<Listing> listings = listingRepository.findByPropertyId(propertyId);
+        if(listings.isEmpty()){
+            log.warn("Объявление с объектом недвижимости с ID {} не найдено", propertyId);
+            return;
+        }
+        for(Listing listing : listings){
+            log.info("В объявлении с ID {} изменён объект недвижимости", listing.getId());
+            outboxEventService.save(listing.getId(), type, null, propertyPayload);
+        }
     }
 
     @Override
@@ -88,10 +105,10 @@ public class ListingServiceImpl implements ListingService {
                                        ChangePriceRequest request) {
         Listing listing = getListing(id);
         BigDecimal oldPrice = listing.changePrice(request.newPrice());
-        publishEvent(listing.getId(), EventType.PRICE_CHANGED, new ChangePriceEvent(oldPrice, request.newPrice()));
+        publishEvent(listing, EventType.PRICE_CHANGED, new ChangePriceEvent(oldPrice, request.newPrice()));
         log.info("Цена в объявление с ID {} успешно изменена",
                 listing.getId());
-        return mapper.toResponse(listing);
+        return listingMapper.toResponse(listing);
     }
 
     @Override
@@ -99,7 +116,7 @@ public class ListingServiceImpl implements ListingService {
     public void assignPromotion(Long id, ChangeListingPromotionRequest request) {
         Listing listing = getListing(id);
         listing.assignPromotion(request.promotionId());
-        publishEvent(id, EventType.PROMOTION_ADDED, new PromotionAddedEvent(request.promotionId()));
+        publishEvent(listing, EventType.PROMOTION_ADDED, new PromotionAddedEvent(request.promotionId()));
         log.info("Объявлению с ID {} добавлена промоакция - {}",
                 id,
                 request.promotionId());
@@ -110,7 +127,7 @@ public class ListingServiceImpl implements ListingService {
     public void disablePromotion(Long id) {
         Listing listing = getListing(id);
         listing.disablePromotion();
-        publishEvent(id, EventType.PROMOTION_DISABLED, new PromotionDisabledEvent());
+        publishEvent(listing, EventType.PROMOTION_DISABLED, new PromotionDisabledEvent());
         log.info("У объявления с ID {} отключена промоакция", id);
     }
 
@@ -121,7 +138,7 @@ public class ListingServiceImpl implements ListingService {
         listing.addMortgagePrograms(request.mortgageProgramIds());
         log.info("Объявлению с ID {} добавлены следующие ипотечные программы - {}",
                     id, request.mortgageProgramIds());
-        publishEvent(id, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsAddedEvent(request.mortgageProgramIds()));
+        publishEvent(listing, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsAddedEvent(request.mortgageProgramIds()));
     }
 
     @Override
@@ -129,7 +146,7 @@ public class ListingServiceImpl implements ListingService {
     public void removeMortgagePrograms(Long id, ChangeListingMortgageProgramsRequest request) {
         Listing listing = getListing(id);
         listing.removeMortgagePrograms(request.mortgageProgramIds());
-        publishEvent(id, EventType.MORTGAGE_PROGRAMS_REMOVED, new MotgageProgramRemovedEvent(request.mortgageProgramIds()));
+        publishEvent(listing, EventType.MORTGAGE_PROGRAMS_REMOVED, new MotgageProgramRemovedEvent(request.mortgageProgramIds()));
         log.info("В объявлении с ID {} отключены следующие ипотечные программы - {} ", id, request.mortgageProgramIds());
 
     }
@@ -139,7 +156,7 @@ public class ListingServiceImpl implements ListingService {
     public void publishListing(Long id) {
         Listing listing = getListing(id);
         listing.publish();
-        publishEvent(id, EventType.PUBLISHED, new ListingPublishedEvent());
+        publishEvent(listing, EventType.PUBLISHED, new ListingPublishedEvent());
         log.info("Объявление с Id {} успешно опубликовано", id);
     }
 
@@ -148,7 +165,7 @@ public class ListingServiceImpl implements ListingService {
     public void archiveListing(Long id) {
         Listing listing = getListing(id);
         listing.archive();
-        publishEvent(id, EventType.ARCHIVED, new ListingArchivedEvent());
+        publishEvent(listing, EventType.ARCHIVED, new ListingArchivedEvent());
         log.info("Объявление с Id {} успешно заархивировано", id);
     }
 
@@ -157,7 +174,7 @@ public class ListingServiceImpl implements ListingService {
     public void approveListing(Long id) {
         Listing listing = getListing(id);
         listing.approve();
-        publishEvent(id, EventType.APPROVED, new ListingApprovedEvent());
+        publishEvent(listing, EventType.APPROVED, new ListingApprovedEvent());
         log.info("Объявление с Id {} успешно прошло модерацию", id);
     }
 
@@ -166,7 +183,7 @@ public class ListingServiceImpl implements ListingService {
     public void addImages(Long id, ChangeListingImageRequest request) {
         Listing listing = getListing(id);
         Set<Long> newImages = listing.addImages(request.imageIds());
-        publishEvent(id, EventType.IMAGES_ADDED, new ImageAddedEvent(newImages));
+        publishEvent(listing, EventType.IMAGES_ADDED, new ImageAddedEvent(newImages));
         log.info("Объявлению с ID {} добавлено {} изображений", id, newImages.size());
     }
 
@@ -175,7 +192,7 @@ public class ListingServiceImpl implements ListingService {
     public void removeImages(Long id, ChangeListingImageRequest request) {
         Listing listing = getListing(id);
         listing.removeImages(request.imageIds());
-        publishEvent(id, EventType.IMAGES_REMOVED, new ImageRemovedEvent(request.imageIds()));
+        publishEvent(listing, EventType.IMAGES_REMOVED, new ImageRemovedEvent(request.imageIds()));
         log.info("В объявлении с ID {} удалены следующие изображения {}", id, request.imageIds());
     }
 
@@ -183,7 +200,7 @@ public class ListingServiceImpl implements ListingService {
     @Transactional(readOnly = true)
     public ListingResponse findListingById(Long id) {
         log.info("Получено объявление с ID {}", id);
-        return mapper.toResponse(getListing(id));
+        return listingMapper.toResponse(getListing(id));
 
     }
 
@@ -191,7 +208,7 @@ public class ListingServiceImpl implements ListingService {
     @Transactional(readOnly = true)
     public Page<ListingResponse> getAll(Pageable pageable) {
         log.info("Получен постраничный список всех объявлений");
-        return mapper.toPageResponse(listingRepository.findAll(pageable));
+        return listingMapper.toPageResponse(listingRepository.findAll(pageable));
     }
 
     @Override
@@ -199,7 +216,7 @@ public class ListingServiceImpl implements ListingService {
     public void deleteListing(Long id, RemoveListingRequest request) {
         Listing listing = getListing(id);
         listing.remove();
-        publishEvent(id, EventType.REMOVED, new ListingRemovedEvent(request.reason()));
+        publishEvent(listing, EventType.REMOVED, new ListingRemovedEvent(request.reason()));
         log.info("Объявление с Id {} успешно удалено", id);
     }
 
@@ -208,7 +225,8 @@ public class ListingServiceImpl implements ListingService {
                 .orElseThrow(() -> new ListingNotFoundByIdException(id));
     }
 
-    private void publishEvent(Long id, EventType type, OutboxPayload payload) {
-        outboxEventService.save(AggregateType.LISTING, id, type, payload);
+    private void publishEvent(Listing listing, EventType type, ListingPayload listingPayload) {
+        PropertyPayload propertyPayload = propertyMapper.toPropertyEvent(listing.getProperty());
+        outboxEventService.save(listing.getId(), type, listingPayload, propertyPayload);
     }
 }

@@ -14,7 +14,7 @@ import ru.romzheln.search_service.model.embeded.ListingKey;
 @Getter
 @Setter
 @Builder
-public class ListingApartmentReadModel {
+public class ListingApartmentReadModel implements ReadModel{
 
     @EmbeddedId
     private ListingKey key;

@@ -2,14 +2,19 @@ package ru.romzheln.listing.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import ru.romzheln.listing.dto.event.PropertyPayload;
 import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
+import ru.romzheln.listing.model.entity.property.Property;
+import ru.romzheln.listing.model.enums.EventType;
 
 public interface ListingService {
 
   ListingResponse createListing(CreateListingRequest request);
 
   ListingResponse updateListing(Long id, UpdateListingRequest request);
+
+  void updateProperty(EventType type, Long propertyId, PropertyPayload payload);
 
   ListingResponse changePrice(Long id, ChangePriceRequest request);
 

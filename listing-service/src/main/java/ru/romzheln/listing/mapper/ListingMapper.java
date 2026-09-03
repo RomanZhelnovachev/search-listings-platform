@@ -31,6 +31,7 @@ public class ListingMapper {
                 .description(listing.getDescription())
                 .ownerId(listing.getOwnerId())
                 .propertyId(listing.getProperty().getId())
+                .propertyType(listing.getProperty().getPropertyType())
                 .dealType(listing.getDealType())
                 .price(listing.getPrice())
                 .build();

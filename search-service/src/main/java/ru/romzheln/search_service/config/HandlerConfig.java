@@ -13,11 +13,11 @@ import java.util.Map;
 public class HandlerConfig {
 
     private final CommunicationHandler communicationHandler;
+    private final ListingHandler listingHandler;
+    private final PurposeHandler purposeHandler;
     private final DeveloperHandler developerHandler;
     private final LandUseHandler landUseHandler;
-    private final ListingHandler listingHandler;
     private final PropertyHandler propertyHandler;
-    private final PurposeHandler purposeHandler;
     private final ResidentialComplexHandler residentialComplexHandler;
 
     @Bean

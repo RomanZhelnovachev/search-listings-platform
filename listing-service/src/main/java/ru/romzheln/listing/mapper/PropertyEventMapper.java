@@ -46,7 +46,9 @@ public class PropertyEventMapper {
             .apartmentPhysicalDetailsDto(
                 mapper.buildApartmentPhysicalDetailsDto(apartment.getApartmentPhysicalDetails()))
             .developerId(apartment.getDeveloper().getId())
+            .developerName(apartment.getDeveloper().getName())
             .complexId(apartment.getComplex().getId())
+            .complexName(apartment.getComplex().getName())
             .build();
     fillGeneralFields(event, property);
     return event;
@@ -74,7 +76,9 @@ public class PropertyEventMapper {
                 mapper.buildCommonPhysicalDetailsDto(house.getCommonPhysicalDetails()))
             .commonLandDetailsDto(mapper.buildCommonLandDetailsDto(house.getCommonLandDetails()))
             .developerId(house.getDeveloper().getId())
+            .developerName(house.getDeveloper().getName())
             .complexId(house.getComplex().getId())
+            .complexName(house.getComplex().getName())
             .constructionStage(house.getConstructionStage())
             .additionalBuildings(mapper.getAdditionalBuildingsIds(house.getAdditionalBuildings()))
             .landPlotSquare(house.getLandPlotSquare())

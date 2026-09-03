@@ -14,7 +14,7 @@ import ru.romzheln.search_service.model.embeded.ListingKey;
 @Getter
 @Setter
 @Builder
-public class ListingLandPlotReadModel {
+public class ListingLandPlotReadModel implements ReadModel{
 
   @EmbeddedId private ListingKey key;
 

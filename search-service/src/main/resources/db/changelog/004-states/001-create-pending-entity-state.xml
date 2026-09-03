@@ -23,6 +23,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="event_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="payload" type="JSONB">
                 <constraints nullable="false"/>
             </column>

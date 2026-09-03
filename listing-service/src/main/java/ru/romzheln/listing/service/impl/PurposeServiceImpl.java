@@ -14,8 +14,6 @@ import ru.romzheln.listing.dto.response.PurposeResponse;
 import ru.romzheln.listing.exception.notFound.PurposeNotFoundException;
 import ru.romzheln.listing.mapper.PurposeMapper;
 import ru.romzheln.listing.model.entity.commercial.Purpose;
-import ru.romzheln.listing.model.enums.AggregateType;
-import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.repository.PurposeRepository;
 import ru.romzheln.listing.service.CrudService;
 import ru.romzheln.listing.service.OutboxEventService;
@@ -34,8 +32,7 @@ public class PurposeServiceImpl implements CrudService<Purpose, PurposeRequest, 
   public PurposeResponse create(PurposeRequest request) {
     Purpose purpose =
         Purpose.builder().name(request.name()).description(request.description()).build();
-    Purpose savedPurpose = repository.save(purpose);
-    publishEvent(EventType.CREATED, savedPurpose);
+    Purpose savedPurpose = repository.save(purpose); 
     log.info("Цель с ID {} успешно сохранена", savedPurpose.getId());
     return mapper.toResponse(savedPurpose);
   }
@@ -43,14 +40,13 @@ public class PurposeServiceImpl implements CrudService<Purpose, PurposeRequest, 
   @Override
   @Transactional
   public PurposeResponse update(Long id, PurposeRequest request) {
-    Purpose purpose = get(id);
+    Purpose purpose = getPurpose(id);
     if (request.name() != null) {
       purpose.setName(request.name());
     }
     if (request.description() != null) {
       purpose.setDescription(request.description());
-    }
-    publishEvent(EventType.UPDATED, purpose);
+    } 
     log.info("Цель с ID {} успешно обновлена", id);
     return mapper.toResponse(purpose);
   }
@@ -58,7 +54,7 @@ public class PurposeServiceImpl implements CrudService<Purpose, PurposeRequest, 
   @Override
   @Transactional(readOnly = true)
   public PurposeResponse findById(Long id) {
-    Purpose purpose = get(id);
+    Purpose purpose = getPurpose(id);
     log.info("Цель с ID {} успешно получена", id);
     return mapper.toResponse(purpose);
   }
@@ -74,18 +70,12 @@ public class PurposeServiceImpl implements CrudService<Purpose, PurposeRequest, 
     return mapper.toPageResponse(purposes);
   }
 
-  @Override
-  @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-  public Purpose get(Long id) {
+  private Purpose getPurpose(Long id) {
     return repository.findById(id).orElseThrow(() -> new PurposeNotFoundException(id));
   }
 
   @Transactional(readOnly = true)
   public Set<Purpose> getAllPurposesBiIds(Set<Long> purposesIds) {
     return new HashSet<>(repository.findAllById(purposesIds));
-  }
-
-  private void publishEvent(EventType type, Purpose purpose) {
-    outboxEventService.save(AggregateType.PURPOSE, purpose.getId(), type, mapper.toEvent(purpose));
   }
 }

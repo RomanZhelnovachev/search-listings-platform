@@ -30,9 +30,6 @@ public class CommunicationMapper implements ReferenceMapper<Communication, Commu
 
     @Override
     public CommunicationEvent toEvent(Communication communication) {
-        return CommunicationEvent.builder()
-                .type(communication.getCommunicationType())
-                .description(communication.getDescription())
-                .build();
+        return new CommunicationEvent(communication.getCommunicationType());
     }
 }

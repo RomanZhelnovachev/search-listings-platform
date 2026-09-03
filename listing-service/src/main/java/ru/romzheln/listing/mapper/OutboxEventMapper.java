@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.romzheln.listing.dto.event.OutboxPayload;
-import ru.romzheln.listing.dto.kafka.EventMessage;
-import ru.romzheln.listing.model.enums.AggregateType;
+import ru.romzheln.listing.dto.event.ListingPayload;
+import ru.romzheln.listing.dto.event.PropertyPayload;
+import ru.romzheln.listing.dto.kafka.Message;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.outbox.OutboxEvent;
 
@@ -15,30 +15,32 @@ import ru.romzheln.listing.model.outbox.OutboxEvent;
 @RequiredArgsConstructor
 public class OutboxEventMapper {
 
-    private final ObjectMapper objectMapper;
+  private final ObjectMapper objectMapper;
 
-    public OutboxEvent toEvent(AggregateType type,
-                               Long aggregateId,
-                               EventType eventType,
-                               OutboxPayload payload){
-        JsonNode node = objectMapper.valueToTree(payload);
-        return OutboxEvent.builder()
-                .eventId(UUID.randomUUID())
-                .aggregateType(type)
-                .aggregateId(aggregateId)
-                .eventType(eventType)
-                .payload(node)
-                .build();
-    }
+  public OutboxEvent toEvent(
+      Long listingId,
+      EventType eventType,
+      ListingPayload listingPayload,
+      PropertyPayload propertyPayload) {
+    JsonNode listingNode = objectMapper.valueToTree(listingPayload);
+    JsonNode propertyNode = objectMapper.valueToTree(propertyPayload);
+    return OutboxEvent.builder()
+        .eventId(UUID.randomUUID())
+        .listingId(listingId)
+        .eventType(eventType)
+        .listingPayload(listingNode)
+        .propertyPayload(propertyNode)
+        .build();
+  }
 
-    public EventMessage toEventMessage(OutboxEvent event){
-        return EventMessage.builder()
-                .eventId(event.getEventId())
-                .aggregateType(event.getAggregateType())
-                .aggregateId(event.getAggregateId())
-                .eventType(event.getEventType())
-                .payload(event.getPayload())
-                .createdAt(event.getCreatedAt())
-                .build();
-    }
+  public Message toMessage(OutboxEvent event) {
+    return Message.builder()
+        .eventId(event.getEventId().toString())
+        .listingId(event.getListingId())
+        .eventType(event.getEventType())
+        .listingPayload(event.getListingPayload())
+        .propertyPayload(event.getPropertyPayload())
+        .createdAt(event.getCreatedAt())
+        .build();
+  }
 }

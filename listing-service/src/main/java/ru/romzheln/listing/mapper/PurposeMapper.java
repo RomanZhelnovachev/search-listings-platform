@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
-import ru.romzheln.listing.dto.event.PurposeEvent;
 import ru.romzheln.listing.dto.response.PurposeResponse;
 import ru.romzheln.listing.model.entity.commercial.Purpose;
 

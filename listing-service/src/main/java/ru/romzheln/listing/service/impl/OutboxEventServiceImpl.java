@@ -7,10 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ru.romzheln.listing.dto.event.OutboxPayload;
-import ru.romzheln.listing.kafka.EventProducer;
+import ru.romzheln.listing.dto.event.ListingPayload;
+import ru.romzheln.listing.dto.event.PropertyPayload;
 import ru.romzheln.listing.mapper.OutboxEventMapper;
-import ru.romzheln.listing.model.enums.AggregateType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.outbox.OutboxEvent;
 import ru.romzheln.listing.repository.OutboxRepository;
@@ -23,16 +22,15 @@ public class OutboxEventServiceImpl implements OutboxEventService {
 
     private final OutboxRepository repository;
     private final OutboxEventMapper mapper;
-    private final EventProducer producer;
 
 
     @Override
     @Transactional()
-    public void save(AggregateType type,
-                     Long aggregateId,
+    public void save(Long listingId,
                      EventType eventType,
-                     OutboxPayload payload) {
-        OutboxEvent event = mapper.toEvent(type, aggregateId, eventType, payload);
+                     ListingPayload listingPayload,
+                     PropertyPayload propertyPayload) {
+        OutboxEvent event = mapper.toEvent(listingId, eventType, listingPayload, propertyPayload);
         OutboxEvent savedEvent = repository.save(event);
         log.info("Событие с ID {} успешно сохранено", savedEvent.getId());
     }

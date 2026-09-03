@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import ru.romzheln.listing.dto.kafka.EventMessage;
+import ru.romzheln.listing.dto.kafka.Message;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class EventProducer {
 
-    private final KafkaTemplate<String, EventMessage> template;
+    private final KafkaTemplate<String, Message> template;
 
     @Value("${spring.kafka.topic.listing-events}")
     private String topic;
 
-    public CompletableFuture<SendResult<String, EventMessage>> send(EventMessage message){
-        return template.send(topic, message.aggregateId().toString(), message)
+    public CompletableFuture<SendResult<String, Message>> send(Message message){
+        return template.send(topic, message.listingId().toString(), message)
                 .whenComplete((result, exception) -> {
                     if(exception != null){
                         log.error("Ошибка при отправки события {}", message.eventId(), exception);
