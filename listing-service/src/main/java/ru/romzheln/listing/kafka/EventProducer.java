@@ -20,7 +20,7 @@ public class EventProducer {
     private String topic;
 
     public CompletableFuture<SendResult<String, Message>> send(Message message){
-        return template.send(topic, message.listingId().toString(), message)
+        return template.send(topic, message.aggregateId().toString(), message)
                 .whenComplete((result, exception) -> {
                     if(exception != null){
                         log.error("Ошибка при отправки события {}", message.eventId(), exception);

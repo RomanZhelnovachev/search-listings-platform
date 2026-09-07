@@ -36,7 +36,7 @@ public class OutboxEventMapper {
   public Message toMessage(OutboxEvent event) {
     return Message.builder()
         .eventId(event.getEventId().toString())
-        .listingId(event.getListingId())
+        .aggregateId(event.getListingId())
         .eventType(event.getEventType())
         .listingPayload(event.getListingPayload())
         .propertyPayload(event.getPropertyPayload())

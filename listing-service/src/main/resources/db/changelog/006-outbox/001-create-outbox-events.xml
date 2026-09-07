@@ -32,13 +32,10 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="listing_payload" type="JSONB">
-                <constraints nullable="false"/>
-            </column>
+            <column name="listing_payload" type="JSONB"/>
 
-            <column name="property_payload" type="JSONB">
-                <constraints nullable="false"/>
-            </column>
+
+            <column name="property_payload" type="JSONB"/>
 
             <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
                 <constraints nullable="false"/>

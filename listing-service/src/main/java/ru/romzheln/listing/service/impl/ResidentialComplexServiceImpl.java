@@ -64,7 +64,7 @@ public class ResidentialComplexServiceImpl
     return mapper.toPageResponse(complexes);
   }
 
-  private ResidentialComplex getComplex(Long id) {
+  public ResidentialComplex getComplex(Long id) {
     return repository.findById(id).orElseThrow(() -> new ResidentialComplexNotFoundException(id));
   }
 }

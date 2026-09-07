@@ -42,11 +42,11 @@ public class OutboxEvent {
     private EventType eventType;
 
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "listing_payload", columnDefinition = "jsonb", nullable = false)
+    @Column(name = "listing_payload", columnDefinition = "jsonb")
     private JsonNode listingPayload;
     
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "property_payload", columnDefinition = "jsonb", nullable = false)
+    @Column(name = "property_payload", columnDefinition = "jsonb")
     private JsonNode propertyPayload;
 
     @Column(name = "created_at", nullable = false, updatable = false)

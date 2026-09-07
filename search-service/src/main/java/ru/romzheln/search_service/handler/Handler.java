@@ -1,8 +1,8 @@
 package ru.romzheln.search_service.handler;
 
-import ru.romzheln.search_service.dto.event.EventMessage;
+import ru.romzheln.search_service.dto.event.Message;
 
 public interface Handler {
 
-    void handle(EventMessage message);
+    void handle(Message message);
 }

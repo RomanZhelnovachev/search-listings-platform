@@ -22,11 +22,11 @@ public class PropertyReferenceResolver {
     private final AdditionalBuildingsServiceImpl additionalBuildingsService;
 
     public Developer getDeveloper(Long id) {
-        return developerService.get(id);
+        return developerService.getDeveloper(id);
     }
 
     public ResidentialComplex getComplex(Long id) {
-        return complexService.get(id);
+        return complexService.getComplex(id);
     }
 
     public Set<Purpose> getAllPurposesById(Set<Long> purposes){
@@ -34,7 +34,7 @@ public class PropertyReferenceResolver {
     }
 
     public LandUse getLandUse(Long id){
-        return landUseService.get(id);
+        return landUseService.getLandUse(id);
     }
 
     public Set<AdditionalBuilding> getAllAdditionalBuildingsById(Set<Long> additionalBuildings){

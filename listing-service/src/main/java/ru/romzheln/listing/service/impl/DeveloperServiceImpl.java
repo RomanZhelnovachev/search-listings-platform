@@ -64,7 +64,7 @@ public class DeveloperServiceImpl
     return mapper.toPageResponse(developers);
   }
 
-  private Developer getDeveloper(Long id) {
+  public Developer getDeveloper(Long id) {
     return repository.findById(id).orElseThrow(() -> new DeveloperNotFoundException(id));
   }
 }

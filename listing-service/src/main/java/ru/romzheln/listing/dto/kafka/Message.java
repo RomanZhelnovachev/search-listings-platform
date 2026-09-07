@@ -11,7 +11,7 @@ public record Message(
 
         String eventId,
 
-        Long listingId,
+        Long aggregateId,
 
         EventType eventType,
 

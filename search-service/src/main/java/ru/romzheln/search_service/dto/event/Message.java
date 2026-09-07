@@ -1,18 +1,22 @@
 package ru.romzheln.search_service.dto.event;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import ru.romzheln.search_service.model.enums.AggregateType;
+import java.time.Instant;
+import lombok.Builder;
 import ru.romzheln.search_service.model.enums.EventType;
 
-import java.time.Instant;
-import java.util.UUID;
+@Builder
+public record Message(
 
-public record EventMessage(
+        String eventId,
 
-        UUID eventId,
-        AggregateType aggregateType,
         Long aggregateId,
+
         EventType eventType,
-        JsonNode payload,
+
+        JsonNode listingPayload,
+
+        JsonNode propertyPayload,
+
         Instant createdAt
 ) {}

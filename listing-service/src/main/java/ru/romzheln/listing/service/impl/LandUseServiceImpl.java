@@ -68,7 +68,7 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
     return mapper.toPageResponse(landUses);
   }
 
-  private LandUse getLandUse(Long id) {
+  public LandUse getLandUse(Long id) {
     return repository.findById(id).orElseThrow(() -> new LandUseNotFoundException(id));
   }
 }
