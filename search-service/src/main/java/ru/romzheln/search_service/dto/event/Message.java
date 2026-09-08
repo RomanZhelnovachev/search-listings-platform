@@ -12,6 +12,8 @@ public record Message(
 
         Long aggregateId,
 
+        String region,
+
         EventType eventType,
 
         JsonNode listingPayload,

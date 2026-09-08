@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import ru.romzheln.listing.model.enums.EventType;
+import ru.romzheln.listing.model.enums.Region;
 
 @Entity
 @Table(name = "outbox_events")
@@ -34,8 +35,12 @@ public class OutboxEvent {
     @Column(name = "event_id", nullable = false, unique = true)
     private UUID eventId;
 
-    @Column(name = "listing_id", nullable = false)
-    private Long listingId;
+    @Column(name = "aggregate_id", nullable = false)
+    private Long aggregateId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "region")
+    private Region region;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "event_type", nullable = false)

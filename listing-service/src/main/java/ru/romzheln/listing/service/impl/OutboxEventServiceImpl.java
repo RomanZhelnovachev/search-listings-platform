@@ -11,6 +11,7 @@ import ru.romzheln.listing.dto.event.ListingPayload;
 import ru.romzheln.listing.dto.event.PropertyPayload;
 import ru.romzheln.listing.mapper.OutboxEventMapper;
 import ru.romzheln.listing.model.enums.EventType;
+import ru.romzheln.listing.model.enums.Region;
 import ru.romzheln.listing.model.outbox.OutboxEvent;
 import ru.romzheln.listing.repository.OutboxRepository;
 import ru.romzheln.listing.service.OutboxEventService;
@@ -26,11 +27,12 @@ public class OutboxEventServiceImpl implements OutboxEventService {
 
     @Override
     @Transactional()
-    public void save(Long listingId,
+    public void save(Long aggregateId,
+                     Region region,
                      EventType eventType,
                      ListingPayload listingPayload,
                      PropertyPayload propertyPayload) {
-        OutboxEvent event = mapper.toEvent(listingId, eventType, listingPayload, propertyPayload);
+        OutboxEvent event = mapper.toEvent(aggregateId, eventType, listingPayload, propertyPayload);
         OutboxEvent savedEvent = repository.save(event);
         log.info("Событие с ID {} успешно сохранено", savedEvent.getId());
     }

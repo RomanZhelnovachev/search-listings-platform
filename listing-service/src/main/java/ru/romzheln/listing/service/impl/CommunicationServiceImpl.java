@@ -87,6 +87,6 @@ public class CommunicationServiceImpl
     }
 
     private void publish(Communication communication, EventType type){
-      outboxEventService.save(communication.getId(), type, null, mapper.toEvent(communication));
+      outboxEventService.save(communication.getId(),null, type, null, mapper.toEvent(communication));
     }
 }

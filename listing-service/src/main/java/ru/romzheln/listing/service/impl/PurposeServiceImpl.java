@@ -83,6 +83,6 @@ public class PurposeServiceImpl implements CrudService<Purpose, PurposeRequest, 
     }
 
     private void publish(Purpose purpose, EventType type){
-        outboxEventService.save(purpose.getId(), type, null, mapper.toEvent(purpose));
+        outboxEventService.save(purpose.getId(), null, type, null, mapper.toEvent(purpose));
     }
 }

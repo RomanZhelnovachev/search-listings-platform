@@ -23,6 +23,7 @@ import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.DealType;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.enums.ListingStatus;
+import ru.romzheln.listing.model.enums.Region;
 import ru.romzheln.listing.repository.ListingRepository;
 import ru.romzheln.listing.service.*;
 
@@ -95,7 +96,8 @@ public class ListingServiceImpl implements ListingService {
         }
         for(Listing listing : listings){
             log.info("В объявлении с ID {} изменён объект недвижимости", listing.getId());
-            outboxEventService.save(listing.getId(), type, null, propertyPayload);
+            Region region = listing.getProperty().getLocation().getRegion();
+            outboxEventService.save(listing.getId(), region, type, null, propertyPayload);
         }
     }
 
@@ -183,7 +185,7 @@ public class ListingServiceImpl implements ListingService {
     public void addImages(Long id, ChangeListingImageRequest request) {
         Listing listing = getListing(id);
         Set<Long> newImages = listing.addImages(request.imageIds());
-        publishEvent(listing, EventType.IMAGES_ADDED, new ImageAddedEvent(newImages));
+        publishEvent(listing, EventType.IMAGES_ADDED, new ImageEvent(newImages));
         log.info("Объявлению с ID {} добавлено {} изображений", id, newImages.size());
     }
 
@@ -192,7 +194,7 @@ public class ListingServiceImpl implements ListingService {
     public void removeImages(Long id, ChangeListingImageRequest request) {
         Listing listing = getListing(id);
         listing.removeImages(request.imageIds());
-        publishEvent(listing, EventType.IMAGES_REMOVED, new ImageRemovedEvent(request.imageIds()));
+        publishEvent(listing, EventType.IMAGES_REMOVED, new ImageEvent(request.imageIds()));
         log.info("В объявлении с ID {} удалены следующие изображения {}", id, request.imageIds());
     }
 
@@ -227,6 +229,7 @@ public class ListingServiceImpl implements ListingService {
 
     private void publishEvent(Listing listing, EventType type, ListingPayload listingPayload) {
         PropertyPayload propertyPayload = propertyMapper.toPropertyEvent(listing.getProperty());
-        outboxEventService.save(listing.getId(), type, listingPayload, propertyPayload);
+        Region region = listing.getProperty().getLocation().getRegion();
+        outboxEventService.save(listing.getId(), region, type, listingPayload, propertyPayload);
     }
 }

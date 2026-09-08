@@ -43,6 +43,10 @@ public class ListingMapper {
         return new MortgageProgramsEvent(getSetLong(payload.get("mortgagePrograms")));
     }
 
+    public ImageEvent toImageEvent(JsonNode payload){
+        return new ImageEvent(getSetLong(payload.get("images")));
+    }
+
     private Set<Long> getSetLong(JsonNode payload) {
         Set<Long> ids = new HashSet<>();
         if(payload != null && payload.isArray()){
