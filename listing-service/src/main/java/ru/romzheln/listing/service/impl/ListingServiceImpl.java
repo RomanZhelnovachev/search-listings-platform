@@ -138,7 +138,7 @@ public class ListingServiceImpl implements ListingService {
         listing.addMortgagePrograms(request.mortgageProgramIds());
         log.info("Объявлению с ID {} добавлены следующие ипотечные программы - {}",
                     id, request.mortgageProgramIds());
-        publishEvent(listing, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsAddedEvent(request.mortgageProgramIds()));
+        publishEvent(listing, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsEvent(request.mortgageProgramIds()));
     }
 
     @Override
@@ -146,7 +146,7 @@ public class ListingServiceImpl implements ListingService {
     public void removeMortgagePrograms(Long id, ChangeListingMortgageProgramsRequest request) {
         Listing listing = getListing(id);
         listing.removeMortgagePrograms(request.mortgageProgramIds());
-        publishEvent(listing, EventType.MORTGAGE_PROGRAMS_REMOVED, new MotgageProgramRemovedEvent(request.mortgageProgramIds()));
+        publishEvent(listing, EventType.MORTGAGE_PROGRAMS_REMOVED, new MortgageProgramsEvent(request.mortgageProgramIds()));
         log.info("В объявлении с ID {} отключены следующие ипотечные программы - {} ", id, request.mortgageProgramIds());
 
     }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.romzheln.search_service.dto.event.Message;
 import ru.romzheln.search_service.dto.event.PurposeEvent;
 import ru.romzheln.search_service.exception.UnsupportedEventType;
-import ru.romzheln.search_service.mapper.JsonNodeMapper;
+import ru.romzheln.search_service.mapper.ProjectionMapper;
 import ru.romzheln.search_service.service.PurposeProjectionService;
 
 @Component
@@ -13,7 +13,7 @@ import ru.romzheln.search_service.service.PurposeProjectionService;
 public class PurposeHandler implements Handler{
 
     private final PurposeProjectionService service;
-    private final JsonNodeMapper mapper;
+    private final ProjectionMapper mapper;
 
     @Override
     public void handle(Message message) {
