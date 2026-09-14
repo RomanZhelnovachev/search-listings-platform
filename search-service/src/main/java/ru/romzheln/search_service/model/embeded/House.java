@@ -20,17 +20,9 @@ public class House {
     @Embedded
     private CommonLandDetails commonLandDetails;
 
-    @Column(name = "developer_id")
-    private Long developerId;
+    @Embedded private Developer developer;
 
-    @Embedded
-    private Developer developer;
-
-    @Column(name = "complex_id")
-    private Long complexId;
-
-    @Embedded
-    private ResidentialComplex complex;
+    @Embedded private ResidentialComplex complex;
 
     @Column(name = "construction_stage")
     private String constructionStage;

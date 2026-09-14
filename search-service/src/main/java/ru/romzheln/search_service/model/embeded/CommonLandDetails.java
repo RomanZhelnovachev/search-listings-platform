@@ -17,9 +17,6 @@ public class CommonLandDetails {
   @Column(name = "land_use_name")
   private String landUseName;
 
-  @Column(name = "land_use_description")
-  private String landUseDescription;
-
   @Column(name = "road")
   private String road;
 

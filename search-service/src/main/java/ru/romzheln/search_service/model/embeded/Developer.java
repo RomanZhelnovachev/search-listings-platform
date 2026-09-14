@@ -12,6 +12,9 @@ import lombok.*;
 @Builder
 public class Developer {
 
+    @Column(name = "developer_id")
+    private Long developerId;
+
   @Column(name = "developer_name")
   private String developerName;
 }

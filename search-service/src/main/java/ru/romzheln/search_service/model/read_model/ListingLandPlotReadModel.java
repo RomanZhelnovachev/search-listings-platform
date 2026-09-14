@@ -1,11 +1,9 @@
 package ru.romzheln.search_service.model.read_model;
 
 import jakarta.persistence.*;
-import java.time.Instant;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import ru.romzheln.search_service.model.embeded.LandPlot;
-import ru.romzheln.search_service.model.embeded.Listing;
-import ru.romzheln.search_service.model.embeded.ListingKey;
 
 @Entity
 @Table(name = "listing_land_plot_search")
@@ -13,18 +11,8 @@ import ru.romzheln.search_service.model.embeded.ListingKey;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-public class ListingLandPlotReadModel implements ReadModel{
-
-  @EmbeddedId private ListingKey key;
-
-  @Embedded private Listing listing;
+@SuperBuilder
+public class ListingLandPlotReadModel extends ReadModel{
 
   @Embedded private LandPlot landPlot;
-
-  @Column(name = "created_at")
-  private Instant createdAt;
-
-  @Column(name = "updated_at")
-  private Instant updatedAt;
 }
