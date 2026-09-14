@@ -52,7 +52,6 @@
 
             land_use_id BIGINT,
             land_use_name VARCHAR(50),
-            land_use_description TEXT,
             road VARCHAR(50),
             fencing VARCHAR(50),
 

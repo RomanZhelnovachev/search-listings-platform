@@ -30,9 +30,6 @@ public class PurposeMapper implements ReferenceMapper<Purpose, PurposeResponse, 
 
     @Override
     public PurposeEvent toEvent(Purpose purpose) {
-        return PurposeEvent.builder()
-                .name(purpose.getName())
-                .description(purpose.getDescription())
-                .build();
+    return new PurposeEvent(purpose.getName());
     }
 }

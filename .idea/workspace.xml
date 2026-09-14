@@ -4,40 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Пишу инфраструктуру для search 2">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/ListingKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/PendingEntityStateKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/EntityType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/projection/CommunicationProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/projection/PurposeProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/state/PendingEntityState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/004-states/001-create-pending-entity-state.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/005-projections/001-create-communication-projection.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/005-projections/002-create-purpose-projection.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Допиши фабрику рид моделей">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/ReadModelAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/ReadModelNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/EmbeddedFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/PropertyCommonFieldsUpdater.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/ReadModelPropertyUpdater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/ReadModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/ReadModelFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/ListingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/ListingHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Apartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Apartment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonLandDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonLandDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Developer.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Developer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/House.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/ResidentialComplex.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/ResidentialComplex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingApartmentReadModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingCommercialReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingCommercialReadModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingHouseReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingHouseReadModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingLandPlotReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ListingLandPlotReadModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/001-create-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/001-create-listing-apartments.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/002-create-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/002-create-listing-commercials.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/003-create-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/003-create-listing-houses.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/001-read-models/004-create-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/004-create-listing-land-plots.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/001-partition-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/001-partition-listing-apartments.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/002-partition-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/002-partition-listing-commercials.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/003-partition-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/003-partition-listing-houses.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/002-partitions/004-partition-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/004-partition-listing-land-plots.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/001-create-listing-images.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/001-create-listing-images.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/002-create-listing-mortgage-programs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/002-create-listing-mortgage-programs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/003-create-listing-communications.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/003-create-listing-communications.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/004-create-listing-purposes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/004-create-listing-purposes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/003-relations/005-create-listing-additional-buildings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/003-relations/005-create-listing-additional-buildings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db.changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ReadModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingApartmentReadModelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingApartmentReadModelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingCommercialReadModelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingCommercialReadModelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingHouseReadModelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingHouseReadModelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingLandPlotReadModelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/repository/ListingLandPlotReadModelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/ListingReadModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/ListingReadModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/impl/ListingReadModelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/impl/ListingReadModelServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/003-create-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/003-create-listing-houses.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/004-create-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/004-create-listing-land-plots.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +57,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="Class" />
+        <option value="Interface" />
         <option value="Enum" />
+        <option value="Record" />
+        <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -102,19 +99,25 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;search-service&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/111&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Etagi/search-listings-platform&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Etagi/search-listings-platform/search-service/src/main/java/ru/romzheln/search_service/dto/event&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Etagi\search-listings-platform\search-service\src\main\java\ru\romzheln\search_service\dto\event" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db\changelog" />
       <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db" />
       <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db.changelog\002-partitions" />
       <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db.changelog\001-read-models" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.romzheln.search_service.dto.event" />
     </key>
   </component>
   <component name="TaskManager">
@@ -181,8 +184,71 @@
       <option name="project" value="LOCAL" />
       <updated>1788164190710</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Дописал проекции и стэйт">
+      <option name="closed" value="true" />
+      <created>1788190914252</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1788190914252</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Начал писать handler">
+      <option name="closed" value="true" />
+      <created>1788204188228</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1788204188228</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Полностью переделываю">
+      <option name="closed" value="true" />
+      <created>1788437517796</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1788437517796</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Допиши ListingHandler">
+      <option name="closed" value="true" />
+      <created>1788789546270</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1788789546270</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Допиши ListingHandler и подумай вшить region в Message">
+      <option name="closed" value="true" />
+      <created>1788856492854</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1788856492854</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Допиши фабрику рид моделей">
+      <option name="closed" value="true" />
+      <created>1788879804517</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1788879804517</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -203,6 +269,12 @@
     <MESSAGE value="Написал миграции для таблиц связей" />
     <MESSAGE value="Пишу инфраструктуру для search" />
     <MESSAGE value="Пишу инфраструктуру для search 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Пишу инфраструктуру для search 2" />
+    <MESSAGE value="Дописал проекции и стэйт" />
+    <MESSAGE value="Начал писать handler" />
+    <MESSAGE value="Полностью переделываю" />
+    <MESSAGE value="Допиши ListingHandler" />
+    <MESSAGE value="Допиши ListingHandler и подумай вшить region в Message" />
+    <MESSAGE value="Допиши фабрику рид моделей" />
+    <option name="LAST_COMMIT_MESSAGE" value="Допиши фабрику рид моделей" />
   </component>
 </project>

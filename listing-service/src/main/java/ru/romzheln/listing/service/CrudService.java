@@ -12,6 +12,4 @@ public interface CrudService<E, Q, P> {
   P findById(Long id);
 
   Page<P> getAll(Pageable pageable);
-
-  E get(Long id);
 }

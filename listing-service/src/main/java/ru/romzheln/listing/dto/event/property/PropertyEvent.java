@@ -5,13 +5,13 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import ru.romzheln.listing.dto.common.LocationDto;
-import ru.romzheln.listing.dto.event.OutboxPayload;
+import ru.romzheln.listing.dto.event.PropertyPayload;
 import ru.romzheln.listing.model.enums.Own;
 import ru.romzheln.listing.model.enums.PropertyType;
 
 @Getter
 @Setter
-public abstract class PropertyEvent implements OutboxPayload {
+public abstract class PropertyEvent implements PropertyPayload {
 
   private PropertyType propertyType;
 

@@ -30,6 +30,6 @@ public class LandUseMapper implements ReferenceMapper<LandUse, LandUseResponse, 
 
     @Override
     public LandUseEvent toEvent(LandUse landUse) {
-        return new LandUseEvent(landUse.getName(), landUse.getDescription());
+        return new LandUseEvent(landUse.getName());
     }
 }

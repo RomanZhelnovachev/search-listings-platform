@@ -6,6 +6,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY listing-service/pom.xml listing-service/pom.xml
 COPY auth-mock/pom.xml auth-mock/pom.xml
+COPY search-service/pom.xml search-service/pom.xml
 
 RUN mvn dependency:go-offline
 

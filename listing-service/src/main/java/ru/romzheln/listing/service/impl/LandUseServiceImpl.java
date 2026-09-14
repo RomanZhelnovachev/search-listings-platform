@@ -5,18 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.listing.dto.request.reference.LandUseRequest;
 import ru.romzheln.listing.dto.response.LandUseResponse;
 import ru.romzheln.listing.exception.notFound.LandUseNotFoundException;
 import ru.romzheln.listing.mapper.LandUseMapper;
 import ru.romzheln.listing.model.entity.common.LandUse;
-import ru.romzheln.listing.model.enums.AggregateType;
-import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.repository.LandUseRepository;
 import ru.romzheln.listing.service.CrudService;
-import ru.romzheln.listing.service.OutboxEventService;
+import ru.romzheln.listing.service.PropertyService;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +22,7 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
 
   private final LandUseRepository repository;
   private final LandUseMapper mapper;
-  private final OutboxEventService outboxEventService;
+  private final PropertyService propertyService;
 
   @Override
   @Transactional
@@ -33,7 +30,6 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
     LandUse landUse =
         LandUse.builder().name(request.name()).description(request.description()).build();
     LandUse savedLandUse = repository.save(landUse);
-    publishEvent(EventType.CREATED, savedLandUse);
     log.info("Назначение земли с ID {} успешно сохранено", savedLandUse.getId());
     return mapper.toResponse(savedLandUse);
   }
@@ -41,14 +37,14 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
   @Override
   @Transactional
   public LandUseResponse update(Long id, LandUseRequest request) {
-    LandUse landUse = get(id);
+    LandUse landUse = getLandUse(id);
     if (request.name() != null) {
       landUse.setName(request.name());
     }
     if (request.description() != null) {
       landUse.setDescription(request.description());
     }
-    publishEvent(EventType.UPDATED, landUse);
+    propertyService.updateLandUse(landUse.getId(), mapper.toEvent(landUse));
     log.info("Назначение земли с ID {} успешно обновлено", id);
     return mapper.toResponse(landUse);
   }
@@ -56,7 +52,7 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
   @Override
   @Transactional(readOnly = true)
   public LandUseResponse findById(Long id) {
-    LandUse landUse = get(id);
+    LandUse landUse = getLandUse(id);
     log.info("Назначение земли с ID {} успешно получено", id);
     return mapper.toResponse(landUse);
   }
@@ -72,13 +68,7 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
     return mapper.toPageResponse(landUses);
   }
 
-  @Override
-  @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-  public LandUse get(Long id) {
+  public LandUse getLandUse(Long id) {
     return repository.findById(id).orElseThrow(() -> new LandUseNotFoundException(id));
-  }
-
-  private void publishEvent(EventType type, LandUse landUse) {
-    outboxEventService.save(AggregateType.LAND_USE, landUse.getId(), type, mapper.toEvent(landUse));
   }
 }

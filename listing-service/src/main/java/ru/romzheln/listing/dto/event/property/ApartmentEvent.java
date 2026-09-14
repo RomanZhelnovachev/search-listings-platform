@@ -18,5 +18,9 @@ public class ApartmentEvent extends PropertyEvent {
 
   private Long developerId;
 
+  private String developerName;
+
   private Long complexId;
+
+  private String complexName;
 }

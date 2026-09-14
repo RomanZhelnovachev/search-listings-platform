@@ -1,6 +1,7 @@
 package ru.romzheln.listing.dto.event;
 
-import lombok.Builder;
+public record PurposeEvent(
 
-@Builder
-public record PurposeEvent(String name, String description) implements OutboxPayload {}
+        String name
+
+) implements PropertyPayload {}

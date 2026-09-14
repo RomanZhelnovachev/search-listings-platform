@@ -1,10 +1,7 @@
 package ru.romzheln.listing.model.entity.listing;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import ru.romzheln.listing.exception.badRequest.*;
@@ -53,6 +50,7 @@ public class Listing {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "property_id")
+  @Setter
   private Property property;
 
   @Enumerated(EnumType.STRING)

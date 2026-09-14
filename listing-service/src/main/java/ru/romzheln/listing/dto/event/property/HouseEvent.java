@@ -18,7 +18,11 @@ public class HouseEvent extends PropertyEvent {
 
   private Long developerId;
 
+  private String developerName;
+
   private Long complexId;
+
+  private String complexName;
 
   private ConstructionStage constructionStage;
 

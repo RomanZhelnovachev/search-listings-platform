@@ -1,7 +1,5 @@
 package ru.romzheln.listing.dto.event.listing;
 
-import ru.romzheln.listing.dto.event.OutboxPayload;
+import ru.romzheln.listing.dto.event.ListingPayload;
 
-import java.time.Instant;
-
-public record ListingRemovedEvent(String reason) implements OutboxPayload {}
+public record ListingRemovedEvent(String reason) implements ListingPayload {}
