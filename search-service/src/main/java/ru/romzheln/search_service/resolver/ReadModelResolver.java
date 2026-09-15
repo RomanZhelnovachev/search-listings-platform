@@ -3,6 +3,7 @@ package ru.romzheln.search_service.resolver;
 import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.romzheln.search_service.dto.event.DeveloperEvent;
 import ru.romzheln.search_service.dto.event.listing.ListingUpdatedEvent;
 import ru.romzheln.search_service.dto.event.property.*;
 import ru.romzheln.search_service.exception.ReadModelNotFoundException;
@@ -110,6 +111,10 @@ public class ReadModelResolver {
                 model.setUpdatedAt(time);
             }
         }
+
+    }
+
+    public void updateDeveloper(ListingKey key, DeveloperEvent event, Instant time){
 
     }
 

@@ -43,11 +43,11 @@ public class ReadModelPropertyUpdater {
                   model.getCommercial().getCommonPhysicalDetails(), commonPhysicalDetailsDto);
       }
       CommercialPhysicalDetailsDto commercialPhysicalDetailsDto = event.getCommercialPhysicalDetailsDto();
-      if(commonPhysicalDetailsDto != null){
+      if(commercialPhysicalDetailsDto != null){
           commonFieldsUpdater.updateCommercialPhysicalDetails(model.getCommercial().getCommercialPhysicalDetails(), commercialPhysicalDetailsDto);
       }
       if(event.getPurposesIds() != null &&!event.getPurposesIds().isEmpty()){
-         model.getCommercial().setPurposeIds(commonFieldsUpdater.addIds(model.getCommercial().getPurposeIds(), event.getPurposesIds()));
+         model.getCommercial().setPurposeIds(event.getPurposesIds());
       }
   }
 
@@ -69,7 +69,7 @@ public class ReadModelPropertyUpdater {
           model.getHouse().setConstructionStage(event.getConstructionStage());
       }
       if(event.getAdditionalBuildings() != null && !event.getAdditionalBuildings().isEmpty()){
-          model.getHouse().setAdditionalBuildings(commonFieldsUpdater.addIds(model.getHouse().getAdditionalBuildings(), event.getAdditionalBuildings()));
+          model.getHouse().setAdditionalBuildings(event.getAdditionalBuildings());
       }
       if(event.getLandPlotSquare() != null){
           model.getHouse().setLandPlotSquare(event.getLandPlotSquare());
@@ -83,7 +83,7 @@ public class ReadModelPropertyUpdater {
           commonFieldsUpdater.updateCommonLandDetails(model.getLandPlot().getCommonLandDetails(), commonLandDetailsDto);
       }
       if(event.getAdditionalBuildings() != null && !event.getAdditionalBuildings().isEmpty()){
-          model.getLandPlot().setAdditionalBuildings(commonFieldsUpdater.addIds(model.getLandPlot().getAdditionalBuildings(), event.getAdditionalBuildings()));
+          model.getLandPlot().setAdditionalBuildings(event.getAdditionalBuildings());
       }
   }
 

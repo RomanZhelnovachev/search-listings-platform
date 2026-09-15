@@ -32,7 +32,7 @@ public class OutboxEventServiceImpl implements OutboxEventService {
                      EventType eventType,
                      ListingPayload listingPayload,
                      PropertyPayload propertyPayload) {
-        OutboxEvent event = mapper.toEvent(aggregateId, eventType, listingPayload, propertyPayload);
+        OutboxEvent event = mapper.toEvent(aggregateId, region, eventType, listingPayload, propertyPayload);
         OutboxEvent savedEvent = repository.save(event);
         log.info("Событие с ID {} успешно сохранено", savedEvent.getId());
     }

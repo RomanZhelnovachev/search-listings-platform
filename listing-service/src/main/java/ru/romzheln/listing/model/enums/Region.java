@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Region {
-  НЕ_ВЫБРАНО(0),
   РЕСПУБЛИКА_АДЫГЕЯ(1),
   РЕСПУБЛИКА_БАШКОРТОСТАН(2),
   РЕСПУБЛИКА_БУРЯТИЯ(3),

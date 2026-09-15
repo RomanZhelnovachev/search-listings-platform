@@ -9,6 +9,7 @@ import ru.romzheln.listing.dto.event.ListingPayload;
 import ru.romzheln.listing.dto.event.PropertyPayload;
 import ru.romzheln.listing.dto.kafka.Message;
 import ru.romzheln.listing.model.enums.EventType;
+import ru.romzheln.listing.model.enums.Region;
 import ru.romzheln.listing.model.outbox.OutboxEvent;
 
 @Component
@@ -18,7 +19,8 @@ public class OutboxEventMapper {
   private final ObjectMapper objectMapper;
 
   public OutboxEvent toEvent(
-      Long listingId,
+      Long aggregateId,
+      Region region,
       EventType eventType,
       ListingPayload listingPayload,
       PropertyPayload propertyPayload) {
@@ -26,7 +28,8 @@ public class OutboxEventMapper {
     JsonNode propertyNode = objectMapper.valueToTree(propertyPayload);
     return OutboxEvent.builder()
         .eventId(UUID.randomUUID())
-        .listingId(listingId)
+        .aggregateId(aggregateId)
+        .region(region)
         .eventType(eventType)
         .listingPayload(listingNode)
         .propertyPayload(propertyNode)
@@ -36,7 +39,7 @@ public class OutboxEventMapper {
   public Message toMessage(OutboxEvent event) {
     return Message.builder()
         .eventId(event.getEventId().toString())
-        .aggregateId(event.getListingId())
+        .aggregateId(event.getAggregateId())
         .eventType(event.getEventType())
         .listingPayload(event.getListingPayload())
         .propertyPayload(event.getPropertyPayload())

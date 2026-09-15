@@ -1,6 +1,5 @@
 package ru.romzheln.search_service.updater;
 
-import java.util.Set;
 import java.util.function.Consumer;
 import org.springframework.stereotype.Component;
 import ru.romzheln.search_service.dto.event.common.*;
@@ -19,8 +18,7 @@ public class PropertyCommonFieldsUpdater {
     updateIfNotNull(event.getOwn(), property::setOwn);
     updateIfNotNull(event.getFirstOwner(), property::setFirstOwner);
     if (event.getCommunicationIds() != null) {
-      property.setCommunicationIds(
-          addIds(property.getCommunicationIds(), event.getCommunicationIds()));
+      property.setCommunicationIds(event.getCommunicationIds());
     }
   }
 
@@ -80,11 +78,6 @@ public class PropertyCommonFieldsUpdater {
       updateIfNotNull(id, complex :: setComplexId);
       updateIfNotNull(name, complex :: setComplexName);
   }
-
-    public Set<Long> addIds(Set<Long> oldIds, Set<Long> newIds) {
-        oldIds.addAll(newIds);
-        return oldIds;
-    }
 
   private void updateLocation(Location location, LocationDto dto) {
     updateIfNotNull(dto.region(), location::setRegion);
