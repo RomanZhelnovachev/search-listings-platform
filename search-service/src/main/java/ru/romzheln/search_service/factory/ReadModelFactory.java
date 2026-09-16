@@ -41,6 +41,46 @@ public class ReadModelFactory {
     throw new UnknownPropertyType(propertyType);
   }
 
+  public ListingApartmentReadModel updateRegionApartment(String newRegion, ListingApartmentReadModel oldModel){
+      return ListingApartmentReadModel.builder()
+              .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+              .listing(oldModel.getListing())
+              .apartment(oldModel.getApartment())
+              .createdAt(oldModel.getCreatedAt())
+              .updatedAt(oldModel.getUpdatedAt())
+              .build();
+  }
+
+  public ListingCommercialReadModel updateRegionCommercial(String newRegion, ListingCommercialReadModel oldModel){
+      return ListingCommercialReadModel.builder()
+              .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+              .listing(oldModel.getListing())
+              .commercial(oldModel.getCommercial())
+              .createdAt(oldModel.getCreatedAt())
+              .updatedAt(oldModel.getUpdatedAt())
+              .build();
+  }
+
+  public ListingHouseReadModel updateRegionHouse(String newRegion, ListingHouseReadModel oldModel){
+      return ListingHouseReadModel.builder()
+              .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+              .listing(oldModel.getListing())
+              .house(oldModel.getHouse())
+              .createdAt(oldModel.getCreatedAt())
+              .updatedAt(oldModel.getUpdatedAt())
+              .build();
+  }
+
+  public ListingLandPlotReadModel updateRegionLandPlot(String newRegion, ListingLandPlotReadModel oldModel){
+      return ListingLandPlotReadModel.builder()
+              .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+              .listing(oldModel.getListing())
+              .landPlot(oldModel.getLandPlot())
+              .createdAt(oldModel.getCreatedAt())
+              .updatedAt(oldModel.getUpdatedAt())
+              .build();
+  }
+
   private ListingLandPlotReadModel createLandPlotReadModel(
       Long listingId,
       String region,

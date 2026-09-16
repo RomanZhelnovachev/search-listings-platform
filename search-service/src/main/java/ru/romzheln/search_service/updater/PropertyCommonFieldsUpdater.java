@@ -80,7 +80,6 @@ public class PropertyCommonFieldsUpdater {
   }
 
   private void updateLocation(Location location, LocationDto dto) {
-    updateIfNotNull(dto.region(), location::setRegion);
     updateIfNotNull(dto.populatedArea(), location::setPopulatedArea);
     updateIfNotNull(dto.street(), location::setStreet);
     updateIfNotNull(dto.house(), location::setHouse);

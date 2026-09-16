@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Доделай методы в сервисе ReadModel">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/util/MapperUtil.java" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Сделай region иммьютбл">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/OutboxEventMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/OutboxEventMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/enums/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/enums/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/OutboxEventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/OutboxEventServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/CommonDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/CommonDtoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/ListingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/ListingMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/ProjectionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/ProjectionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/PropertyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/PropertyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/request/property/common/CreatePropertyRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/request/property/common/CreatePropertyRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/ReadModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/ReadModelFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/PropertyCommonFieldsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/PropertyCommonFieldsUpdater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/ReadModelPropertyUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/ReadModelPropertyUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +38,9 @@
         <option value="Dockerfile" />
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Record" />
         <option value="Exception" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -226,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789401748021</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Сделай region иммьютбл">
+      <option name="closed" value="true" />
+      <created>1789465328111</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1789465328111</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -270,6 +271,7 @@
     <MESSAGE value="Допиши ListingHandler и подумай вшить region в Message" />
     <MESSAGE value="Допиши фабрику рид моделей" />
     <MESSAGE value="Доделай методы в сервисе ReadModel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Доделай методы в сервисе ReadModel" />
+    <MESSAGE value="Сделай region иммьютбл" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделай region иммьютбл" />
   </component>
 </project>

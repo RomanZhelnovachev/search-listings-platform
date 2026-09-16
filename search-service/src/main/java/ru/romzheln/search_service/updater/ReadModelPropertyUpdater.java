@@ -17,7 +17,7 @@ public class ReadModelPropertyUpdater {
   private final PropertyCommonFieldsUpdater commonFieldsUpdater;
 
   public void updateApartment(ListingApartmentReadModel model, ApartmentEvent event) {
-    commonFieldsUpdater.updateCommonFields(getProperty(model), event);
+      commonFieldsUpdater.updateCommonFields(getProperty(model), event);
     CommonPhysicalDetailsDto commonPhysicalDetailsDto = event.getCommonPhysicalDetailsDto();
     if (commonPhysicalDetailsDto != null) {
       commonFieldsUpdater.updateCommonPhysicalDetails(
@@ -36,7 +36,7 @@ public class ReadModelPropertyUpdater {
   }
 
   public void updateCommercial(ListingCommercialReadModel model, CommercialEvent event) {
-    commonFieldsUpdater.updateCommonFields(getProperty(model), event);
+      commonFieldsUpdater.updateCommonFields(getProperty(model), event);
       CommonPhysicalDetailsDto commonPhysicalDetailsDto = event.getCommonPhysicalDetailsDto();
       if (commonPhysicalDetailsDto != null) {
           commonFieldsUpdater.updateCommonPhysicalDetails(
@@ -52,7 +52,7 @@ public class ReadModelPropertyUpdater {
   }
 
   public void updateHouse(ListingHouseReadModel model, HouseEvent event) {
-    commonFieldsUpdater.updateCommonFields(getProperty(model), event);
+      commonFieldsUpdater.updateCommonFields(getProperty(model), event);
       CommonPhysicalDetailsDto commonPhysicalDetailsDto = event.getCommonPhysicalDetailsDto();
       if (commonPhysicalDetailsDto != null) {
           commonFieldsUpdater.updateCommonPhysicalDetails(
@@ -77,7 +77,7 @@ public class ReadModelPropertyUpdater {
   }
 
   public void updateLandPlot(ListingLandPlotReadModel model, LandPlotEvent event) {
-    commonFieldsUpdater.updateCommonFields(getProperty(model), event);
+      commonFieldsUpdater.updateCommonFields(getProperty(model), event);
       CommonLandDetailsDto commonLandDetailsDto = event.getCommonLandDetailsDto();
       if(commonLandDetailsDto != null){
           commonFieldsUpdater.updateCommonLandDetails(model.getLandPlot().getCommonLandDetails(), commonLandDetailsDto);
