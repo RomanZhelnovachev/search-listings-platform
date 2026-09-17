@@ -57,7 +57,6 @@ public class EmbeddedFactory {
         return Listing.builder()
                 .title(listingEvent.title())
                 .description(listingEvent.description())
-                .listingStatus("CREATED")
                 .imageIds(new HashSet<>())
                 .ownerId(listingEvent.ownerId())
                 .propertyId(listingEvent.propertyId())

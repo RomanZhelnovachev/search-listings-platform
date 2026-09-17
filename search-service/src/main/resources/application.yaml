@@ -24,7 +24,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: ru.romzheln.search_service.dto.event
-        spring.json.value.default.type: ru.romzheln.search_service.dto.event.EventMessage
+        spring.json.value.default.type: ru.romzheln.search_service.dto.event.Message
         spring.json.use.type.headers: false
       enable-auto-commit: false
     topic:

@@ -14,8 +14,8 @@ import ru.romzheln.search_service.model.read_model.*;
 @Component
 @RequiredArgsConstructor
 public class ReadModelFactory {
-    
-    private final EmbeddedFactory factory;
+
+  private final EmbeddedFactory factory;
 
   public ReadModel createReadModel(
       Long listingId,
@@ -41,22 +41,70 @@ public class ReadModelFactory {
     throw new UnknownPropertyType(propertyType);
   }
 
+  public ListingApartmentReadModel updateRegionApartment(
+      String newRegion, ListingApartmentReadModel oldModel) {
+    return ListingApartmentReadModel.builder()
+        .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+        .listing(oldModel.getListing())
+        .apartment(oldModel.getApartment())
+        .isIncludedInSearch(oldModel.isIncludedInSearch())
+        .createdAt(oldModel.getCreatedAt())
+        .updatedAt(oldModel.getUpdatedAt())
+        .build();
+  }
+
+  public ListingCommercialReadModel updateRegionCommercial(
+      String newRegion, ListingCommercialReadModel oldModel) {
+    return ListingCommercialReadModel.builder()
+        .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+        .listing(oldModel.getListing())
+        .commercial(oldModel.getCommercial())
+        .isIncludedInSearch(oldModel.isIncludedInSearch())
+        .createdAt(oldModel.getCreatedAt())
+        .updatedAt(oldModel.getUpdatedAt())
+        .build();
+  }
+
+  public ListingHouseReadModel updateRegionHouse(String newRegion, ListingHouseReadModel oldModel) {
+    return ListingHouseReadModel.builder()
+        .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+        .listing(oldModel.getListing())
+        .house(oldModel.getHouse())
+        .isIncludedInSearch(oldModel.isIncludedInSearch())
+        .createdAt(oldModel.getCreatedAt())
+        .updatedAt(oldModel.getUpdatedAt())
+        .build();
+  }
+
+  public ListingLandPlotReadModel updateRegionLandPlot(
+      String newRegion, ListingLandPlotReadModel oldModel) {
+    return ListingLandPlotReadModel.builder()
+        .key(factory.getListingKey(oldModel.getKey().getId(), newRegion))
+        .listing(oldModel.getListing())
+        .landPlot(oldModel.getLandPlot())
+        .isIncludedInSearch(oldModel.isIncludedInSearch())
+        .createdAt(oldModel.getCreatedAt())
+        .updatedAt(oldModel.getUpdatedAt())
+        .build();
+  }
+
   private ListingLandPlotReadModel createLandPlotReadModel(
       Long listingId,
       String region,
       ListingCreatedEvent listingEvent,
       PropertyEvent propertyEvent,
       Instant time) {
-      LandPlotEvent event = (LandPlotEvent) propertyEvent;
-      return ListingLandPlotReadModel.builder()
-              .key(factory.getListingKey(listingId, region))
-              .listing(factory.getListing(listingEvent, propertyEvent))
-              .landPlot(factory.getLandPlot(event))
-              .createdAt(time)
-              .build();
-  }    
+    LandPlotEvent event = (LandPlotEvent) propertyEvent;
+    return ListingLandPlotReadModel.builder()
+        .key(factory.getListingKey(listingId, region))
+        .listing(factory.getListing(listingEvent, propertyEvent))
+        .landPlot(factory.getLandPlot(event))
+        .isIncludedInSearch(false)
+        .createdAt(time)
+        .build();
+  }
 
-    private ListingCommercialReadModel createCommercialReadModel(
+  private ListingCommercialReadModel createCommercialReadModel(
       Long listingId,
       String region,
       ListingCreatedEvent listingEvent,
@@ -67,9 +115,10 @@ public class ReadModelFactory {
         .key(factory.getListingKey(listingId, region))
         .listing(factory.getListing(listingEvent, propertyEvent))
         .commercial(factory.getCommercial(event))
+        .isIncludedInSearch(false)
         .createdAt(time)
         .build();
-  }   
+  }
 
   private ListingHouseReadModel createHouseReadModel(
       Long listingId,
@@ -82,9 +131,10 @@ public class ReadModelFactory {
         .key(factory.getListingKey(listingId, region))
         .listing(factory.getListing(listingEvent, propertyEvent))
         .house(factory.getHouse(event))
+        .isIncludedInSearch(false)
         .createdAt(time)
         .build();
-  }  
+  }
 
   private ListingApartmentReadModel createApartmentReadModel(
       Long listingId,
@@ -97,7 +147,8 @@ public class ReadModelFactory {
         .key(factory.getListingKey(listingId, region))
         .listing(factory.getListing(listingEvent, propertyEvent))
         .apartment(factory.getApartment(event))
+        .isIncludedInSearch(false)
         .createdAt(time)
         .build();
-  }  
+  }
 }

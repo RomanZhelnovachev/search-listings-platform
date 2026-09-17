@@ -20,9 +20,6 @@ public class Listing {
   @Column(name = "description")
   private String description;
 
-  @Column(name = "listing_status")
-  private String listingStatus;
-
   @ElementCollection
   @CollectionTable(
       name = "listing_images",

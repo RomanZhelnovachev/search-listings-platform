@@ -25,6 +25,9 @@ public abstract class ReadModel {
     @Embedded
     private Listing listing;
 
+    @Column(name = "is_included_in_search", nullable = false)
+    private boolean isIncludedInSearch;
+
     @Column(name = "created_at")
     private Instant createdAt;
 

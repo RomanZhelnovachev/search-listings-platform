@@ -100,7 +100,6 @@ public class PropertyEventMapper {
   }
 
   private void fillGeneralFields(PropertyEvent event, Property property) {
-    event.setPropertyType(property.getPropertyType());
     event.setLocation(mapper.buildLocationDto(property.getLocation()));
     event.setSquare(property.getSquare());
     event.setOwn(property.getOwn());

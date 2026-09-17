@@ -2,7 +2,7 @@ package ru.romzheln.listing.dto.request.property.common;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -29,7 +29,8 @@ import ru.romzheln.listing.model.enums.PropertyType;
 })
 public abstract class CreatePropertyRequest {
 
-  @NotBlank private PropertyType propertyType;
+    @NotNull
+    private PropertyType propertyType;
 
   private LocationDto location;
 

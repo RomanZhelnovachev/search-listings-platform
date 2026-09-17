@@ -20,10 +20,7 @@ import ru.romzheln.listing.mapper.ListingMapper;
 import ru.romzheln.listing.mapper.PropertyEventMapper;
 import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.property.Property;
-import ru.romzheln.listing.model.enums.DealType;
-import ru.romzheln.listing.model.enums.EventType;
-import ru.romzheln.listing.model.enums.ListingStatus;
-import ru.romzheln.listing.model.enums.Region;
+import ru.romzheln.listing.model.enums.*;
 import ru.romzheln.listing.repository.ListingRepository;
 import ru.romzheln.listing.service.*;
 
@@ -97,7 +94,8 @@ public class ListingServiceImpl implements ListingService {
         for(Listing listing : listings){
             log.info("В объявлении с ID {} изменён объект недвижимости", listing.getId());
             Region region = listing.getProperty().getLocation().getRegion();
-            outboxEventService.save(listing.getId(), region, type, null, propertyPayload);
+            PropertyType propertyType = listing.getProperty().getPropertyType();
+            outboxEventService.save(listing.getId(), region, type, propertyType,null, propertyPayload);
         }
     }
 
@@ -230,6 +228,7 @@ public class ListingServiceImpl implements ListingService {
     private void publishEvent(Listing listing, EventType type, ListingPayload listingPayload) {
         PropertyPayload propertyPayload = propertyMapper.toPropertyEvent(listing.getProperty());
         Region region = listing.getProperty().getLocation().getRegion();
-        outboxEventService.save(listing.getId(), region, type, listingPayload, propertyPayload);
+        PropertyType propertyType = listing.getProperty().getPropertyType();
+        outboxEventService.save(listing.getId(), region, type, propertyType, listingPayload, propertyPayload);
     }
 }

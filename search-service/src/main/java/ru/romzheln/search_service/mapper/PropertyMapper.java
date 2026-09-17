@@ -1,8 +1,6 @@
 package ru.romzheln.search_service.mapper;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.math.BigDecimal;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.romzheln.search_service.dto.event.DeveloperEvent;
@@ -12,6 +10,7 @@ import ru.romzheln.search_service.dto.event.common.*;
 import ru.romzheln.search_service.dto.event.property.*;
 import ru.romzheln.search_service.exception.UnknownPropertyType;
 import ru.romzheln.search_service.model.enums.PropertyType;
+import ru.romzheln.search_service.util.MapperUtil;
 
 @Component
 @RequiredArgsConstructor
@@ -20,7 +19,7 @@ public class PropertyMapper {
     private final CommonDtoMapper commonDtoMapper;
 
     public PropertyEvent toPropertyEvent(JsonNode payload){
-        PropertyType propertyType = PropertyType.valueOf(payload.get("propertyType").asText());
+        PropertyType propertyType = PropertyType.valueOf(MapperUtil.text(payload, "propertyType"));
         switch (propertyType){
             case APARTMENT -> {
                 return createApartmentEvent(payload);
@@ -39,15 +38,15 @@ public class PropertyMapper {
     }
 
     public DeveloperEvent toDeveloperEvent(JsonNode payload){
-        return new DeveloperEvent(payload.get("name").asText());
+        return new DeveloperEvent(MapperUtil.text(payload, "name"));
     }
 
     public LandUseEvent toLandUseEvent(JsonNode payload){
-        return new LandUseEvent(payload.get("name").asText());
+        return new LandUseEvent(MapperUtil.text(payload, "name"));
     }
 
     public ResidentialComplexEvent toResidentialComplexEvent(JsonNode payload){
-        return new ResidentialComplexEvent(payload.get("name").asText());
+        return new ResidentialComplexEvent(MapperUtil.text(payload, "name"));
     }
 
     private LandPlotEvent createLandPlotEvent(JsonNode payload) {
@@ -55,7 +54,7 @@ public class PropertyMapper {
                 .commonLandDetailsDto(commonDtoMapper.getCommonLandDetailsDto(payload.get("commonLandDetailsDto")))
                 .additionalBuildings(commonDtoMapper.getSetLong(payload.get("additionalBuildings")))
                 .build();
-        fillGeneralFields(event, PropertyType.LAND_PLOT, payload);
+        fillGeneralFields(event, payload);
         return event;
     }
 
@@ -63,15 +62,15 @@ public class PropertyMapper {
         HouseEvent event = HouseEvent.builder()
                 .commonPhysicalDetailsDto(commonDtoMapper.getCommonPhysicalDetailsDto(payload.get("commonPhysicalDetailsDto")))
                 .commonLandDetailsDto(commonDtoMapper.getCommonLandDetailsDto(payload.get("commonLandDetailsDto")))
-                .developerId(payload.get("developerId").asLong())
-                .developerName(payload.get("developerName").asText())
-                .complexId(payload.get("complexId").asLong())
-                .complexName(payload.get("complexName").asText())
-                .constructionStage(payload.get("constructionStage").asText())
+                .developerId(MapperUtil.toLong(payload, "developerId"))
+                .developerName(MapperUtil.text(payload, "developerName"))
+                .complexId(MapperUtil.toLong(payload, "complexId"))
+                .complexName(MapperUtil.text(payload, "complexName"))
+                .constructionStage(MapperUtil.text(payload, "constructionStage"))
                 .additionalBuildings(commonDtoMapper.getSetLong(payload.get("additionalBuildings")))
-                .landPlotSquare(new BigDecimal(payload.get("landPlotSquare").asText()))
+                .landPlotSquare(MapperUtil.decimal(payload, "landPlotSquare"))
                 .build();
-        fillGeneralFields(event, PropertyType.HOUSE, payload);
+        fillGeneralFields(event, payload);
         return event;
     }    
 
@@ -81,30 +80,29 @@ public class PropertyMapper {
                 .commercialPhysicalDetailsDto(commonDtoMapper.getCommercialPhysicalDetailsDto(payload.get("commercialPhysicalDetailsDto")))
                 .purposesIds(commonDtoMapper.getSetLong(payload.get("purposesIds")))
                 .build();
-        fillGeneralFields(event, PropertyType.COMMERCIAL, payload);
+        fillGeneralFields(event, payload);
         return event;
     }    
 
     private ApartmentEvent createApartmentEvent(JsonNode payload){
         ApartmentEvent event = ApartmentEvent.builder()
-                .apartmentType(payload.get("apartmentType").asText())
+                .apartmentType(MapperUtil.text(payload, "apartmentType"))
                 .commonPhysicalDetailsDto(commonDtoMapper.getCommonPhysicalDetailsDto(payload.get("commonPhysicalDetailsDto")))
                 .apartmentPhysicalDetailsDto(commonDtoMapper.getApartmentPhysicalDetailsDto(payload.get("apartmentPhysicalDetailsDto")))
-                .developerId(payload.get("developerId").asLong())
-                .developerName(payload.get("developerName").asText())
-                .complexId(payload.get("complexId").asLong())
-                .complexName(payload.get("complexName").asText())
+                .developerId(MapperUtil.toLong(payload, "developerId"))
+                .developerName(MapperUtil.text(payload, "developerName"))
+                .complexId(MapperUtil.toLong(payload, "complexId"))
+                .complexName(MapperUtil.text(payload, "complexName"))
                 .build();
-        fillGeneralFields(event, PropertyType.APARTMENT, payload);
+        fillGeneralFields(event, payload);
         return event;
     }
 
-    private void fillGeneralFields(PropertyEvent event, PropertyType type, JsonNode payload){
-       event.setPropertyType(type);
+    private void fillGeneralFields(PropertyEvent event, JsonNode payload){
        event.setLocation(commonDtoMapper.getLocationDto(payload.get("location")));
-       event.setSquare(new BigDecimal(payload.get("square").asText()));
-       event.setOwn(payload.get("own").asText());
-       event.setFirstOwner(payload.get("firstOwner").asBoolean());
+       event.setSquare(MapperUtil.decimal(payload, "square"));
+       event.setOwn(MapperUtil.text(payload, "own"));
+       event.setFirstOwner(MapperUtil.bool(payload, "firstOwner"));
        event.setCommunicationIds(commonDtoMapper.getSetLong(payload.get("communicationIds")));
     }
     
