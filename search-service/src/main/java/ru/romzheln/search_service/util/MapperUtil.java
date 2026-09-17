@@ -1,13 +1,13 @@
 package ru.romzheln.search_service.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Component
 public class MapperUtil {
+
+    private MapperUtil(){}
 
     public static String text(JsonNode payload, String field) {
         JsonNode node = payload.get(field);

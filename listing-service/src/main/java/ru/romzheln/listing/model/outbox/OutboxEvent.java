@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import ru.romzheln.listing.model.enums.EventType;
+import ru.romzheln.listing.model.enums.PropertyType;
 import ru.romzheln.listing.model.enums.Region;
 
 @Entity
@@ -45,6 +46,10 @@ public class OutboxEvent {
     @Enumerated(EnumType.STRING)
     @Column(name = "event_type", nullable = false)
     private EventType eventType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "property_type", nullable = false)
+    private PropertyType propertyType;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "listing_payload", columnDefinition = "jsonb")

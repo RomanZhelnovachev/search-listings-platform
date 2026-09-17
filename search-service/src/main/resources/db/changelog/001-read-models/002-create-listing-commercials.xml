@@ -16,7 +16,6 @@
 
             title VARCHAR(255),
             description TEXT,
-            listing_status VARCHAR(50),
             owner_id BIGINT,
             property_id BIGINT,
 
@@ -60,6 +59,8 @@
             entrances_number INT,
             electrical_power_kw INT,
             railway_dead_end BOOLEAN,
+
+            is_included_in_search BOOLEAN NOT NULL,
 
             created_at TIMESTAMP WITH TIME ZONE,
             updated_at TIMESTAMP WITH TIME ZONE,

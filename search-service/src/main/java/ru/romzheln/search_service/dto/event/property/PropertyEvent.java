@@ -11,8 +11,6 @@ import ru.romzheln.search_service.model.enums.PropertyType;
 @Setter
 public abstract class PropertyEvent {
 
-  private PropertyType propertyType;
-
   private LocationDto location;
 
   private BigDecimal square;

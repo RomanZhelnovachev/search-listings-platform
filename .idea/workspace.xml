@@ -5,12 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Сделай region иммьютбл">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/config/StrategyConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/PropertyEventCastException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/ReadModelCastException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/UnsupportedFieldException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/strategy/ApartmentStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/strategy/CommercialStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/strategy/HouseStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/strategy/LandPlotStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/strategy/Strategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/util/CastUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/request/property/common/CreatePropertyRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/request/property/common/CreatePropertyRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/event/listing/ListingCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/event/listing/ListingCreatedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/event/property/PropertyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/event/property/PropertyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/kafka/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/dto/kafka/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/ListingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/ListingMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/OutboxEventMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/OutboxEventMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/PropertyEventMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/mapper/PropertyEventMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/outbox/OutboxEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/outbox/OutboxEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/OutboxEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/OutboxEventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/ListingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/ListingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/OutboxEventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/OutboxEventServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/resources/db/changelog/006-outbox/001-create-outbox-events.xml" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/resources/db/changelog/006-outbox/001-create-outbox-events.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/listing/ListingCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/listing/ListingCreatedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/property/PropertyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/event/property/PropertyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/EmbeddedFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/EmbeddedFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/ReadModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/factory/ReadModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/PropertyCommonFieldsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/PropertyCommonFieldsUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/ReadModelPropertyUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/updater/ReadModelPropertyUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/ListingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/handler/ListingHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/ListingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/ListingMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/PropertyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/PropertyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Listing.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/Listing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/read_model/ReadModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/resolver/ReadModelResolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/ListingReadModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/ListingReadModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/impl/ListingReadModelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/impl/ListingReadModelServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/util/MapperUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/util/MapperUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/001-create-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/001-create-listing-apartments.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/002-create-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/002-create-listing-commercials.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/003-create-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/003-create-listing-houses.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/004-create-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/001-read-models/004-create-listing-land-plots.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +70,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="Interface" />
         <option value="Enum" />
-        <option value="Exception" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>

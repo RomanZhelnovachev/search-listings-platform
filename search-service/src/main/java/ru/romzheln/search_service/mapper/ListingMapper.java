@@ -1,13 +1,11 @@
 package ru.romzheln.search_service.mapper;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.stereotype.Component;
 import ru.romzheln.search_service.dto.event.listing.*;
 import ru.romzheln.search_service.util.MapperUtil;
-
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class ListingMapper {
@@ -18,7 +16,6 @@ public class ListingMapper {
                 .description(MapperUtil.text(payload, "description"))
                 .ownerId(MapperUtil.toLong(payload, "ownerId"))
                 .propertyId(MapperUtil.toLong(payload, "propertyId"))
-                .propertyType(MapperUtil.text(payload, "propertyType"))
                 .dealType(MapperUtil.text(payload, "dealType"))
                 .price(MapperUtil.decimal(payload, "price"))
                 .build();

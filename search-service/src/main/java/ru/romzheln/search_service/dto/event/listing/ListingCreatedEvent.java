@@ -9,7 +9,6 @@ public record ListingCreatedEvent(
     String description,
     Long ownerId,
     Long propertyId,
-    String propertyType,
     String dealType,
     BigDecimal price)
      {}
