@@ -17,6 +17,8 @@ public record Message(
 
         Region region,
 
+        Region oldRegion,
+
         EventType eventType,
 
         PropertyType propertyType,

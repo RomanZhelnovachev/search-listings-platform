@@ -5,7 +5,6 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import ru.romzheln.search_service.dto.event.common.LocationDto;
-import ru.romzheln.search_service.model.enums.PropertyType;
 
 @Getter
 @Setter

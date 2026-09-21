@@ -30,6 +30,8 @@
 
             <column name="region" type="VARCHAR(50)"/>
 
+            <column name="old_region" type="VARCHAR(50)"/>
+
             <column name="event_type" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>

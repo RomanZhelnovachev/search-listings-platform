@@ -44,6 +44,10 @@ public class OutboxEvent {
     private Region region;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "old_region")
+    private Region oldRegion;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "event_type", nullable = false)
     private EventType eventType;
 

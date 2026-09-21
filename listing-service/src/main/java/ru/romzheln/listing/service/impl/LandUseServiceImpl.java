@@ -13,7 +13,7 @@ import ru.romzheln.listing.mapper.LandUseMapper;
 import ru.romzheln.listing.model.entity.common.LandUse;
 import ru.romzheln.listing.repository.LandUseRepository;
 import ru.romzheln.listing.service.CrudService;
-import ru.romzheln.listing.service.PropertyService;
+import ru.romzheln.listing.service.PropertyReferenceUpdateService;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
 
   private final LandUseRepository repository;
   private final LandUseMapper mapper;
-  private final PropertyService propertyService;
+    private final PropertyReferenceUpdateService service;
 
   @Override
   @Transactional
@@ -44,7 +44,7 @@ public class LandUseServiceImpl implements CrudService<LandUse, LandUseRequest, 
     if (request.description() != null) {
       landUse.setDescription(request.description());
     }
-    propertyService.updateLandUse(landUse.getId(), mapper.toEvent(landUse));
+    service.updateLandUse(landUse.getId(), mapper.toEvent(landUse));
     log.info("Назначение земли с ID {} успешно обновлено", id);
     return mapper.toResponse(landUse);
   }

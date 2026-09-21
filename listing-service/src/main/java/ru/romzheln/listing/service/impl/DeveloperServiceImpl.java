@@ -13,7 +13,7 @@ import ru.romzheln.listing.mapper.DeveloperMapper;
 import ru.romzheln.listing.model.entity.common.Developer;
 import ru.romzheln.listing.repository.DeveloperRepository;
 import ru.romzheln.listing.service.CrudService;
-import ru.romzheln.listing.service.PropertyService;
+import ru.romzheln.listing.service.PropertyReferenceUpdateService;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class DeveloperServiceImpl
 
   private final DeveloperRepository repository;
   private final DeveloperMapper mapper;
-  private final PropertyService propertyService;
+  private final PropertyReferenceUpdateService service;
 
 
   @Override
@@ -40,7 +40,7 @@ public class DeveloperServiceImpl
   public DeveloperResponse update(Long id, DeveloperRequest request) {
     Developer developer = getDeveloper(id);
     developer.setName(request.name());
-    propertyService.updateDeveloper(developer.getId(), mapper.toEvent(developer));
+      service.updateDeveloper(developer.getId(), mapper.toEvent(developer));
     log.info("Название застройщика с ID {} изменено на {}", id, developer.getName());
     return mapper.toResponse(developer);
   }

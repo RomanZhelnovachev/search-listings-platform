@@ -1,6 +1,8 @@
 package ru.romzheln.listing.service.strategy;
 
 import java.util.Set;
+import java.util.function.Consumer;
+
 import ru.romzheln.listing.dto.common.LocationDto;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
@@ -39,8 +41,8 @@ public abstract class AbstractPropertyStrategy implements PropertyStrategy {
 
     protected void updateProperty(Property property, UpdatePropertyRequest request){
         if(request.getLocationDto() != null){
-            Location location = buildLocation(request.getLocationDto());
-            property.setLocation(location);
+            Location location = property.getLocation();
+            updateLocation(location, request.getLocationDto());
         }
         if(request.getSquare() != null){
             property.setSquare(request.getSquare());
@@ -55,6 +57,16 @@ public abstract class AbstractPropertyStrategy implements PropertyStrategy {
             Set<Communication> communications = communicationService.getAllCommunicationsByIds(request.getCommunicationIds());
             property.setCommunications(communications);
         }
+    }
+
+    private void updateLocation(Location location,
+                                LocationDto dto) {
+        updateIfNotNull(dto.region(), location::setRegion);
+        updateIfNotNull(dto.populatedArea(), location::setPopulatedArea);
+        updateIfNotNull(dto.street(), location::setStreet);
+        updateIfNotNull(dto.house(), location::setHouse);
+        updateIfNotNull(dto.building(), location::setBuilding);
+        updateIfNotNull(dto.apartment(), location::setApartment);
     }
 
     protected Property findPropertyById(Long id, PropertyType type){
@@ -78,5 +90,11 @@ public abstract class AbstractPropertyStrategy implements PropertyStrategy {
                 .building(request.building())
                 .apartment(request.apartment())
                 .build();
+    }
+
+    private <T> void updateIfNotNull(T value, Consumer<T> setter) {
+        if (value != null) {
+            setter.accept(value);
+        }
     }
 }

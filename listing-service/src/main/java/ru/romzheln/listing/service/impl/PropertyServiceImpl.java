@@ -1,6 +1,5 @@
 package ru.romzheln.listing.service.impl;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.romzheln.listing.dto.event.DeveloperEvent;
-import ru.romzheln.listing.dto.event.LandUseEvent;
-import ru.romzheln.listing.dto.event.ResidentialComplexEvent;
 import ru.romzheln.listing.dto.request.property.common.CreatePropertyRequest;
 import ru.romzheln.listing.dto.request.property.common.UpdatePropertyRequest;
 import ru.romzheln.listing.dto.response.PropertyResponse;
@@ -23,6 +19,7 @@ import ru.romzheln.listing.mapper.PropertyResponseMapper;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.EventType;
 import ru.romzheln.listing.model.enums.PropertyType;
+import ru.romzheln.listing.model.enums.Region;
 import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.service.ListingService;
 import ru.romzheln.listing.service.PropertyService;
@@ -52,13 +49,14 @@ public class PropertyServiceImpl implements PropertyService {
   @Transactional
   public PropertyResponse updateProperty(Long id, UpdatePropertyRequest request) {
     Property property = getProperty(id);
+      Region oldRegion = property.getLocation().getRegion();
     if (request.getPropertyType() != property.getPropertyType()) {
       throw new InvalidPropertyTypeException(id, request.getPropertyType());
     }
     PropertyStrategy strategy = getStrategy(property.getPropertyType());
     strategy.update(id, request);
     listingService.updateProperty(
-        EventType.UPDATED_PROPERTY, property.getId(), eventMapper.toPropertyEvent(property));
+        EventType.UPDATED_PROPERTY, property.getId(), eventMapper.toPropertyEvent(property), oldRegion);
     log.info("Объект недвижимости с ID {} успешно изменён", property.getId());
     return responseMapper.toResponse(property);
   }
@@ -81,47 +79,7 @@ public class PropertyServiceImpl implements PropertyService {
   public Property getProperty(Long id) {
     return propertyRepository.findById(id).orElseThrow(() -> new PropertyNotFoundByIdException(id));
   }
-
-    @Override
-    @Transactional
-    public void updateDeveloper(Long developerId, DeveloperEvent event) {
-        List<Property> properties = propertyRepository.findPropertyByDeveloperId(developerId);
-        if(properties.isEmpty()){
-            log.warn("Объекты недвижимости с застройщиком с ID {} не найдены", developerId);
-            return;
-        }
-        for(Property property : properties){
-            listingService.updateProperty(EventType.UPDATED_DEVELOPER, property.getId(), event);
-        }
-    }
-
-    @Override
-    @Transactional
-    public void updateLandUse(Long landUseId, LandUseEvent event) {
-        List<Property> properties = propertyRepository.findPropertyByLandUseId(landUseId);
-        if(properties.isEmpty()){
-            log.warn("Объекты недвижимости с назначением земли с ID {} не найдены", landUseId);
-            return;
-        }
-        for(Property property : properties){
-            listingService.updateProperty(EventType.UPDATED_LAND_USE, property.getId(), event);
-        }
-    }
-
-    @Override
-    @Transactional
-    public void updateResidentialComplex(Long complexId, ResidentialComplexEvent event) {
-        List<Property> properties = propertyRepository.findPropertyByComplexId(complexId);
-        if(properties.isEmpty()){
-            log.warn("Объекты недвижимости с жилым комплексом с ID {} не найдены", complexId);
-            return;
-        }
-        for(Property property : properties){
-            listingService.updateProperty(EventType.UPDATED_COMPLEX, property.getId(), event);
-        }
-    }
-
-
+  
     private PropertyStrategy getStrategy(PropertyType type) {
     return Optional.ofNullable(strategies.get(type))
         .orElseThrow(() -> new PropertyStrategyNotFoundException(type));

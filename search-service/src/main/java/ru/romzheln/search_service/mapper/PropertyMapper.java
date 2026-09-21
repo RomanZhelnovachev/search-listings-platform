@@ -18,9 +18,8 @@ public class PropertyMapper {
 
     private final CommonDtoMapper commonDtoMapper;
 
-    public PropertyEvent toPropertyEvent(JsonNode payload){
-        PropertyType propertyType = PropertyType.valueOf(MapperUtil.text(payload, "propertyType"));
-        switch (propertyType){
+    public PropertyEvent toPropertyEvent(JsonNode payload, PropertyType type){
+        switch (type){
             case APARTMENT -> {
                 return createApartmentEvent(payload);
             }
@@ -34,7 +33,7 @@ public class PropertyMapper {
                 return createLandPlotEvent(payload);
             }
         }
-        throw  new UnknownPropertyType(propertyType);
+        throw  new UnknownPropertyType(type);
     }
 
     public DeveloperEvent toDeveloperEvent(JsonNode payload){
@@ -105,5 +104,4 @@ public class PropertyMapper {
        event.setFirstOwner(MapperUtil.bool(payload, "firstOwner"));
        event.setCommunicationIds(commonDtoMapper.getSetLong(payload.get("communicationIds")));
     }
-    
 }

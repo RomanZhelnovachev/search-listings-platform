@@ -16,7 +16,7 @@ public interface OutboxEventService {
       EventType eventType,
       PropertyType propertyType,
       ListingPayload listingPayload,
-      PropertyPayload propertyPayload);
+      PropertyPayload propertyPayload, Region oldRegion);
 
   void markAsProcessed(Long id);
 
