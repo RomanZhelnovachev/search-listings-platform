@@ -62,9 +62,9 @@ public class ListingReadModelServiceImpl implements ListingReadModelService {
     public void updateProperty(Long listingId,
                                String region,
                                PropertyType type,
-                               PropertyEvent event, Instant time) {
+                               PropertyEvent event, String oldRegion, Instant time) {
         Strategy<?> strategy = getStrategy(type);
-        strategy.updateProperty(getListingKey(listingId, region), event, time);
+        strategy.updateProperty(getListingKey(listingId, oldRegion), event, time);
         log.info("Информация в объявлении с ID {} и регионом {} об объекте недвижимости успешно обновлена {}", listingId, region, time);
     }
 

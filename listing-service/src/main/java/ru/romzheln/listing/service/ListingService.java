@@ -7,6 +7,7 @@ import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.EventType;
+import ru.romzheln.listing.model.enums.Region;
 
 public interface ListingService {
 
@@ -14,7 +15,7 @@ public interface ListingService {
 
   ListingResponse updateListing(Long id, UpdateListingRequest request);
 
-  void updateProperty(EventType type, Long propertyId, PropertyPayload payload);
+  void updateProperty(EventType type, Long propertyId, PropertyPayload payload, Region oldRegion);
 
   ListingResponse changePrice(Long id, ChangePriceRequest request);
 

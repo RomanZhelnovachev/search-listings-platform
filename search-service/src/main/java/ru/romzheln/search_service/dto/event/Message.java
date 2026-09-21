@@ -15,6 +15,8 @@ public record Message(
 
         String region,
 
+        String oldRegion,
+
         EventType eventType,
 
         PropertyType propertyType,

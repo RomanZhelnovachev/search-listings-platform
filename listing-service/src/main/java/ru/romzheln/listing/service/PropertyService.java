@@ -21,10 +21,4 @@ public interface PropertyService {
   Page<PropertyResponse> getAll(Pageable pageable);
 
   Property getProperty(Long id);
-  
-  void updateDeveloper(Long developerId, DeveloperEvent event);
-  
-  void updateLandUse(Long landUseId, LandUseEvent event);
-  
-  void updateResidentialComplex(Long complexId, ResidentialComplexEvent event);
 }

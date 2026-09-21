@@ -29,7 +29,7 @@ public class SecurityConfig {
   public JwtAuthenticationConverter jwtAuthenticationConverter() {
     JwtGrantedAuthoritiesConverter authoritiesConverter = new JwtGrantedAuthoritiesConverter();
     authoritiesConverter.setAuthoritiesClaimName("role");
-    authoritiesConverter.setAuthorityPrefix("");
+      authoritiesConverter.setAuthorityPrefix("");
     JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
     converter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
     return converter;

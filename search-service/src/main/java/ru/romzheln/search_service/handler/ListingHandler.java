@@ -22,6 +22,7 @@ public class ListingHandler implements Handler {
   public void handle(Message message) {
     Long listingId = message.aggregateId();
     String region = message.region();
+    String oldRegion = message.oldRegion();
       Instant time = message.createdAt();
       PropertyType type = message.propertyType();
     switch (message.eventType()) {
@@ -31,17 +32,17 @@ public class ListingHandler implements Handler {
               region,
               type,
               listingMapper.toListingCreatedEvent(message.listingPayload()),
-              propertyMapper.toPropertyEvent(message.propertyPayload()),time);
+              propertyMapper.toPropertyEvent(message.propertyPayload(), type),time);
       case UPDATED ->
           service.updateReadModel(
               listingId,
               region,
                   type,
               listingMapper.toListingUpdatedEvent(message.listingPayload()),
-              propertyMapper.toPropertyEvent(message.propertyPayload()),time);
+              propertyMapper.toPropertyEvent(message.propertyPayload(), type),time);
       case UPDATED_PROPERTY ->
           service.updateProperty(
-              listingId, region, type, propertyMapper.toPropertyEvent(message.propertyPayload()), time);
+              listingId, region, type, propertyMapper.toPropertyEvent(message.propertyPayload(), type), oldRegion, time);
       case UPDATED_DEVELOPER ->
           service.updateDeveloper(
               listingId, region, type, propertyMapper.toDeveloperEvent(message.propertyPayload()), time);

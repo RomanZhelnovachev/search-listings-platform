@@ -6,9 +6,15 @@ import ru.romzheln.listing.model.entity.property.Property;
 import java.util.List;
 
 public interface PropertyRepository extends JpaRepository<Property, Long> {
-    List<Property> findPropertyByDeveloperId(Long developerId);
+    List<Property> findByApartmentDeveloperId(Long developerId);
 
-    List<Property> findPropertyByLandUseId(Long landUseId);
+    List<Property> findByHouseDeveloperId(Long developerId);
 
-    List<Property> findPropertyByComplexId(Long complexId);
+    List<Property> findByApartmentComplexId(Long complexId);
+
+    List<Property> findByHouseComplexId(Long complexId);
+
+  List<Property> findByHouseCommonLandDetailsLandUseId(Long landUseId);
+
+  List<Property> findByLandPlotCommonLandDetailsLandUseId(Long landUseId);
 }

@@ -13,7 +13,7 @@ import ru.romzheln.listing.mapper.ResidentialComplexMapper;
 import ru.romzheln.listing.model.entity.common.ResidentialComplex;
 import ru.romzheln.listing.repository.ResidentialComplexRepository;
 import ru.romzheln.listing.service.CrudService;
-import ru.romzheln.listing.service.PropertyService;
+import ru.romzheln.listing.service.PropertyReferenceUpdateService;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +24,7 @@ public class ResidentialComplexServiceImpl
 
   private final ResidentialComplexRepository repository;
   private final ResidentialComplexMapper mapper;
-  private final PropertyService propertyService;
+    private final PropertyReferenceUpdateService service;
 
   @Override
   @Transactional
@@ -40,7 +40,7 @@ public class ResidentialComplexServiceImpl
   public ResidentialComplexResponse update(Long id, ResidentialComplexRequest request) {
     ResidentialComplex complex = getComplex(id);
     complex.setName(request.name());
-    propertyService.updateResidentialComplex(complex.getId(), mapper.toEvent(complex));
+    service.updateResidentialComplex(complex.getId(), mapper.toEvent(complex));
     log.info("Жилой комплекс с ID {} успешно переименован в {}", id, complex.getName());
     return mapper.toResponse(complex);
   }

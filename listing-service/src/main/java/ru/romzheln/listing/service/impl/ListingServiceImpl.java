@@ -16,12 +16,14 @@ import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
 import ru.romzheln.listing.exception.badRequest.UpdateListingException;
 import ru.romzheln.listing.exception.notFound.ListingNotFoundByIdException;
+import ru.romzheln.listing.exception.notFound.PropertyNotFoundByIdException;
 import ru.romzheln.listing.mapper.ListingMapper;
 import ru.romzheln.listing.mapper.PropertyEventMapper;
 import ru.romzheln.listing.model.entity.listing.Listing;
 import ru.romzheln.listing.model.entity.property.Property;
 import ru.romzheln.listing.model.enums.*;
 import ru.romzheln.listing.repository.ListingRepository;
+import ru.romzheln.listing.repository.PropertyRepository;
 import ru.romzheln.listing.service.*;
 
 @Service
@@ -33,13 +35,16 @@ public class ListingServiceImpl implements ListingService {
     private final OutboxEventService outboxEventService;
     private final ListingMapper listingMapper;
     private final PropertyEventMapper propertyMapper;
-    private final PropertyService propertyService;
+    private final PropertyRepository propertyRepository;
 
 
     @Override
     @Transactional
     public ListingResponse createListing(CreateListingRequest request) {
-        Property property = propertyService.getProperty(request.propertyId());
+    Property property =
+        propertyRepository
+            .findById(request.propertyId())
+            .orElseThrow(() -> new PropertyNotFoundByIdException(request.propertyId()));
         Listing listing = Listing.builder()
                 .title(request.title())
                 .description(request.description())
@@ -85,7 +90,7 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     @Transactional
-    public void updateProperty(EventType type, Long propertyId, PropertyPayload propertyPayload) {
+    public void updateProperty(EventType type, Long propertyId, PropertyPayload propertyPayload, Region oldRegion) {
         List<Listing> listings = listingRepository.findByPropertyId(propertyId);
         if(listings.isEmpty()){
             log.warn("Объявление с объектом недвижимости с ID {} не найдено", propertyId);
@@ -95,7 +100,7 @@ public class ListingServiceImpl implements ListingService {
             log.info("В объявлении с ID {} изменён объект недвижимости", listing.getId());
             Region region = listing.getProperty().getLocation().getRegion();
             PropertyType propertyType = listing.getProperty().getPropertyType();
-            outboxEventService.save(listing.getId(), region, type, propertyType,null, propertyPayload);
+            outboxEventService.save(listing.getId(), region, type, propertyType,null, propertyPayload, oldRegion);
         }
     }
 
@@ -229,6 +234,6 @@ public class ListingServiceImpl implements ListingService {
         PropertyPayload propertyPayload = propertyMapper.toPropertyEvent(listing.getProperty());
         Region region = listing.getProperty().getLocation().getRegion();
         PropertyType propertyType = listing.getProperty().getPropertyType();
-        outboxEventService.save(listing.getId(), region, type, propertyType, listingPayload, propertyPayload);
+        outboxEventService.save(listing.getId(), region, type, propertyType, listingPayload, propertyPayload, null);
     }
 }

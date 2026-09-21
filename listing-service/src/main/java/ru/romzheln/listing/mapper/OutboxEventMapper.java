@@ -25,7 +25,8 @@ public class OutboxEventMapper {
       EventType eventType,
       PropertyType propertyType,
       ListingPayload listingPayload,
-      PropertyPayload propertyPayload) {
+      PropertyPayload propertyPayload,
+      Region oldRegion) {
     JsonNode listingNode = objectMapper.valueToTree(listingPayload);
     JsonNode propertyNode = objectMapper.valueToTree(propertyPayload);
     return OutboxEvent.builder()
@@ -36,6 +37,7 @@ public class OutboxEventMapper {
         .propertyType(propertyType)
         .listingPayload(listingNode)
         .propertyPayload(propertyNode)
+        .oldRegion(oldRegion)
         .build();
   }
 
@@ -44,6 +46,7 @@ public class OutboxEventMapper {
         .eventId(event.getEventId().toString())
         .aggregateId(event.getAggregateId())
         .region(event.getRegion())
+        .oldRegion(event.getOldRegion())
         .eventType(event.getEventType())
         .propertyType(event.getPropertyType())
         .listingPayload(event.getListingPayload())

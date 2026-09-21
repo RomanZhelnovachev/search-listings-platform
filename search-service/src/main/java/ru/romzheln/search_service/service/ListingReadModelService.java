@@ -15,7 +15,7 @@ void createReadModel(Long listingId, String region, PropertyType type, ListingCr
 
 void updateReadModel(Long listingId, String region, PropertyType type, ListingUpdatedEvent listingEvent, PropertyEvent propertyEvent, Instant time);
 
-void updateProperty(Long listingId, String region, PropertyType type, PropertyEvent event, Instant time);
+void updateProperty(Long listingId, String region, PropertyType type, PropertyEvent event, String oldRegion, Instant time);
 
 void updateDeveloper(Long listingId, String region, PropertyType type, DeveloperEvent event, Instant time);
 
