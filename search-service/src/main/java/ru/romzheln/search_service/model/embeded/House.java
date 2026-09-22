@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.ConstructionStage;
 
 @Embeddable
 @NoArgsConstructor
@@ -24,8 +25,9 @@ public class House {
 
     @Embedded private ResidentialComplex complex;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "construction_stage")
-    private String constructionStage;
+    private ConstructionStage constructionStage;
 
     @ElementCollection
     @CollectionTable(

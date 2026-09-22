@@ -15,7 +15,9 @@ import ru.romzheln.search_service.exception.ReadModelAlreadyExistsException;
 import ru.romzheln.search_service.factory.ReadModelFactory;
 import ru.romzheln.search_service.model.embeded.Listing;
 import ru.romzheln.search_service.model.embeded.ListingKey;
+import ru.romzheln.search_service.model.enums.DealType;
 import ru.romzheln.search_service.model.enums.PropertyType;
+import ru.romzheln.search_service.model.enums.Region;
 import ru.romzheln.search_service.model.read_model.ReadModel;
 import ru.romzheln.search_service.service.ListingReadModelService;
 import ru.romzheln.search_service.strategy.Strategy;
@@ -192,7 +194,8 @@ public class ListingReadModelServiceImpl implements ListingReadModelService {
     }
 
     private ListingKey getListingKey(Long listingId, String region){
-        return new ListingKey(listingId, region);
+        return new ListingKey(listingId,
+                Region.valueOf(region));
     }
 
     private boolean existReadModel(ListingKey key, PropertyType type) {
@@ -207,8 +210,8 @@ public class ListingReadModelServiceImpl implements ListingReadModelService {
         if (event.description() != null && !event.description().equals(listing.getDescription())) {
             listing.setDescription(event.description());
         }
-        if (event.dealType() != null && !event.dealType().equals(listing.getDealType())) {
-            listing.setDealType(event.dealType());
+        if (event.dealType() != null) {
+            listing.setDealType(DealType.valueOf(event.dealType()));
         }
     }
 

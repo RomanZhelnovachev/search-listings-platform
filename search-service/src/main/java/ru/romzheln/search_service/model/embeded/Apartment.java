@@ -2,6 +2,7 @@ package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.ApartmentType;
 
 @Embeddable
 @NoArgsConstructor
@@ -11,8 +12,9 @@ import lombok.*;
 @Builder
 public class Apartment {
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "apartment_type")
-  private String apartmentType;
+  private ApartmentType apartmentType;
 
   @Embedded private CommonPhysicalDetails commonPhysicalDetails;
 

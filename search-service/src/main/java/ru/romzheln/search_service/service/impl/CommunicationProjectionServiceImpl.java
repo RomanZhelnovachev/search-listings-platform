@@ -1,12 +1,12 @@
 package ru.romzheln.search_service.service.impl;
 
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.romzheln.search_service.dto.event.CommunicationEvent;
 import ru.romzheln.search_service.exception.CommunicationProjectionNotFoundException;
+import ru.romzheln.search_service.model.enums.CommunicationType;
 import ru.romzheln.search_service.model.projection.CommunicationProjection;
 import ru.romzheln.search_service.repository.CommunicationProjectionRepository;
 import ru.romzheln.search_service.service.CommunicationProjectionService;
@@ -23,7 +23,7 @@ public class CommunicationProjectionServiceImpl implements CommunicationProjecti
     public CommunicationProjection create(Long id, CommunicationEvent event) {
     CommunicationProjection projection = CommunicationProjection.builder()
             .id(id)
-            .communicationType(event.type())
+            .communicationType(CommunicationType.valueOf(event.type()))
             .build();
     repository.save(projection);
         log.info("Проекции коммуникаций с ID {} успешно сохранена", id);
@@ -35,9 +35,8 @@ public class CommunicationProjectionServiceImpl implements CommunicationProjecti
     public CommunicationProjection update(Long id, CommunicationEvent event) {
         CommunicationProjection projection = getProjection(id);
         boolean changed = false;
-    if (event.type() != null && !Objects.equals(projection.getCommunicationType(),
-            event.type())) {
-      projection.setCommunicationType(event.type());
+    if (event.type() != null) {
+      projection.setCommunicationType(CommunicationType.valueOf(event.type()));
       changed = true;
         }
         if (changed) {

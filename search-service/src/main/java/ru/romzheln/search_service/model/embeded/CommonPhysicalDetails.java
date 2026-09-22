@@ -2,9 +2,12 @@ package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.*;
 
 @Embeddable
 @NoArgsConstructor
@@ -20,14 +23,16 @@ public class CommonPhysicalDetails {
   @Column(name = "ceiling_height")
   private BigDecimal ceilingHeight;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "renovation")
-  private String renovation;
+  private Renovation renovation;
 
   @Column(name = "bathroom")
-  private String bathroom;
+  private Bathroom bathroom;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "material")
-  private String material;
+  private WallMaterial material;
 
   @Column(name = "completion_date")
   private LocalDate completionDate;
@@ -38,21 +43,27 @@ public class CommonPhysicalDetails {
   @Column(name = "floors_number")
   private Integer floorsNumber;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "view")
-  private String view;
+  private WindowView view;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "balcony")
-  private String balcony;
+  private Balcony balcony;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "window_type")
-  private String windowType;
+  private WindowType windowType;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "window_material")
-  private String windowMaterial;
+  private WindowMaterial windowMaterial;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "layout_feature")
-  private String layoutFeature;
+  private LayoutFeature layoutFeature;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "layout_type")
-  private String layoutType;
+  private LayoutType layoutType;
 }

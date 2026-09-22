@@ -2,7 +2,10 @@ package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.Region;
 
 @Embeddable
 @NoArgsConstructor
@@ -12,8 +15,9 @@ import lombok.*;
 @Builder
 public class Location {
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "region", insertable = false, updatable = false)
-  private String region;
+  private Region region;
 
   @Column(name = "populated_area")
   private String populatedArea;

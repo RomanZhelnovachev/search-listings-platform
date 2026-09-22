@@ -56,7 +56,7 @@ public class CommercialStrategy implements Strategy<ListingCommercialReadModel>{
         CommercialEvent commercialEvent = CastUtil.castPropertyEvent(event, CommercialEvent.class);
         propertyUpdater.updateCommercial(model, commercialEvent);
         model.setUpdatedAt(time);
-        if (newRegion != null && !key.getRegion().equals(newRegion)) {
+        if (newRegion != null && !key.getRegion().name().equals(newRegion)) {
             updateRegion(key, newRegion);
         }
     }

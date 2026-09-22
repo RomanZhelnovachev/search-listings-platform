@@ -5,6 +5,7 @@ import ru.romzheln.search_service.dto.event.common.*;
 import ru.romzheln.search_service.dto.event.listing.ListingCreatedEvent;
 import ru.romzheln.search_service.dto.event.property.*;
 import ru.romzheln.search_service.model.embeded.*;
+import ru.romzheln.search_service.model.enums.*;
 
 import java.util.HashSet;
 
@@ -16,7 +17,7 @@ public class EmbeddedFactory {
         ApartmentPhysicalDetailsDto apartmentPhysicalDetailsDto =
                 event.getApartmentPhysicalDetailsDto();
         return Apartment.builder()
-                .apartmentType(event.getApartmentType())
+                .apartmentType(ApartmentType.valueOf(event.getApartmentType()))
                 .commonPhysicalDetails(getCommonPhysicalDetails(commonPhysicalDetailsDto))
                 .apartmentPhysicalDetails(getApartmentPhysicalDetails(apartmentPhysicalDetailsDto))
                 .developer(new Developer(event.getDeveloperId(), event.getDeveloperName()))
@@ -28,9 +29,9 @@ public class EmbeddedFactory {
         return ApartmentPhysicalDetails.builder()
                 .kitchenSquare(dto.kitchenSquare())
                 .floor(dto.floor())
-                .elevator(dto.elevator())
-                .ramp(dto.ramp())
-                .side(dto.side())
+                .elevator(Elevator.valueOf(dto.elevator()))
+                .ramp(Ramp.valueOf(dto.ramp()))
+                .side(Side.valueOf(dto.side()))
                 .build();
     }
 
@@ -38,18 +39,18 @@ public class EmbeddedFactory {
         return CommonPhysicalDetails.builder()
                 .roomsNumber(dto.roomsNumber())
                 .ceilingHeight(dto.ceilingHeight())
-                .renovation(dto.renovation())
-                .bathroom(dto.bathroom())
-                .material(dto.material())
+                .renovation(Renovation.valueOf(dto.renovation()))
+                .bathroom(Bathroom.valueOf(dto.bathroom()))
+                .material(WallMaterial.valueOf(dto.material()))
                 .completionDate(dto.completionDate())
                 .yearBuilt(dto.yearBuilt())
                 .floorsNumber(dto.floorsNumber())
-                .view(dto.view())
-                .balcony(dto.balcony())
-                .windowType(dto.windowType())
-                .windowMaterial(dto.windowMaterial())
-                .layoutFeature(dto.layoutFeature())
-                .layoutType(dto.layoutType())
+                .view(WindowView.valueOf(dto.view()))
+                .balcony(Balcony.valueOf(dto.balcony()))
+                .windowType(WindowType.valueOf(dto.windowType()))
+                .windowMaterial(WindowMaterial.valueOf(dto.windowMaterial()))
+                .layoutFeature(LayoutFeature.valueOf(dto.layoutFeature()))
+                .layoutType(LayoutType.valueOf(dto.layoutType()))
                 .build();
     }
 
@@ -61,7 +62,7 @@ public class EmbeddedFactory {
                 .ownerId(listingEvent.ownerId())
                 .propertyId(listingEvent.propertyId())
                 .property(getProperty(propertyEvent))
-                .dealType(listingEvent.dealType())
+                .dealType(DealType.valueOf(listingEvent.dealType()))
                 .price(listingEvent.price())
                 .mortgageProgramIds(new HashSet<>())
                 .promotionId(null)
@@ -73,7 +74,7 @@ public class EmbeddedFactory {
         return Property.builder()
                 .location(getLocation(location))
                 .square(propertyEvent.getSquare())
-                .own(propertyEvent.getOwn())
+                .own(Own.valueOf(propertyEvent.getOwn()))
                 .firstOwner(propertyEvent.getFirstOwner())
                 .communicationIds(propertyEvent.getCommunicationIds())
                 .build();
@@ -81,7 +82,7 @@ public class EmbeddedFactory {
 
     public Location getLocation(LocationDto location) {
         return Location.builder()
-                .region(location.region())
+                .region(Region.valueOf(location.region()))
                 .populatedArea(location.populatedArea())
                 .street(location.street())
                 .house(location.house())
@@ -112,9 +113,9 @@ public class EmbeddedFactory {
     public CommercialPhysicalDetails getCommercialPhysicalDetails(CommercialPhysicalDetailsDto dto) {
         return CommercialPhysicalDetails.builder()
                 .floor(dto.floor())
-                .line(dto.line())
-                .propertyLocationType(dto.propertyLocationType())
-                .territorialZone(dto.territorialZone())
+                .line(Line.valueOf(dto.line()))
+                .propertyLocationType(PropertyLocationType.valueOf(dto.propertyLocationType()))
+                .territorialZone(TerritorialZone.valueOf(dto.territorialZone()))
                 .separateEntrance(dto.separateEntrance())
                 .ventilation(dto.ventilation())
                 .tenantExists(dto.tenantExists())
@@ -132,7 +133,7 @@ public class EmbeddedFactory {
                 .commonLandDetails(getCommonLandDetails(commonLandDetailsDto))
                 .developer(new Developer(event.getDeveloperId(), event.getDeveloperName()))
                 .complex(new ResidentialComplex(event.getComplexId(), event.getComplexName()))
-                .constructionStage(event.getConstructionStage())
+                .constructionStage(ConstructionStage.valueOf(event.getConstructionStage()))
                 .additionalBuildings(event.getAdditionalBuildings())
                 .landPlotSquare(event.getLandPlotSquare())
                 .build();
@@ -148,6 +149,6 @@ public class EmbeddedFactory {
     }
 
     public ListingKey getListingKey(Long listingId, String region) {
-        return new ListingKey(listingId, region);
+        return new ListingKey(listingId, Region.valueOf(region));
     }
 }
