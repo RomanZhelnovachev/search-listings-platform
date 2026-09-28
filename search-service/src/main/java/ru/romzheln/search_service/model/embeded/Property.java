@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.Own;
 
 @Embeddable
 @NoArgsConstructor
@@ -19,8 +20,9 @@ public class Property {
   @Column(name = "square")
   private BigDecimal square;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "own")
-  private String own;
+  private Own own;
 
   @Column(name = "first_owner")
   private Boolean firstOwner;

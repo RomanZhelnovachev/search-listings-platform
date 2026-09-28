@@ -1,7 +1,8 @@
 package ru.romzheln.search_service.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import ru.romzheln.search_service.model.embeded.ListingKey;
 import ru.romzheln.search_service.model.read_model.ListingCommercialReadModel;
 
-public interface ListingCommercialReadModelRepository extends JpaRepository<ListingCommercialReadModel, ListingKey> {}
+public interface ListingCommercialReadModelRepository extends JpaRepository<ListingCommercialReadModel, ListingKey>, JpaSpecificationExecutor<ListingCommercialReadModel> {}

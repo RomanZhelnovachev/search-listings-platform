@@ -53,7 +53,7 @@ public class HouseStrategy implements Strategy<ListingHouseReadModel> {
     HouseEvent houseEvent = CastUtil.castPropertyEvent(event, HouseEvent.class);
     propertyUpdater.updateHouse(model, houseEvent);
     model.setUpdatedAt(time);
-    if (newRegion != null && !key.getRegion().equals(newRegion)) {
+    if (newRegion != null && !key.getRegion().name().equals(newRegion)) {
       updateRegion(key, newRegion);
     }
   }

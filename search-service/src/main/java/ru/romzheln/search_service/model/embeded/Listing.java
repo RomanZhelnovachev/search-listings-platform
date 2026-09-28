@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.DealType;
 
 @Embeddable
 @NoArgsConstructor
@@ -39,8 +40,9 @@ public class Listing {
 
   @Embedded private Property property;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "deal_type")
-  private String dealType;
+  private DealType dealType;
 
   @Column(name = "price")
   private BigDecimal price;

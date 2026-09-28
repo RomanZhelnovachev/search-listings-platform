@@ -2,7 +2,12 @@ package ru.romzheln.search_service.model.embeded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.Line;
+import ru.romzheln.search_service.model.enums.PropertyLocationType;
+import ru.romzheln.search_service.model.enums.TerritorialZone;
 
 @Embeddable
 @NoArgsConstructor
@@ -15,14 +20,17 @@ public class CommercialPhysicalDetails {
   @Column(name = "floor")
   private Integer floor;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "line")
-  private String line;
+  private Line line;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "property_location_type")
-  private String propertyLocationType;
+  private PropertyLocationType propertyLocationType;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "territorial_zone")
-  private String territorialZone;
+  private TerritorialZone territorialZone;
 
   @Column(name = "separate_entrance")
   private Boolean separateEntrance;

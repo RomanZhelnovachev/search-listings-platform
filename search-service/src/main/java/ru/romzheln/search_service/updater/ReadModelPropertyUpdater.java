@@ -8,6 +8,7 @@ import ru.romzheln.search_service.dto.event.common.CommonLandDetailsDto;
 import ru.romzheln.search_service.dto.event.common.CommonPhysicalDetailsDto;
 import ru.romzheln.search_service.dto.event.property.*;
 import ru.romzheln.search_service.model.embeded.Property;
+import ru.romzheln.search_service.model.enums.ConstructionStage;
 import ru.romzheln.search_service.model.read_model.*;
 
 @Component
@@ -66,7 +67,7 @@ public class ReadModelPropertyUpdater {
         model.getHouse().getDeveloper(), event.getDeveloperId(), event.getDeveloperName());
       commonFieldsUpdater.updateComplex(model.getHouse().getComplex(), event.getComplexId(), event.getComplexName());
       if(event.getConstructionStage() != null){
-          model.getHouse().setConstructionStage(event.getConstructionStage());
+          model.getHouse().setConstructionStage(ConstructionStage.valueOf(event.getConstructionStage()));
       }
       if(event.getAdditionalBuildings() != null && !event.getAdditionalBuildings().isEmpty()){
           model.getHouse().setAdditionalBuildings(event.getAdditionalBuildings());

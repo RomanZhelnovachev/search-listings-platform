@@ -1,10 +1,8 @@
 package ru.romzheln.search_service.model.projection;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import ru.romzheln.search_service.model.enums.CommunicationType;
 
 @Entity
 @Table(name = "communication_projections")
@@ -17,7 +15,8 @@ public class CommunicationProjection {
 
   @Id private Long id;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "communication_type")
-  private String communicationType;
+  private CommunicationType communicationType;
 
 }

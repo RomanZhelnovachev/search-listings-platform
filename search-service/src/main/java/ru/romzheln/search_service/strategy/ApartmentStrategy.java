@@ -55,7 +55,7 @@ public class ApartmentStrategy implements Strategy<ListingApartmentReadModel> {
     ApartmentEvent apartmentEvent = CastUtil.castPropertyEvent(event, ApartmentEvent.class);
     propertyUpdater.updateApartment(model, apartmentEvent);
     model.setUpdatedAt(time);
-    if (newRegion != null && !key.getRegion().equals(newRegion)) {
+    if (newRegion != null && !key.getRegion().name().equals(newRegion)) {
       updateRegion(key, newRegion);
     }
   }

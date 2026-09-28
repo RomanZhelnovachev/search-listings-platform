@@ -60,7 +60,7 @@ public class LandPlotStrategy implements Strategy<ListingLandPlotReadModel>{
         LandPlotEvent landPlotEvent = CastUtil.castPropertyEvent(event, LandPlotEvent.class);
         propertyUpdater.updateLandPlot(model, landPlotEvent);
         model.setUpdatedAt(time);
-        if (newRegion != null && !key.getRegion().equals(newRegion)) {
+        if (newRegion != null && !key.getRegion().name().equals(newRegion)) {
             updateRegion(key, newRegion);
         }
     }
