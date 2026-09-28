@@ -11,7 +11,7 @@ public record ApartmentSearchRequest(
 
         CommonSearchCriteria commonSearchCriteria,
 
-        ApartmentType apartmentType,
+        Set<ApartmentType> apartmentTypes,
 
         CommonPhysicalCriteria commonPhysicalCriteria,
 

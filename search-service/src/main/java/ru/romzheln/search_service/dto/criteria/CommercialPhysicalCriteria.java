@@ -20,6 +20,8 @@ public record CommercialPhysicalCriteria(
 
         Boolean separateEntrance,
 
+        Boolean ventilation,
+
         Boolean tenantExists,
 
         Integer entrancesNumberFrom,

@@ -29,21 +29,37 @@ public final class CommonSpecification {
         inDealType(criteria.dealTypes()),
         greaterThanPrice(criteria.priceFrom()),
         lessThanPrice(criteria.priceTo()),
-            inMortgagePrograms(criteria.mortgageProgramIds()));
+        inMortgagePrograms(criteria.mortgageProgramIds()),
+        inPromotionId(criteria.promotionId()));
   }
 
-    private static <T extends ReadModel> Specification<T> inMortgagePrograms(Set<Long> mortgageProgramsIds) {
-      if(mortgageProgramsIds == null || mortgageProgramsIds.isEmpty()){
+  private static <T extends ReadModel> Specification<T> inPromotionId(Long promotionId) {
+      if (promotionId == null) {
           return null;
       }
-    }
+    return (root, query, criteriaBuilder) ->
+        criteriaBuilder.equal(root.get(LISTING).get("promotionId"), promotionId);
+  }
 
-    private static <T extends ReadModel> Specification<T> lessThanPrice(BigDecimal priceTo) {
+  private static <T extends ReadModel> Specification<T> inMortgagePrograms(
+      Set<Long> mortgageProgramsIds) {
+    if (mortgageProgramsIds == null || mortgageProgramsIds.isEmpty()) {
+      return null;
+    }
+      return (root, query, criteriaBuilder) -> {
+          Join<?, ?> listing = root.join(LISTING, JoinType.INNER);
+          Join<?, Long> mortgagePrograms = listing.join("mortgageProgramIds", JoinType.INNER);
+          query.distinct(true);
+          return mortgagePrograms.in(mortgageProgramsIds);
+      };
+  }
+
+  private static <T extends ReadModel> Specification<T> lessThanPrice(BigDecimal priceTo) {
     if (priceTo == null) {
       return null;
     }
     return (root, query, criteriaBuilder) ->
-        criteriaBuilder.greaterThanOrEqualTo(root.get(LISTING).get("price"), priceTo);
+        criteriaBuilder.lessThanOrEqualTo(root.get(LISTING).get("price"), priceTo);
   }
 
   private static <T extends ReadModel> Specification<T> greaterThanPrice(BigDecimal priceFrom) {
@@ -90,7 +106,7 @@ public final class CommonSpecification {
     if (owns == null || owns.isEmpty()) {
       return null;
     }
-    return (root, query, criteriaBuilder) -> root.get(LISTING).get(PROPERTY).in(owns);
+    return (root, query, criteriaBuilder) -> root.get(LISTING).get(PROPERTY).get("own").in(owns);
   }
 
   private static <T extends ReadModel> Specification<T> hasImage(Boolean hasImage) {
@@ -98,7 +114,9 @@ public final class CommonSpecification {
       return null;
     }
     return (root, query, criteriaBuilder) -> {
-      Join<T, Long> images = root.join("listing.imageIds", JoinType.LEFT);
+        Join<?, ?> listing = root.join(LISTING, JoinType.INNER);
+        Join<?, Long> images = listing.join("imageIds", JoinType.LEFT);
+        query.distinct(true);
       if (hasImage) {
         return criteriaBuilder.isNotNull(images);
       }
