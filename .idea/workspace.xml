@@ -4,17 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Начал работу над спецификациями">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/ApartmentSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/CommercialSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/CommonLandSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/CommonPhysicalSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/HouseSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/LandPlotSpecification.java" afterDir="false" />
+    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Написал спецификации">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/controller/SearchController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/controller/SearchControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/ApartmentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/CommercialResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/HouseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/LandPlotResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/CommonLandDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/CommonPhysicalDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/ListingDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/LocationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/PropertyDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/UnknownRegionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/responseMapper/CommonResponseMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/responseMapper/SearchResponseMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/SearchService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/impl/SearchServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/criteria/CommercialPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/criteria/CommercialPhysicalCriteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/request/ApartmentSearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/request/ApartmentSearchRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/CommonSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/specifocation/CommonSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/Region.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +51,9 @@
       <list>
         <option value="Dockerfile" />
         <option value="Enum" />
-        <option value="Exception" />
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -256,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790419430591</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Написал спецификации">
+      <option name="closed" value="true" />
+      <created>1790607194439</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1790607194439</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -304,6 +322,7 @@
     <MESSAGE value="Реализовал передачу инфы из listing в search" />
     <MESSAGE value="Написал формы поискового запроса для каждого типа недвижимости" />
     <MESSAGE value="Начал работу над спецификациями" />
-    <option name="LAST_COMMIT_MESSAGE" value="Начал работу над спецификациями" />
+    <MESSAGE value="Написал спецификации" />
+    <option name="LAST_COMMIT_MESSAGE" value="Написал спецификации" />
   </component>
 </project>
