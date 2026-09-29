@@ -27,6 +27,7 @@ public class CommonPhysicalDetails {
   @Column(name = "renovation")
   private Renovation renovation;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "bathroom")
   private Bathroom bathroom;
 
