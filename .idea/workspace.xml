@@ -4,27 +4,68 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="Написал спецификации">
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/controller/SearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/controller/SearchControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/ApartmentResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/CommercialResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/HouseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/LandPlotResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/CommonLandDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/CommonPhysicalDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/ListingDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/LocationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/dto/response/commonDto/PropertyDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/exception/UnknownRegionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/responseMapper/CommonResponseMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/mapper/responseMapper/SearchResponseMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/SearchService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/service/impl/SearchServiceImpl.java" afterDir="false" />
+    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/data-generator/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/DataGeneratorApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/ApartmentPhysicalDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/CommercialPhysicalDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/CommonLandDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/CommonPhysicalDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/LocationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/PercentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/GenerateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/AdditionalBuildingResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CommunicationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateApartmentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateCommercialResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateHouseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateLandPlotResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateListingResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreatePropertyResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/DeveloperResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/LandUseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/PurposeResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/ResidentialComplexResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/ApartmentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Balcony.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Bathroom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/CommunicationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/ConstructionStage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/DealType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Elevator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/LayoutFeature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/LayoutType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Line.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Own.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/PropertyLocationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/PropertyType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Ramp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Region.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Renovation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Side.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/TerritorialZone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WallMaterial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WindowMaterial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WindowType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WindowView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/validator/PercentSumValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/validator/ValidPercent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/test/java/ru/romzheln/data_generator/DataGeneratorApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/embeded/CommonPhysicalDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/model/enums/Region.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/test/java/ru/romzheln/listing/service/impl/ListingServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/test/java/ru/romzheln/listing/service/impl/ListingServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +90,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Dockerfile" />
-        <option value="Enum" />
+        <option value="AnnotationType" />
         <option value="Record" />
         <option value="Interface" />
-        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -61,268 +100,57 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;RomanZhelnovachev&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "RomanZhelnovachev"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/RomanZhelnovachev/search-listings-platform.git&quot;,
-    &quot;accountId&quot;: &quot;4452773d-c86b-41d7-a706-503c2467deb1&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/RomanZhelnovachev/search-listings-platform.git",
+    "accountId": "4452773d-c86b-41d7-a706-503c2467deb1"
   }
-}</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="3HriNYYE7y1Gv3MazD8dNVrt63k" />
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="3K8D3jANAXqrm61SS8lrBtJGAGX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/111&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Etagi/search-listings-platform/search-service/src/main/java/ru/romzheln/search_service/dto/event&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/111",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Etagi/search-listings-platform/data-generator/src/main/java/ru/romzheln/data_generator/enums",
+    "settings.editor.selected.configurable": "google-java-format.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Etagi\search-listings-platform\search-service\src\main\java\ru\romzheln\search_service\dto\event" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db\changelog" />
-      <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db" />
-      <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db.changelog\002-partitions" />
-      <recent name="C:\Etagi\search-listings-platform\search-service\src\main\resources\db.changelog\001-read-models" />
+      <recent name="C:\Etagi\search-listings-platform\data-generator\src\main\java\ru\romzheln\data_generator\enums" />
+      <recent name="C:\Etagi\search-listings-platform\data-generator\src\main\java\ru\romzheln\data_generator\dto\response" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ru.romzheln.search_service.model.enums" />
-      <recent name="ru.romzheln.search_service.dto.event" />
+      <recent name="ru.romzheln.data_generator.enums" />
+      <recent name="ru.romzheln.data_generator.dto.response" />
     </key>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="258338e0-956f-4c9b-b988-01f64976da9c" name="Changes" comment="" />
-      <created>1786632548671</created>
+      <changelist id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="" />
+      <created>1790930104490</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1786632548671</updated>
+      <updated>1790930104490</updated>
     </task>
-    <task id="LOCAL-00001" summary="Написал модель для объявления квартир">
-      <option name="closed" value="true" />
-      <created>1786641367315</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1786641367315</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Пишу миграции">
-      <option name="closed" value="true" />
-      <created>1787047054393</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1787047054393</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Написал миграции без партиционирования для рид-моделей">
-      <option name="closed" value="true" />
-      <created>1787669846855</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1787669846855</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Реализовал партиционирование, не индексировал">
-      <option name="closed" value="true" />
-      <created>1787677168647</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1787677168647</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Написал миграции для таблиц связей">
-      <option name="closed" value="true" />
-      <created>1787737218919</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1787737218919</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Пишу инфраструктуру для search">
-      <option name="closed" value="true" />
-      <created>1787992987341</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1787992987341</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Пишу инфраструктуру для search 2">
-      <option name="closed" value="true" />
-      <created>1788164190710</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1788164190710</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Дописал проекции и стэйт">
-      <option name="closed" value="true" />
-      <created>1788190914252</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1788190914252</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Начал писать handler">
-      <option name="closed" value="true" />
-      <created>1788204188228</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1788204188228</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Полностью переделываю">
-      <option name="closed" value="true" />
-      <created>1788437517796</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1788437517796</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Допиши ListingHandler">
-      <option name="closed" value="true" />
-      <created>1788789546270</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1788789546270</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Допиши ListingHandler и подумай вшить region в Message">
-      <option name="closed" value="true" />
-      <created>1788856492854</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1788856492854</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Допиши фабрику рид моделей">
-      <option name="closed" value="true" />
-      <created>1788879804517</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1788879804517</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Доделай методы в сервисе ReadModel">
-      <option name="closed" value="true" />
-      <created>1789401748021</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1789401748021</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Сделай region иммьютбл">
-      <option name="closed" value="true" />
-      <created>1789465328111</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1789465328111</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Реализовал передачу инфы из listing в search">
-      <option name="closed" value="true" />
-      <created>1789999038908</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1789999038908</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Написал формы поискового запроса для каждого типа недвижимости">
-      <option name="closed" value="true" />
-      <created>1790098127175</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1790098127175</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Начал работу над спецификациями">
-      <option name="closed" value="true" />
-      <created>1790419430591</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1790419430591</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Написал спецификации">
-      <option name="closed" value="true" />
-      <created>1790607194439</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1790607194439</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
     <servers />
-  </component>
-  <component name="UnknownFeatures">
-    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
-    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
-    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
-    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
-    <option featureType="dependencySupport" implementationName="executable:kubectl" />
-    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
-    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
-    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
-    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
-    <option featureType="dependencySupport" implementationName="executable:docker" />
-    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
-    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
-    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Написал модель для объявления квартир" />
-    <MESSAGE value="Пишу миграции" />
-    <MESSAGE value="Написал миграции без партиционирования для рид-моделей" />
-    <MESSAGE value="Реализовал партиционирование, не индексировал" />
-    <MESSAGE value="Написал миграции для таблиц связей" />
-    <MESSAGE value="Пишу инфраструктуру для search" />
-    <MESSAGE value="Пишу инфраструктуру для search 2" />
-    <MESSAGE value="Дописал проекции и стэйт" />
-    <MESSAGE value="Начал писать handler" />
-    <MESSAGE value="Полностью переделываю" />
-    <MESSAGE value="Допиши ListingHandler" />
-    <MESSAGE value="Допиши ListingHandler и подумай вшить region в Message" />
-    <MESSAGE value="Допиши фабрику рид моделей" />
-    <MESSAGE value="Доделай методы в сервисе ReadModel" />
-    <MESSAGE value="Сделай region иммьютбл" />
-    <MESSAGE value="Реализовал передачу инфы из listing в search" />
-    <MESSAGE value="Написал формы поискового запроса для каждого типа недвижимости" />
-    <MESSAGE value="Начал работу над спецификациями" />
-    <MESSAGE value="Написал спецификации" />
-    <option name="LAST_COMMIT_MESSAGE" value="Написал спецификации" />
   </component>
 </project>

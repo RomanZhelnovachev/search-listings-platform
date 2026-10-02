@@ -36,6 +36,7 @@
         <module>listing-service</module>
         <module>auth-mock</module>
         <module>search-service</module>
+        <module>data-generator</module>
     </modules>
 
 </project>
