@@ -1,36 +1,123 @@
 package ru.romzheln.data_generator.service;
 
-import org.springframework.stereotype.Service;
-import ru.romzheln.data_generator.dto.request.GenerateRequest;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.romzheln.data_generator.dto.PercentDto;
+import ru.romzheln.data_generator.dto.request.GenerateRequest;
+import ru.romzheln.data_generator.enums.CommunicationType;
+import ru.romzheln.data_generator.enums.LandUse;
+import ru.romzheln.data_generator.exception.AuthorisationException;
+import ru.romzheln.data_generator.exception.UnsupportedPropertyException;
+import ru.romzheln.data_generator.httpClient.AuthClient;
+import ru.romzheln.data_generator.httpClient.ListingClient;
+import ru.romzheln.data_generator.util.ExecutorUtil;
 
 @Service
+@RequiredArgsConstructor
 public class GeneratorServiseImpl implements GeneratorService{
 
-    private static final Integer POOL_SIZE = 10;
+    private final AuthClient authClient;
+    private final ListingClient listingClient;
+    private final ResponseGenerator generator;        
 
+    private static final int POOL_SIZE = 10;
     private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(POOL_SIZE);
-
     private static final int DEVELOPER_PERCENT = 20;
+    private static final int COMPLEX_PERCENT = 30;
+    private static final int ADDITIONAL_BUILDING_PERCENT = 30;
+    private static final String APARTMENT = "apartment";
+    private static final String COMMERCIAL = "commercial";
+    private static final String HOUSE = "house";
+    private static final String LAND_PLOT = "LandPlot";
 
     @Override
-    public boolean generate(GenerateRequest request) {
-        return false;
-    }
-
-    private int getDeveloperCount(int total, int apartmentPercent){
-       int result = ((total * 100 / apartmentPercent) * 100) / DEVELOPER_PERCENT;
-       if(result < 1){
-           return 1;
-    }
-       return result;
-       }
-
-    private void generateDeveloper(int developers){
-        for(int i = 0; i < developers; i++) {
-
+    public void dataGenerate(GenerateRequest request) {
+        String token = authClient.getToken();
+        if(token == null || token.isBlank()){
+            throw new AuthorisationException("Не удалось получить токен");
         }
+        int apartmentCount = getPropertyCount(request.total(), request.percents(), APARTMENT);
+        int commercialCount = getPropertyCount(request.total(), request.percents(), COMMERCIAL);
+        int houseCount = getPropertyCount(request.total(), request.percents(), HOUSE);
+        int landPlotCount = getPropertyCount(request.total(), request.percents(), LAND_PLOT);
+        int developerCount = getDeveloperCount(apartmentCount);
+        int complexCount = getComplexCount(apartmentCount);
+        int additionalBuildingCount = getAdditionalBuildingCount(houseCount);
+        int communicationCount = CommunicationType.values().length;
+        int landUseCount = LandUse.values().length;
+        int purposeCount = getPurposeCount(commercialCount);
+        generateDeveloper(developerCount, token);
+        generateResidentialComplex(complexCount, token);
+        generateAdditionalBuilding(additionalBuildingCount, token);
+        generateCommunication(communicationCount, token);
+        generateLandUse(landUseCount, token);
+        generatePurpose(purposeCount, token);
+        generateApartment(apartmentCount, token, (long) developerCount, (long) complexCount, communicationCount);
+    }
+
+    private int getDeveloperCount(int apartmentCount) {
+        int count = apartmentCount * DEVELOPER_PERCENT / 100;
+        return Math.max(count, 1);
+    }
+
+    private int getComplexCount(int apartmentCount) {
+        int count = apartmentCount * COMPLEX_PERCENT / 100;
+        return Math.max(count, 1);
+    }
+
+    private int getAdditionalBuildingCount(int houseCount) {
+        int count = houseCount * ADDITIONAL_BUILDING_PERCENT / 100;
+        return Math.max(count, 1);
+    }
+
+    private int getPurposeCount(int commercialCount) {
+        int count = commercialCount * COMPLEX_PERCENT / 100;
+        return Math.max(count, 1);
+    }
+
+    private int getPropertyCount(int total, PercentDto dto, String property){
+        Integer propertyPercent;
+        if(dto == null){
+            propertyPercent = 25;
+        } else {
+        switch (property){
+            case APARTMENT -> propertyPercent = dto.apartmentPercent();
+            case COMMERCIAL -> propertyPercent = dto.commercialPercent();
+            case HOUSE -> propertyPercent = dto.housePercent();
+            case LAND_PLOT -> propertyPercent = dto.landPlotPercent();
+            default -> throw new UnsupportedPropertyException("Неподдерживаемый тип объекта недвижимости " + property);
+        }
+    }
+        return propertyPercent == null ? 0 : total * propertyPercent / 100;
+        }
+
+    private void generateDeveloper(int developers, String token){
+        ExecutorUtil.execute(developers, POOL_SIZE, EXECUTOR, () -> listingClient.createDeveloper(generator.getDeveloperResponse(), token));
+    }
+
+    private void generateResidentialComplex(int complexes, String token){
+        ExecutorUtil.execute(complexes, POOL_SIZE, EXECUTOR, ()-> listingClient.createResidentialComplex(generator.getComplexResponse(), token));
+    }
+
+    private void generateAdditionalBuilding(int buildings, String token){
+        ExecutorUtil.execute(buildings, POOL_SIZE, EXECUTOR, ()-> listingClient.createAdditionalBuilding(generator.getAdditionalBuildingResponse(), token));
+    }
+
+    private void generateCommunication(int communications, String token){
+    ExecutorUtil.execute(communications, POOL_SIZE, EXECUTOR, () -> listingClient.createCommunication(generator.getCommunicationResponse(), token));
+    }
+
+    private void generateLandUse(int landUses, String token){
+        ExecutorUtil.execute(landUses, POOL_SIZE, EXECUTOR, () -> listingClient.createLandUse(generator.getLandUseResponse(), token));
+    }
+
+    private void generatePurpose(int purposes, String token){
+        ExecutorUtil.execute(purposes, POOL_SIZE, EXECUTOR, () -> listingClient.createPurpose(generator.getPurposeResponse(), token));
+    }
+
+    private void generateApartment(int apartments, String token, Long maxDeveloperId, Long maxComplexId, int communicationCount){
+        ExecutorUtil.execute(apartments, POOL_SIZE, EXECUTOR, ()-> listingClient.createProperty(generator.getApartmentResponse(maxDeveloperId, maxComplexId, communicationCount), token));
     }
 }

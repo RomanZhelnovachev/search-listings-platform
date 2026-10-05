@@ -4,68 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data-generator/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/DataGeneratorApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/ApartmentPhysicalDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/CommercialPhysicalDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/CommonLandDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/CommonPhysicalDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/LocationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/PercentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/GenerateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/AdditionalBuildingResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CommunicationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateApartmentResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateCommercialResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateHouseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateLandPlotResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreateListingResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreatePropertyResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/DeveloperResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/LandUseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/PurposeResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/ResidentialComplexResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/ApartmentType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Balcony.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Bathroom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/CommunicationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/ConstructionStage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/DealType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Elevator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/LayoutFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/LayoutType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Line.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Own.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/PropertyLocationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/PropertyType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Ramp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Region.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Renovation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Side.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/TerritorialZone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WallMaterial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WindowMaterial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WindowType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/WindowView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/validator/PercentSumValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/validator/ValidPercent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/test/java/ru/romzheln/data_generator/DataGeneratorApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/java/ru/romzheln/search_service/config/SecurityConfig.java" afterDir="false" />
+    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Пишу тесты, реализую тестовый генератор данных">
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/TokenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/TokenResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/AdditionalBuilding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/LandUse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Purpose.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/exception/AuthorisationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/exception/UnsupportedPropertyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/AuthClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/ListingClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/ResponseGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/util/ExecutorUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/test/java/ru/romzheln/listing/service/impl/ListingServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/test/java/ru/romzheln/listing/service/impl/ListingServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreatePropertyResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/response/CreatePropertyResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,31 +47,33 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
-        <option value="Record" />
         <option value="Interface" />
+        <option value="Record" />
+        <option value="Exception" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "RomanZhelnovachev"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RomanZhelnovachev&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/RomanZhelnovachev/search-listings-platform.git",
-    "accountId": "4452773d-c86b-41d7-a706-503c2467deb1"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RomanZhelnovachev/search-listings-platform.git&quot;,
+    &quot;accountId&quot;: &quot;4452773d-c86b-41d7-a706-503c2467deb1&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="3K8D3jANAXqrm61SS8lrBtJGAGX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -125,7 +83,9 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "git-widget-placeholder": "feature/111",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -151,6 +111,19 @@
       <option name="presentableId" value="Default" />
       <updated>1790930104490</updated>
     </task>
+    <task id="LOCAL-00001" summary="Пишу тесты, реализую тестовый генератор данных">
+      <option name="closed" value="true" />
+      <created>1790935571954</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1790935571954</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Пишу тесты, реализую тестовый генератор данных" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пишу тесты, реализую тестовый генератор данных" />
   </component>
 </project>

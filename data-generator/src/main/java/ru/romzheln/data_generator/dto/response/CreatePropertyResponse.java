@@ -7,12 +7,14 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.util.Set;
 import lombok.Getter;
+import lombok.Setter;
 import ru.romzheln.data_generator.dto.LocationDto;
 import ru.romzheln.data_generator.enums.Own;
 import ru.romzheln.data_generator.enums.PropertyType;
 
 
 @Getter
+@Setter
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
