@@ -8,6 +8,7 @@ import ru.romzheln.data_generator.dto.PercentDto;
 import ru.romzheln.data_generator.dto.request.GenerateRequest;
 import ru.romzheln.data_generator.enums.CommunicationType;
 import ru.romzheln.data_generator.enums.LandUse;
+import ru.romzheln.data_generator.enums.Purpose;
 import ru.romzheln.data_generator.exception.AuthorisationException;
 import ru.romzheln.data_generator.exception.UnsupportedPropertyException;
 import ru.romzheln.data_generator.httpClient.AuthClient;
@@ -47,19 +48,19 @@ public class GeneratorServiseImpl implements GeneratorService{
         int additionalBuildingCount = getAdditionalBuildingCount(houseCount);
         int communicationCount = CommunicationType.values().length;
         int landUseCount = LandUse.values().length;
-        int purposeCount = getPurposeCount(commercialCount);
+        int purposeCount = Purpose.values().length;
 
         generateDeveloper(developerCount, token);
         generateResidentialComplex(complexCount, token);
         generateAdditionalBuilding(additionalBuildingCount, token);
-        generateCommunication(communicationCount, token);
-        generateLandUse(landUseCount, token);
-        generatePurpose(purposeCount, token);
+        generateCommunication(token);
+        generateLandUse(token);
+        generatePurpose(token);
         generateApartment(apartmentCount, token, (long) developerCount, (long) complexCount, communicationCount);
         generateCommercial(commercialCount, token, purposeCount, communicationCount);
         generateHouse(houseCount, token, (long) landUseCount,(long) developerCount, (long) complexCount, additionalBuildingCount, communicationCount);
         generateLandPlot(landPlotCount, token, (long) landUseCount, additionalBuildingCount, communicationCount);
-        generateListing(request.total(), token);
+        generateListing(apartmentCount, commercialCount, houseCount, landPlotCount, token);
     }
 
     private int getDeveloperCount(int apartmentCount) {
@@ -74,11 +75,6 @@ public class GeneratorServiseImpl implements GeneratorService{
 
     private int getAdditionalBuildingCount(int houseCount) {
         int count = houseCount * ADDITIONAL_BUILDING_PERCENT / 100;
-        return Math.max(count, 1);
-    }
-
-    private int getPurposeCount(int commercialCount) {
-        int count = commercialCount * COMPLEX_PERCENT / 100;
         return Math.max(count, 1);
     }
 
@@ -110,16 +106,22 @@ public class GeneratorServiseImpl implements GeneratorService{
         ExecutorUtil.execute(buildings, POOL_SIZE, EXECUTOR, ()-> listingClient.createAdditionalBuilding(generator.getAdditionalBuildingResponse(), token));
     }
 
-    private void generateCommunication(int communications, String token){
-    ExecutorUtil.execute(communications, POOL_SIZE, EXECUTOR, () -> listingClient.createCommunication(generator.getCommunicationResponse(), token));
+    private void generateCommunication(String token){
+    for(CommunicationType type : CommunicationType.values()){
+        listingClient.createCommunication(generator.getCommunicationResponse(type), token);
+    }
     }
 
-    private void generateLandUse(int landUses, String token){
-        ExecutorUtil.execute(landUses, POOL_SIZE, EXECUTOR, () -> listingClient.createLandUse(generator.getLandUseResponse(), token));
+    private void generateLandUse(String token) {
+        for (LandUse landUse : LandUse.values()) {
+            listingClient.createLandUse(generator.getLandUseResponse(landUse.name()), token);
+        }
     }
 
-    private void generatePurpose(int purposes, String token){
-        ExecutorUtil.execute(purposes, POOL_SIZE, EXECUTOR, () -> listingClient.createPurpose(generator.getPurposeResponse(), token));
+    private void generatePurpose(String token){
+        for(Purpose purpose : Purpose.values()){
+            listingClient.createPurpose(generator.getPurposeResponse(purpose.name()), token);
+        }
     }
 
     private void generateApartment(int apartments, String token, Long maxDeveloperId, Long maxComplexId, int communicationCount){
@@ -138,7 +140,16 @@ public class GeneratorServiseImpl implements GeneratorService{
         ExecutorUtil.execute(landPlots, POOL_SIZE, EXECUTOR, ()-> listingClient.createProperty(generator.getLandPlotResponse(maxLandUseId, additionalBuildingCount, communicationCount), token));
     }
 
-    private void generateListing(int total, String token){
-        ExecutorUtil.execute(total, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(generator.getListingResponse((long) total), token));
+    private void generateListing(long apartmentCount,
+                                 long commercialCount,
+                                 long houseCount,
+                                 long landPlotCount, String token){
+        ExecutorUtil.execute((int) apartmentCount, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(generator.getListingResponse(1L, apartmentCount), token));
+
+        ExecutorUtil.execute((int) commercialCount, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(generator.getListingResponse(apartmentCount +1, apartmentCount + commercialCount), token));
+
+        ExecutorUtil.execute((int) houseCount, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(generator.getListingResponse(apartmentCount + commercialCount + 1, apartmentCount + commercialCount + houseCount), token));
+
+        ExecutorUtil.execute((int) landPlotCount, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(generator.getListingResponse(apartmentCount + commercialCount + houseCount + 1, apartmentCount + commercialCount + houseCount + landPlotCount), token));
     }
 }

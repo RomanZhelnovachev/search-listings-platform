@@ -31,16 +31,16 @@ public class ResponseGenerator {
         return new AdditionalBuildingResponse(name, "Просто " + name);
     }
 
-    public CommunicationResponse getCommunicationResponse(){
-        return new CommunicationResponse(generateCommunicationType(), "Описание отсутствует");
+    public CommunicationResponse getCommunicationResponse(CommunicationType type){
+        return new CommunicationResponse(type, "Описание отсутствует");
     }
 
-    public LandUseResponse getLandUseResponse(){
-    return new LandUseResponse(generateLandUseName(), "-");
+    public LandUseResponse getLandUseResponse(String value){
+    return new LandUseResponse(value, "-");
     }
 
-    public PurposeResponse getPurposeResponse(){
-    return new PurposeResponse(generatePurposeName(), "Какое-то описание");
+    public PurposeResponse getPurposeResponse(String name){
+    return new PurposeResponse(name, "Какое-то описание");
     }
 
     public CreateApartmentResponse getApartmentResponse(Long maxDeveloperId, Long maxComplexId, int communicationCount){
@@ -72,29 +72,15 @@ public class ResponseGenerator {
         return landPlot;
     }
 
-    public CreateListingResponse getListingResponse(Long maxPropertyId){
+    public CreateListingResponse getListingResponse(Long minPropertyId, Long maxPropertyId){
         String title = faker.commerce().productName() + " - " +
                 faker.options().option("Продажа", "Срочная продажа", "Новое");
-        return new CreateListingResponse(title, "Лучшее предложение " + title, faker.number().numberBetween(1L, 1000), faker.number().numberBetween(1, maxPropertyId), faker.options().option(DealType.class), BigDecimal.valueOf(faker.number().randomDouble(2, 500000, 35000000)));
+        return new CreateListingResponse(title, "Лучшее предложение " + title, faker.number().numberBetween(1L, 1000), faker.number().numberBetween(minPropertyId, maxPropertyId), faker.options().option(DealType.class), BigDecimal.valueOf(faker.number().randomDouble(2, 500000, 35000000)));
     }
 
     private String generateAdditionalBuildingName() {
         var building = faker.options().option(AdditionalBuilding.class);
         return building.name();
-    }
-
-    private CommunicationType generateCommunicationType(){
-        return faker.options().option(CommunicationType.class);
-    }
-
-    private String generateLandUseName() {
-        var landUse = faker.options().option(LandUse.class);
-        return landUse.name();
-    }
-
-    private String generatePurposeName() {
-        var purpose = faker.options().option(Purpose.class);
-        return purpose.name();
     }
 
     private CommonPhysicalDetailsDto generateCommonPhysicalDetails(){
