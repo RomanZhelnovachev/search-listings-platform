@@ -52,7 +52,7 @@ public class OutboxEvent {
     private EventType eventType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "property_type", nullable = false)
+    @Column(name = "property_type")
     private PropertyType propertyType;
 
     @JdbcTypeCode(SqlTypes.JSON)

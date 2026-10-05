@@ -91,6 +91,14 @@ services:
         condition: service_healthy
     command: [ "java", "-jar", "/app/app.jar" ]
 
+  data-generator:
+    build:
+      context: .
+      dockerfile: data-generator/Dockerfile
+    ports:
+      - "8083:8080"
+    command: [ "java", "-jar", "/app/app.jar" ]
+
 volumes:
   pgdata:
   search_pgdata:
