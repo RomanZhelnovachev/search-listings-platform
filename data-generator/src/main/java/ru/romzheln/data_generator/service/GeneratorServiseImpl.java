@@ -48,6 +48,7 @@ public class GeneratorServiseImpl implements GeneratorService{
         int communicationCount = CommunicationType.values().length;
         int landUseCount = LandUse.values().length;
         int purposeCount = getPurposeCount(commercialCount);
+
         generateDeveloper(developerCount, token);
         generateResidentialComplex(complexCount, token);
         generateAdditionalBuilding(additionalBuildingCount, token);
@@ -55,6 +56,10 @@ public class GeneratorServiseImpl implements GeneratorService{
         generateLandUse(landUseCount, token);
         generatePurpose(purposeCount, token);
         generateApartment(apartmentCount, token, (long) developerCount, (long) complexCount, communicationCount);
+        generateCommercial(commercialCount, token, purposeCount, communicationCount);
+        generateHouse(houseCount, token, (long) landUseCount,(long) developerCount, (long) complexCount, additionalBuildingCount, communicationCount);
+        generateLandPlot(landPlotCount, token, (long) landUseCount, additionalBuildingCount, communicationCount);
+        generateListing(request.total(), token);
     }
 
     private int getDeveloperCount(int apartmentCount) {
@@ -119,5 +124,21 @@ public class GeneratorServiseImpl implements GeneratorService{
 
     private void generateApartment(int apartments, String token, Long maxDeveloperId, Long maxComplexId, int communicationCount){
         ExecutorUtil.execute(apartments, POOL_SIZE, EXECUTOR, ()-> listingClient.createProperty(generator.getApartmentResponse(maxDeveloperId, maxComplexId, communicationCount), token));
+    }
+
+    private void generateCommercial(int commercials, String token, int purposeCount, int communicationCount){
+        ExecutorUtil.execute(commercials, POOL_SIZE, EXECUTOR, ()-> listingClient.createProperty(generator.getCommercialResponse(purposeCount, communicationCount), token));
+    }
+
+    private void generateHouse(int houses, String token, Long maxLandUseId, Long maxDeveloperId, Long maxComplexId, int additionalBuildingCount, int communicationCount){
+        ExecutorUtil.execute(houses, POOL_SIZE, EXECUTOR, ()-> listingClient.createProperty(generator.getHouseResponse(maxLandUseId, maxDeveloperId, maxComplexId, additionalBuildingCount, communicationCount), token));
+    }
+
+    private void generateLandPlot(int landPlots, String token, Long maxLandUseId, int additionalBuildingCount, int communicationCount){
+        ExecutorUtil.execute(landPlots, POOL_SIZE, EXECUTOR, ()-> listingClient.createProperty(generator.getLandPlotResponse(maxLandUseId, additionalBuildingCount, communicationCount), token));
+    }
+
+    private void generateListing(int total, String token){
+        ExecutorUtil.execute(total, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(generator.getListingResponse((long) total), token));
     }
 }

@@ -19,7 +19,7 @@ FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-COPY --from=build /app/listing-service/target/listing-service-1.0.0-SNAPSHOT.jar app.jar
+COPY --from=build /app/data-generator/target/data-generator-1.0.0-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 

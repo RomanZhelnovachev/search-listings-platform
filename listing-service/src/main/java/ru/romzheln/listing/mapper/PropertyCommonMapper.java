@@ -77,7 +77,6 @@ public class PropertyCommonMapper {
     public CommonLandDetailsDto buildCommonLandDetailsDto(CommonLandDetails details){
         return CommonLandDetailsDto.builder()
                 .landUse(details.getLandUse().getId())
-                .landUseName(details.getLandUse().getName())
                 .road(details.getRoad())
                 .fencing(details.getFencing())
                 .build();

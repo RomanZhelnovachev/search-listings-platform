@@ -15,10 +15,10 @@ public class PercentSumValidator implements ConstraintValidator<ValidPercent, Ge
             return true;
         }
         int sum = Stream.of(
-                        request.apartmentPercent(),
-                        request.commercialPercent(),
-                        request.housePercent(),
-                        request.landPlotPercent()
+                        request.percents().apartmentPercent(),
+                        request.percents().commercialPercent(),
+                        request.percents().housePercent(),
+                        request.percents().landPlotPercent()
                 )
                 .filter(Objects::nonNull)
                 .mapToInt(Integer::intValue)

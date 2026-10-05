@@ -19,6 +19,7 @@ public class ListingClient {
     private static final String LAND_USE_URI = "/api/v1/land_uses";
     private static final String PURPOSE_URI = "/api/v1/properties/purposes";
     private static final String PROPERTY_URI = "/api/v1/properties";
+    private static final String LISTING_URI = "/api/v1/listings";
 
     public ListingClient() {
         this.restClient = RestClient.builder()
@@ -83,6 +84,15 @@ public class ListingClient {
     public void createProperty(CreatePropertyResponse response, String token){
         restClient.post()
                 .uri(PROPERTY_URI)
+                .header(HttpHeaders.AUTHORIZATION, BEARER + token)
+                .body(response)
+                .retrieve()
+                .toBodilessEntity();
+    }
+
+    public void createListing(CreateListingResponse response, String token){
+        restClient.post()
+                .uri(LISTING_URI)
                 .header(HttpHeaders.AUTHORIZATION, BEARER + token)
                 .body(response)
                 .retrieve()

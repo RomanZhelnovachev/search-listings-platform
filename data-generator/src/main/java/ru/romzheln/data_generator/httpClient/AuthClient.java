@@ -4,17 +4,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import ru.romzheln.data_generator.dto.request.TokenRequest;
 import ru.romzheln.data_generator.dto.response.TokenResponse;
+import ru.romzheln.data_generator.enums.Role;
 
 @Component
 public class AuthClient {
 
     private final RestClient restClient;
     private static final String NAME = "Jone";
-    private static final String ROLE = "ROLE_ADMIN";
+    private static final Role ROLE = Role.ROLE_ADMIN;
+    private static final String BASE_URL = "http://auth-mock:8080";
 
     public AuthClient() {
         this.restClient = RestClient.builder()
-                .baseUrl("http://auth-mock:8080")
+                .baseUrl(BASE_URL)
                 .build();
     }
 
@@ -25,6 +27,6 @@ public class AuthClient {
                 .body(request)
                 .retrieve()
                 .body(TokenResponse.class);
-        return response.token();
+        return response.accessToken();
     }
 }

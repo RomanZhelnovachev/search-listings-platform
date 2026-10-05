@@ -2,5 +2,9 @@ package ru.romzheln.data_generator.dto.response;
 
 public record TokenResponse(
 
-        String token
+        String accessToken,
+
+        String tokenType,
+
+        Long expiresIn
 ) {}

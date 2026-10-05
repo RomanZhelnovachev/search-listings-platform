@@ -36,9 +36,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="property_type" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="property_type" type="VARCHAR(50)"/>
 
             <column name="listing_payload" type="JSONB"/>
 

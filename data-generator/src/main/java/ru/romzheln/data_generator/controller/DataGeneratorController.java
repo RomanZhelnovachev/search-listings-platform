@@ -10,5 +10,5 @@ import ru.romzheln.data_generator.dto.request.GenerateRequest;
 public interface DataGeneratorController {
 
     @PostMapping("/generate")
-    boolean generate(@Valid @RequestBody GenerateRequest request);
+    void generate(@Valid @RequestBody GenerateRequest request);
 }

@@ -8,9 +8,7 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;
 import org.springframework.stereotype.Component;
-import ru.romzheln.data_generator.dto.ApartmentPhysicalDetailsDto;
-import ru.romzheln.data_generator.dto.CommonPhysicalDetailsDto;
-import ru.romzheln.data_generator.dto.LocationDto;
+import ru.romzheln.data_generator.dto.*;
 import ru.romzheln.data_generator.dto.response.*;
 import ru.romzheln.data_generator.enums.*;
 
@@ -51,6 +49,33 @@ public class ResponseGenerator {
         var apartment = new CreateApartmentResponse(apartmentType, commonPhysicalDetails, generateApartmentPhysicalDetails(commonPhysicalDetails.floorsNumber()), faker.number().numberBetween(1, maxDeveloperId), faker.number().numberBetween(1, maxComplexId));
         setGeneralField(apartment, PropertyType.APARTMENT, commonPhysicalDetails.floorsNumber(),communicationCount);
         return apartment;
+    }
+
+    public CreateCommercialResponse getCommercialResponse(int purposeCount, int communicationCount){
+        var commonPhysicalDetails = generateCommonPhysicalDetails();
+        var commercial = new CreateCommercialResponse(commonPhysicalDetails, generateCommercialPhysicalDetails(), generateSetLong(purposeCount));
+        setGeneralField(commercial, PropertyType.COMMERCIAL, commonPhysicalDetails.floorsNumber(), communicationCount);
+        return commercial;
+    }
+
+    public CreateHouseResponse getHouseResponse(Long maxLandUseId, Long maxDeveloperId, Long maxComplexId, int additionalBuildingCount, int communicationCount){
+        var commonPhysicalDetails = generateCommonPhysicalDetails();
+        var house = new CreateHouseResponse(commonPhysicalDetails, generateCommonLandDetails(maxLandUseId), faker.number().numberBetween(1, maxDeveloperId), faker.number().numberBetween(1, maxComplexId), faker.options().option(ConstructionStage.class), generateSetLong(additionalBuildingCount),
+                BigDecimal.valueOf(faker.number().randomDouble(2, 0, 300)));
+        setGeneralField(house, PropertyType.HOUSE, commonPhysicalDetails.floorsNumber(), communicationCount);
+        return house;
+    }
+
+    public CreateLandPlotResponse getLandPlotResponse(Long maxLandUseId, int additionalBuildingCount, int communicationCount){
+        var landPlot = new CreateLandPlotResponse(generateCommonLandDetails(maxLandUseId), generateSetLong(additionalBuildingCount));
+        setGeneralField(landPlot, PropertyType.LAND_PLOT, 1, communicationCount);
+        return landPlot;
+    }
+
+    public CreateListingResponse getListingResponse(Long maxPropertyId){
+        String title = faker.commerce().productName() + " - " +
+                faker.options().option("Продажа", "Срочная продажа", "Новое");
+        return new CreateListingResponse(title, "Лучшее предложение " + title, faker.number().numberBetween(1L, 1000), faker.number().numberBetween(1, maxPropertyId), faker.options().option(DealType.class), BigDecimal.valueOf(faker.number().randomDouble(2, 500000, 35000000)));
     }
 
     private String generateAdditionalBuildingName() {
@@ -102,13 +127,28 @@ public class ResponseGenerator {
                 .build();
     }
 
+    private CommercialPhysicalDetailsDto generateCommercialPhysicalDetails(){
+        return CommercialPhysicalDetailsDto.builder()
+                .floor(faker.number().numberBetween(0, 20))
+                .line(faker.options().option(Line.class))
+                .propertyLocationType(faker.options().option(PropertyLocationType.class))
+                .territorialZone(faker.options().option(TerritorialZone.class))
+                .separateEntrance(faker.bool().bool())
+                .ventilation(faker.bool().bool())
+                .tenantExists(faker.bool().bool())
+                .entrancesNumber(faker.number().numberBetween(1, 5))
+                .electricalPowerKw(faker.number().numberBetween(2, 20))
+                .railwayDeadEnd(faker.bool().bool())
+                .build();
+    }
+
     private void setGeneralField(CreatePropertyResponse response, PropertyType type, int floors, int communicationCount){
         response.setPropertyType(type);
         response.setLocation(generateLocation(floors));
         response.setSquare(BigDecimal.valueOf(faker.number().randomDouble(2, 19, 120)));
         response.setOwn(faker.options().option(Own.class));
         response.setFirstOwner(faker.bool().bool());
-        response.setCommunicationIds(generateSetLong(communicationCount, (long)communicationCount));
+        response.setCommunicationIds(generateSetLong(communicationCount));
     }
 
     private LocationDto generateLocation(int floors){
@@ -122,13 +162,21 @@ public class ResponseGenerator {
                 .build();
     }
 
-    private Set<Long> generateSetLong(int maxCount, Long maxValue){
+    private Set<Long> generateSetLong(int maxCount){
         Set<Long> result = new HashSet<>();
         int count = faker.number().numberBetween(1, maxCount);
         for(int i = 0; i < count; i++) {
-            Long id = faker.number().numberBetween(1, maxValue);
+            Long id = faker.number().numberBetween(1, (long) maxCount);
             result.add(id);
         }
         return result;
+    }
+
+    private CommonLandDetailsDto generateCommonLandDetails(Long maxLandUseId){
+        return CommonLandDetailsDto.builder()
+                .landUse(faker.number().numberBetween(1, maxLandUseId))
+                .road(faker.options().option(Road.class).name())
+                .fencing(faker.options().option(Fencing.class).name())
+                .build();
     }
 }
