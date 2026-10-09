@@ -5,9 +5,10 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,13 +16,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.romzheln.listing.dto.common.LocationDto;
 import ru.romzheln.listing.dto.event.listing.ListingCreatedEvent;
 import ru.romzheln.listing.dto.event.listing.ListingUpdatedEvent;
+import ru.romzheln.listing.dto.event.listing.MortgageProgramsEvent;
+import ru.romzheln.listing.dto.event.listing.PromotionAddedEvent;
 import ru.romzheln.listing.dto.event.property.ApartmentEvent;
 import ru.romzheln.listing.dto.event.property.PropertyEvent;
-import ru.romzheln.listing.dto.request.listing.CreateListingRequest;
-import ru.romzheln.listing.dto.request.listing.UpdateListingRequest;
+import ru.romzheln.listing.dto.request.listing.*;
 import ru.romzheln.listing.dto.response.ListingResponse;
+import ru.romzheln.listing.exception.badRequest.ChangeListingException;
+import ru.romzheln.listing.exception.badRequest.PromotionAlreadyDisabled;
 import ru.romzheln.listing.exception.badRequest.UpdateListingException;
 import ru.romzheln.listing.exception.notFound.ListingNotFoundByIdException;
 import ru.romzheln.listing.exception.notFound.PropertyNotFoundByIdException;
@@ -61,252 +66,541 @@ class ListingServiceImplTest {
   private static final DealType DEAL_TYPE = DealType.SELL;
   private static final BigDecimal PRICE = BigDecimal.valueOf(1000000);
   private static final Region REGION = Region.КРАСНОДАРСКИЙ_КРАЙ;
+  private static final Long PROMOTION_ID = 4L;
+  private static final Set<Long> IDS = Set.of(1L, 2L, 3L);
   private static final CreateListingRequest CREATE_REQUEST =
       new CreateListingRequest(TITLE, DESCRIPTION, OWNER_ID, PROPERTY_ID, DEAL_TYPE, PRICE);
-  private static final ListingCreatedEvent CREATED_EVENT = new ListingCreatedEvent(TITLE, DESCRIPTION, OWNER_ID, PROPERTY_ID, DEAL_TYPE, PRICE);
+  private static final ListingCreatedEvent CREATED_EVENT =
+      new ListingCreatedEvent(TITLE, DESCRIPTION, OWNER_ID, PROPERTY_ID, DEAL_TYPE, PRICE);
   private static final PropertyEvent PROPERTY_EVENT = ApartmentEvent.builder().build();
 
-  private static final ListingResponse RESPONSE = new ListingResponse(LISTING_ID, TITLE, DESCRIPTION, ListingStatus.CREATED, OWNER_ID, PROPERTY_ID, DEAL_TYPE, PRICE);
+  private static final ListingResponse RESPONSE =
+      new ListingResponse(
+          LISTING_ID,
+          TITLE,
+          DESCRIPTION,
+          ListingStatus.CREATED,
+          OWNER_ID,
+          PROPERTY_ID,
+          DEAL_TYPE,
+          PRICE);
 
   @BeforeEach
-  void createData(){
-      property = Property.builder()
-              .id(PROPERTY_ID)
-              .location(new Location(REGION, null, null, null, null, null))
-              .propertyType(PropertyType.APARTMENT)
-              .build();
+  void createData() {
+    property =
+        Property.builder()
+            .id(PROPERTY_ID)
+            .location(new Location(REGION, null, null, null, null, null))
+            .propertyType(PropertyType.APARTMENT)
+            .build();
 
-      listing = Listing.builder()
-              .id(LISTING_ID)
-              .title(TITLE)
-              .description(DESCRIPTION)
-              .status(ListingStatus.CREATED)
-              .ownerId(OWNER_ID)
-              .property(property)
-              .dealType(DEAL_TYPE)
-              .price(PRICE)
-              .build();
-
+    listing =
+        Listing.builder()
+            .id(LISTING_ID)
+            .title(TITLE)
+            .description(DESCRIPTION)
+            .status(ListingStatus.CREATED)
+            .ownerId(OWNER_ID)
+            .property(property)
+            .dealType(DEAL_TYPE)
+            .price(PRICE)
+            .promotionId(PROMOTION_ID)
+            .mortgageProgramIds(new HashSet<>(IDS))
+            .build();
   }
 
   @Test
   @DisplayName("Создание объявления с существующим объектом недвижимости")
   void shouldCreateListingWhenPropertyExists() {
 
-      when(propertyRepository.findById(PROPERTY_ID)).thenReturn(Optional.of(property));
+    when(propertyRepository.findById(PROPERTY_ID)).thenReturn(Optional.of(property));
 
-      when(listingRepository.save(any(Listing.class))).thenReturn(listing);
+    when(listingRepository.save(any(Listing.class))).thenReturn(listing);
 
-      when(listingMapper.toListingCreatedEvent(listing)).thenReturn(CREATED_EVENT);
+    when(listingMapper.toListingCreatedEvent(listing)).thenReturn(CREATED_EVENT);
 
-      when(propertyMapper.toPropertyEvent(property)).thenReturn(PROPERTY_EVENT);
+    when(propertyMapper.toPropertyEvent(property)).thenReturn(PROPERTY_EVENT);
 
-      when(listingMapper.toResponse(listing)).thenReturn(RESPONSE);
+    when(listingMapper.toResponse(listing)).thenReturn(RESPONSE);
 
-      var result = listingService.createListing(CREATE_REQUEST);
+    var result = listingService.createListing(CREATE_REQUEST);
 
-      assertEquals(RESPONSE, result);
+    assertEquals(RESPONSE, result);
 
-      verify(listingRepository).save(argThat(listing -> listing.getTitle().equals(TITLE) && listing.getDescription().equals(DESCRIPTION) && listing.getOwnerId().equals(OWNER_ID) && listing.getDealType().equals(DEAL_TYPE) && listing.getPrice().equals(PRICE) && listing.getStatus().equals(ListingStatus.CREATED) && listing.getProperty().equals(property)));
+    verify(listingRepository)
+        .save(
+            argThat(
+                listing ->
+                    listing.getTitle().equals(TITLE)
+                        && listing.getDescription().equals(DESCRIPTION)
+                        && listing.getOwnerId().equals(OWNER_ID)
+                        && listing.getDealType().equals(DEAL_TYPE)
+                        && listing.getPrice().equals(PRICE)
+                        && listing.getStatus().equals(ListingStatus.CREATED)
+                        && listing.getProperty().equals(property)));
 
-      verify(listingMapper).toListingCreatedEvent(listing);
+    verify(listingMapper).toListingCreatedEvent(listing);
 
-      verify(propertyMapper).toPropertyEvent(property);
+    verify(propertyMapper).toPropertyEvent(property);
 
-      verify(outboxEventService).save(eq(listing.getId()), eq(REGION), eq(EventType.CREATED), eq(PropertyType.APARTMENT), eq(CREATED_EVENT), eq(PROPERTY_EVENT), eq(null));
+    verify(outboxEventService)
+        .save(
+            eq(listing.getId()),
+            eq(REGION),
+            eq(EventType.CREATED),
+            eq(PropertyType.APARTMENT),
+            eq(CREATED_EVENT),
+            eq(PROPERTY_EVENT),
+            eq(null));
   }
 
-    @Test
-    @DisplayName("При создании объявления не найден объект недвижимости")
-    void shouldThrowExceptionWhenPropertyDoesNotExist() {
+  @Test
+  @DisplayName("При создании объявления не найден объект недвижимости")
+  void shouldThrowExceptionWhenPropertyDoesNotExist() {
 
-      when(propertyRepository.findById(PROPERTY_ID)).thenReturn(Optional.empty());
+    when(propertyRepository.findById(PROPERTY_ID)).thenReturn(Optional.empty());
 
-      var exception = assertThrows(PropertyNotFoundByIdException.class, () -> listingService.createListing(CREATE_REQUEST));
+    var exception =
+        assertThrows(
+            PropertyNotFoundByIdException.class,
+            () -> listingService.createListing(CREATE_REQUEST));
 
-      assertEquals("Объект недвижимости с ID 2 не найден", exception.getMessage());
+    assertEquals("Объект недвижимости с ID 2 не найден", exception.getMessage());
 
-        verify(listingRepository, never()).save(any());
+    verify(listingRepository, never()).save(any());
 
-        verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
-    }
+    verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
+  }
 
-    @Test
-    @DisplayName("Обновление заголовка объявления")
-    void shouldUpdateOnlyTitle() {
+  @Test
+  @DisplayName("Обновление заголовка объявления")
+  void shouldUpdateOnlyTitle() {
 
-        UpdateListingRequest request = new UpdateListingRequest("NewTitle", null, null);
+    UpdateListingRequest request = new UpdateListingRequest("NewTitle", null, null);
 
-        ListingResponse response = new ListingResponse(listing.getId(), request.title(), listing.getDescription(), listing.getStatus(), listing.getOwnerId(), listing.getProperty().getId(), listing.getDealType(), listing.getPrice());
+    ListingResponse response =
+        new ListingResponse(
+            listing.getId(),
+            request.title(),
+            listing.getDescription(),
+            listing.getStatus(),
+            listing.getOwnerId(),
+            listing.getProperty().getId(),
+            listing.getDealType(),
+            listing.getPrice());
 
-        ListingUpdatedEvent event = new ListingUpdatedEvent(request.title(), listing.getDescription(), listing.getDealType());
+    ListingUpdatedEvent event =
+        new ListingUpdatedEvent(request.title(), listing.getDescription(), listing.getDealType());
 
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
+
+    when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
+
+    when(listingMapper.toResponse(listing)).thenReturn(response);
+
+    listingService.updateListing(LISTING_ID, request);
+
+    assertEquals(request.title(), listing.getTitle());
+    assertEquals(DESCRIPTION, listing.getDescription());
+    assertEquals(DEAL_TYPE, listing.getDealType());
+
+    verify(outboxEventService)
+        .save(
+            eq(listing.getId()),
+            eq(REGION),
+            eq(EventType.UPDATED),
+            eq(PropertyType.APARTMENT),
+            eq(event),
+            eq(PROPERTY_EVENT),
+            eq(null));
+  }
+
+  @Test
+  @DisplayName("Обновление описания объявления")
+  void shouldUpdateOnlyDescription() {
+
+    UpdateListingRequest request = new UpdateListingRequest(null, "NewDescription", null);
+
+    ListingResponse response =
+        new ListingResponse(
+            listing.getId(),
+            listing.getTitle(),
+            request.description(),
+            listing.getStatus(),
+            listing.getOwnerId(),
+            listing.getProperty().getId(),
+            listing.getDealType(),
+            listing.getPrice());
+
+    ListingUpdatedEvent event =
+        new ListingUpdatedEvent(listing.getTitle(), request.description(), listing.getDealType());
+
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
+
+    when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
+
+    when(listingMapper.toResponse(listing)).thenReturn(response);
+
+    listingService.updateListing(LISTING_ID, request);
+
+    assertEquals(TITLE, listing.getTitle());
+    assertEquals(request.description(), listing.getDescription());
+    assertEquals(DEAL_TYPE, listing.getDealType());
+
+    verify(outboxEventService)
+        .save(
+            eq(listing.getId()),
+            eq(REGION),
+            eq(EventType.UPDATED),
+            eq(PropertyType.APARTMENT),
+            eq(event),
+            eq(PROPERTY_EVENT),
+            eq(null));
+  }
+
+  @Test
+  @DisplayName("Обновление типа сделки в объявлении")
+  void shouldUpdateOnlyDealType() {
+
+    UpdateListingRequest request = new UpdateListingRequest(null, null, DealType.RENT);
+
+    ListingResponse response =
+        new ListingResponse(
+            listing.getId(),
+            listing.getTitle(),
+            listing.getDescription(),
+            listing.getStatus(),
+            listing.getOwnerId(),
+            listing.getProperty().getId(),
+            request.dealType(),
+            listing.getPrice());
+
+    ListingUpdatedEvent event =
+        new ListingUpdatedEvent(listing.getTitle(), listing.getDescription(), request.dealType());
+
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
+
+    when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
+
+    when(listingMapper.toResponse(listing)).thenReturn(response);
+
+    listingService.updateListing(LISTING_ID, request);
+
+    assertEquals(TITLE, listing.getTitle());
+    assertEquals(DESCRIPTION, listing.getDescription());
+    assertEquals(request.dealType(), listing.getDealType());
+
+    verify(outboxEventService)
+        .save(
+            eq(listing.getId()),
+            eq(REGION),
+            eq(EventType.UPDATED),
+            eq(PropertyType.APARTMENT),
+            eq(event),
+            eq(PROPERTY_EVENT),
+            eq(null));
+  }
+
+  @Test
+  @DisplayName("Обновление всех возможных полей в объявлении")
+  void shouldAllUpdate() {
+
+    UpdateListingRequest request =
+        new UpdateListingRequest("NewTitle", "NewDescription", DealType.RENT);
+
+    ListingResponse response =
+        new ListingResponse(
+            listing.getId(),
+            request.title(),
+            request.description(),
+            listing.getStatus(),
+            listing.getOwnerId(),
+            listing.getProperty().getId(),
+            request.dealType(),
+            listing.getPrice());
+
+    ListingUpdatedEvent event =
+        new ListingUpdatedEvent(request.title(), request.description(), request.dealType());
+
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
+
+    when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
+
+    when(listingMapper.toResponse(listing)).thenReturn(response);
+
+    listingService.updateListing(LISTING_ID, request);
+
+    assertEquals(request.title(), listing.getTitle());
+    assertEquals(request.description(), listing.getDescription());
+    assertEquals(request.dealType(), listing.getDealType());
+
+    verify(outboxEventService)
+        .save(
+            eq(listing.getId()),
+            eq(REGION),
+            eq(EventType.UPDATED),
+            eq(PropertyType.APARTMENT),
+            eq(event),
+            eq(PROPERTY_EVENT),
+            eq(null));
+  }
+
+  @Test
+  @DisplayName("В запросе обновления все поля null")
+  void shouldThrowExceptionWhenAllFieldsAreNull() {
+
+    UpdateListingRequest request = new UpdateListingRequest(null, null, null);
+
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    var exception =
+        assertThrows(
+            UpdateListingException.class, () -> listingService.updateListing(LISTING_ID, request));
+
+    assertEquals("Нет полей для изменения в объявлении с ID " + LISTING_ID, exception.getMessage());
+
+    assertEquals(TITLE, listing.getTitle());
+    assertEquals(DESCRIPTION, listing.getDescription());
+    assertEquals(DEAL_TYPE, listing.getDealType());
+
+    verify(listingRepository, never()).save(any());
+
+    verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName("При обновлении объявления, оно не было найдено")
+  void shouldThrowExceptionWhenUpdateButListingNotFoundById() {
+
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.empty());
+
+    var exception =
+        assertThrows(
+            ListingNotFoundByIdException.class,
+            () ->
+                listingService.updateListing(
+                    LISTING_ID, new UpdateListingRequest(null, null, null)));
+
+    assertEquals("Объявление с ID " + LISTING_ID + " не найдено", exception.getMessage());
+
+    verify(listingRepository, never()).save(any());
+
+    verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName(
+      "При обновлении объекта недвижимости не было найдено ни одного связанного объявления")
+  void shouldNotCreateOutboxEventWhenUpdatePropertyButListingNotFound() {
+
+    when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(List.of());
+
+    listingService.updateProperty(EventType.UPDATED_PROPERTY, PROPERTY_ID, null, null, null);
+
+    verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName("При обновлении объекта недвижимости было найдено одно связанное объявление")
+  void shouldCreateOutboxEventWhenUpdateProperty() {
+
+    when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(List.of(listing));
+
+    listingService.updateProperty(EventType.UPDATED_PROPERTY, PROPERTY_ID, null, null, null);
+
+    verify(outboxEventService, times(1))
+        .save(
+            eq(listing.getId()),
+            eq(null),
+            eq(EventType.UPDATED_PROPERTY),
+            eq(listing.getProperty().getPropertyType()),
+            eq(null),
+            eq(null),
+            eq(null));
+  }
+
+  @Test
+  @DisplayName("При обновлении объекта недвижимости было найдено несколько связанных объявлений")
+  void shouldCreateOutboxEventWhenUpdatePropertyAndFindSomeListings() {
+
+    List<Listing> listings = List.of(listing, listing, listing);
+
+    when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(listings);
+
+    listingService.updateProperty(EventType.UPDATED_PROPERTY, PROPERTY_ID, null, null, null);
+
+    verify(outboxEventService, times(listings.size()))
+        .save(any(), any(), any(), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName("При обновлении объявления передаётся новый регион")
+  void shouldCreateOutboxEventWhenUpdatePropertyWithNewRegion() {
+    when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(List.of(listing));
+
+    var newRegion = Region.АЛТАЙСКИЙ_КРАЙ;
+    var location = LocationDto.builder().region(newRegion).build();
+    var event = ApartmentEvent.builder().build();
+    event.setLocation(location);
+
+    listingService.updateProperty(
+        EventType.UPDATED_PROPERTY, PROPERTY_ID, event, REGION, newRegion);
+
+    verify(outboxEventService)
+        .save(
+            eq(listing.getId()),
+            eq(newRegion),
+            eq(EventType.UPDATED_PROPERTY),
+            eq(listing.getProperty().getPropertyType()),
+            eq(null),
+            eq(event),
+            eq(listing.getProperty().getLocation().getRegion()));
+  }
+
+  @Test
+  @DisplayName("Цена успешно обновляется")
+  void shouldSuccessChangePriceWhenValidRequest() {
+
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+    var newPrice = BigDecimal.valueOf(10000000);
+
+    var newResponse =
+        new ListingResponse(
+            LISTING_ID,
+            TITLE,
+            DESCRIPTION,
+            listing.getStatus(),
+            OWNER_ID,
+            PROPERTY_ID,
+            listing.getDealType(),
+            newPrice);
+
+    when(listingMapper.toResponse(listing)).thenReturn(newResponse);
+
+    var result = listingService.changePrice(LISTING_ID, new ChangePriceRequest(newPrice));
+
+    assertEquals(result, newResponse);
+    verify(outboxEventService)
+        .save(eq(listing.getId()), any(), eq(EventType.PRICE_CHANGED), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName("Передана некорректная цена")
+  void shouldThrowExceptionWhenInvalidNewPrice() {
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    var newPrice = BigDecimal.valueOf(-100);
+
+    var exception =
+        assertThrows(
+            UpdateListingException.class,
+            () -> listingService.changePrice(LISTING_ID, new ChangePriceRequest(newPrice)));
+    assertEquals("Нет полей для изменения в объявлении с ID " + LISTING_ID, exception.getMessage());
+    verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName("В запросе изменения цены указана такая же цена")
+  void shouldThrowExceptionWhenNewPriceIsEqualToOldPrice() {
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    var exception =
+        assertThrows(
+            ChangeListingException.class,
+            () -> listingService.changePrice(LISTING_ID, new ChangePriceRequest(PRICE)));
+    assertEquals("Невозможно изменить объявление с ID " + LISTING_ID, exception.getMessage());
+    verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
+  }
+
+  @Test
+  @DisplayName("Промоакция успешно добавляется объявлению при валидном запросе")
+  void shouldSuccessAddPromotionWhenValidRequest() {
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    var newPromotionId = 5L;
+    var event = new PromotionAddedEvent(newPromotionId);
+
+    listingService.assignPromotion(LISTING_ID, new ChangeListingPromotionRequest(newPromotionId));
+
+    verify(outboxEventService)
+        .save(eq(LISTING_ID), any(), eq(EventType.PROMOTION_ADDED), any(), eq(event), any(), any());
+  }
+
+  @Test
+  @DisplayName(
+      "При попытке обновить промоакцию с ID, который уже присвоен объявлению, выбрасывается исключение")
+  void shouldThrowExceptionWhenNewPromotionIdIsEqualsOldPromotionID() {
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    var exception =
+        assertThrows(
+            ChangeListingException.class,
+            () ->
+                listingService.assignPromotion(
+                    LISTING_ID, new ChangeListingPromotionRequest(PROMOTION_ID)));
+    assertEquals("Невозможно изменить объявление с ID " + LISTING_ID, exception.getMessage());
+  }
+
+  @Test
+  @DisplayName("Выбрасывается исключение, если promotionId = null")
+  void shouldThrowExceptionWhenNewPromotionIdIsNull() {
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    var exception =
+        assertThrows(
+            ChangeListingException.class,
+            () ->
+                listingService.assignPromotion(
+                    LISTING_ID, new ChangeListingPromotionRequest(null)));
+    assertEquals("Невозможно изменить объявление с ID " + LISTING_ID, exception.getMessage());
+  }
+
+  @Test
+  @DisplayName("При валидном запросе промоакция отключается")
+  void shouldSuccessDisablePromotionWhenValidRequest() {
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
+
+    listingService.disablePromotion(LISTING_ID);
+
+    verify(outboxEventService)
+        .save(eq(LISTING_ID), any(), eq(EventType.PROMOTION_DISABLED), any(), any(), any(), any());
+
+    assertNull(listing.getPromotionId());
+  }
+
+  @Test
+  @DisplayName("При попытке отключить уже отключённую промоакцию выбрасывается исключение")
+  void shouldThrowExceptionWhenPromotionAlreadyDisabled() {
+    var listingMock = Listing.builder().id(LISTING_ID).build();
+    when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listingMock));
+
+    var exception =
+        assertThrows(
+            PromotionAlreadyDisabled.class, () -> listingService.disablePromotion(LISTING_ID));
+    assertEquals(
+        "У объявления с ID " + LISTING_ID + " нет активной промоакции", exception.getMessage());
+  }
+
+  @Test
+  @DisplayName("При валидном запросе успешно добавляются ипотечные программы, дубликаты игнорируются")
+  void shouldAddMortgageProgramsWhenValidRequest(){
       when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
 
-      when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
-
-      when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
-
-      when(listingMapper.toResponse(listing)).thenReturn(response);
-
-      listingService.updateListing(LISTING_ID, request);
-
-      assertEquals(request.title(), listing.getTitle());
-      assertEquals(DESCRIPTION,listing.getDescription());
-      assertEquals(DEAL_TYPE, listing.getDealType());
-
-        verify(outboxEventService).save(eq(listing.getId()), eq(REGION), eq(EventType.UPDATED), eq(PropertyType.APARTMENT), eq(event), eq(PROPERTY_EVENT), eq(null));
-    }
-
-    @Test
-    @DisplayName("Обновление описания объявления")
-    void shouldUpdateOnlyDescription() {
-
-        UpdateListingRequest request = new UpdateListingRequest(null, "NewDescription", null);
-
-        ListingResponse response = new ListingResponse(listing.getId(), listing.getTitle(), request.description(), listing.getStatus(), listing.getOwnerId(), listing.getProperty().getId(), listing.getDealType(), listing.getPrice());
-
-        ListingUpdatedEvent event = new ListingUpdatedEvent(listing.getTitle(), request.description(), listing.getDealType());
-
-        when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
-
-        when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
-
-        when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
-
-        when(listingMapper.toResponse(listing)).thenReturn(response);
-
-        listingService.updateListing(LISTING_ID, request);
-
-        assertEquals(TITLE, listing.getTitle());
-        assertEquals(request.description(), listing.getDescription());
-        assertEquals(DEAL_TYPE, listing.getDealType());
-
-        verify(outboxEventService).save(eq(listing.getId()), eq(REGION), eq(EventType.UPDATED), eq(PropertyType.APARTMENT), eq(event), eq(PROPERTY_EVENT), eq(null));
-    }
-
-    @Test
-    @DisplayName("Обновление типа сделки в объявлении")
-    void shouldUpdateOnlyDealType() {
-
-        UpdateListingRequest request = new UpdateListingRequest(null, null, DealType.RENT);
-
-        ListingResponse response = new ListingResponse(listing.getId(), listing.getTitle(), listing.getDescription(), listing.getStatus(), listing.getOwnerId(), listing.getProperty().getId(), request.dealType(), listing.getPrice());
-
-        ListingUpdatedEvent event = new ListingUpdatedEvent(listing.getTitle(), listing.getDescription(), request.dealType());
-
-        when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
-
-        when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
-
-        when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
-
-        when(listingMapper.toResponse(listing)).thenReturn(response);
-
-        listingService.updateListing(LISTING_ID, request);
-
-        assertEquals(TITLE, listing.getTitle());
-        assertEquals(DESCRIPTION, listing.getDescription());
-        assertEquals(request.dealType(), listing.getDealType());
-
-        verify(outboxEventService).save(eq(listing.getId()), eq(REGION), eq(EventType.UPDATED), eq(PropertyType.APARTMENT), eq(event), eq(PROPERTY_EVENT), eq(null));
-    }
-
-    @Test
-    @DisplayName("Обновление всех возможных полей в объявлении")
-    void shouldAllUpdate() {
-
-        UpdateListingRequest request = new UpdateListingRequest("NewTitle", "NewDescription", DealType.RENT);
-
-        ListingResponse response = new ListingResponse(listing.getId(), request.title(), request.description(), listing.getStatus(), listing.getOwnerId(), listing.getProperty().getId(), request.dealType(), listing.getPrice());
-
-        ListingUpdatedEvent event = new ListingUpdatedEvent(request.title(), request.description(), request.dealType());
-
-        when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
-
-        when(listingMapper.toListingUpdatedEvent(listing)).thenReturn(event);
-
-        when(propertyMapper.toPropertyEvent(listing.getProperty())).thenReturn(PROPERTY_EVENT);
-
-        when(listingMapper.toResponse(listing)).thenReturn(response);
-
-        listingService.updateListing(LISTING_ID, request);
-
-        assertEquals(request.title(), listing.getTitle());
-        assertEquals(request.description(), listing.getDescription());
-        assertEquals(request.dealType(), listing.getDealType());
-
-        verify(outboxEventService).save(eq(listing.getId()), eq(REGION), eq(EventType.UPDATED), eq(PropertyType.APARTMENT), eq(event), eq(PROPERTY_EVENT), eq(null));
-    }
-
-    @Test
-    @DisplayName("В запросе обновления все поля null")
-    void shouldThrowExceptionWhenAllFieldsAreNull() {
-
-        UpdateListingRequest request = new UpdateListingRequest(null, null, null);
-
-        when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.of(listing));
-
-        var exception = assertThrows(UpdateListingException.class, ()->listingService.updateListing(LISTING_ID, request));
-
-        assertEquals("Нет полей для изменения в объявлении с ID " + LISTING_ID, exception.getMessage());
-
-        assertEquals(TITLE, listing.getTitle());
-        assertEquals(DESCRIPTION, listing.getDescription());
-        assertEquals(DEAL_TYPE, listing.getDealType());
-
-        verify(listingRepository, never()).save(any());
-
-        verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
-    }
-
-    @Test
-    @DisplayName("При обновлении объявления, оно не было найдено")
-    void shouldThrowExceptionWhenUpdateButListingNotFoundById() {
-
-      when(listingRepository.findById(LISTING_ID)).thenReturn(Optional.empty());
-
-      var exception = assertThrows(ListingNotFoundByIdException.class, ()-> listingService.updateListing(LISTING_ID, new UpdateListingRequest(null, null, null)));
-
-      assertEquals("Объявление с ID " + LISTING_ID + " не найдено", exception.getMessage());
-
-        verify(listingRepository, never()).save(any());
-
-        verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
-    }
-
-    @Test
-    @DisplayName("При обновлении объекта недвижимости не было найдено ни одного связанного объявления")
-    void shouldNotCreateOutboxEventWhenUpdatePropertyButListingNotFound() {
-
-      when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(List.of());
-
-      listingService.updateProperty(EventType.UPDATED_PROPERTY, PROPERTY_ID, null, null);
-
-        verify(outboxEventService, never()).save(any(), any(), any(), any(), any(), any(), any());
-    }
-
-    @Test
-    @DisplayName("При обновлении объекта недвижимости было найдено одно связанное объявление")
-    void shouldCreateOutboxEventWhenUpdateProperty() {
-
-        when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(List.of(listing));
-
-        listingService.updateProperty(EventType.UPDATED_PROPERTY, PROPERTY_ID, null, null);
-
-        verify(outboxEventService, times(1)).save(eq(listing.getId()), eq(listing.getProperty().getLocation().getRegion()), eq(EventType.UPDATED_PROPERTY), eq(listing.getProperty().getPropertyType()), eq(null), eq(null), eq(null));
-    }
-
-    @Test
-    @DisplayName("При обновлении объекта недвижимости было найдено несколько связанных объявлений")
-    void shouldCreateOutboxEventWhenUpdatePropertyAndFindSomeListings() {
-
-      List<Listing> listings = List.of(listing, listing, listing);
-
-      when(listingRepository.findByPropertyId(PROPERTY_ID)).thenReturn(listings);
-
-        listingService.updateProperty(EventType.UPDATED_PROPERTY, PROPERTY_ID, null, null);
-
-        verify(outboxEventService, times(listings.size())).save(any(), any(), any(), any(), any(), any(), any());
-    }
+      var newPrograms = Set.of(1L, 4L);
+      var result = new HashSet<>(Set.of(1L, 2L, 3L, 4L));
+    var event = new MortgageProgramsEvent(result);
+
+      listingService.addMortgagePrograms(LISTING_ID, new ChangeListingMortgageProgramsRequest(newPrograms));
+
+      verify(outboxEventService).save(eq(LISTING_ID), any(), eq(EventType.MORTGAGE_PROGRAM_ADDED), any(), eq(event), any(), any());
+      assertEquals(result, listing.getMortgageProgramIds());
+  }
 }

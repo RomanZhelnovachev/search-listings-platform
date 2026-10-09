@@ -90,17 +90,15 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     @Transactional
-    public void updateProperty(EventType type, Long propertyId, PropertyPayload propertyPayload, Region oldRegion) {
+    public void updateProperty(EventType type, Long propertyId, PropertyPayload propertyPayload, Region oldRegion, Region newRegion) {
         List<Listing> listings = listingRepository.findByPropertyId(propertyId);
         if(listings.isEmpty()){
             log.warn("Объявление с объектом недвижимости с ID {} не найдено", propertyId);
             return;
         }
         for(Listing listing : listings){
-            log.info("В объявлении с ID {} изменён объект недвижимости", listing.getId());
-            Region region = listing.getProperty().getLocation().getRegion();
-            PropertyType propertyType = listing.getProperty().getPropertyType();
-            outboxEventService.save(listing.getId(), region, type, propertyType,null, propertyPayload, oldRegion);
+            log.info("В объявлении с ID {} изменён объект недвижимости", listing.getId());PropertyType propertyType = listing.getProperty().getPropertyType();
+            outboxEventService.save(listing.getId(), newRegion, type, propertyType,null, propertyPayload, oldRegion);
         }
     }
 
@@ -143,7 +141,7 @@ public class ListingServiceImpl implements ListingService {
         listing.addMortgagePrograms(request.mortgageProgramIds());
         log.info("Объявлению с ID {} добавлены следующие ипотечные программы - {}",
                     id, request.mortgageProgramIds());
-        publishEvent(listing, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsEvent(request.mortgageProgramIds()));
+        publishEvent(listing, EventType.MORTGAGE_PROGRAM_ADDED, new MortgageProgramsEvent(listing.getMortgageProgramIds()));
     }
 
     @Override

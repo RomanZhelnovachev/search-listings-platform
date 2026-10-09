@@ -34,7 +34,7 @@ public class PropertyReferenceUpdateServiceImpl implements PropertyReferenceUpda
             return;
         }
         for(Property property : properties){
-            listingService.updateProperty(EventType.UPDATED_DEVELOPER, property.getId(), event, null);
+            listingService.updateProperty(EventType.UPDATED_DEVELOPER, property.getId(), event, null, null);
         }
     }
 
@@ -48,7 +48,7 @@ public class PropertyReferenceUpdateServiceImpl implements PropertyReferenceUpda
             return;
         }
         for(Property property : properties){
-            listingService.updateProperty(EventType.UPDATED_LAND_USE, property.getId(), event, null);
+            listingService.updateProperty(EventType.UPDATED_LAND_USE, property.getId(), event, null, null);
         }
     }
 
@@ -62,7 +62,7 @@ public class PropertyReferenceUpdateServiceImpl implements PropertyReferenceUpda
             return;
         }
         for(Property property : properties){
-            listingService.updateProperty(EventType.UPDATED_COMPLEX, property.getId(), event, null);
+            listingService.updateProperty(EventType.UPDATED_COMPLEX, property.getId(), event, null, null);
         }
     }
 }
