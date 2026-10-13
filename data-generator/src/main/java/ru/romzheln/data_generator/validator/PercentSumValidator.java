@@ -2,14 +2,14 @@ package ru.romzheln.data_generator.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import ru.romzheln.data_generator.dto.request.GenerateRequest;
+import ru.romzheln.data_generator.dto.request.GenerateDataRequest;
 
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public class PercentSumValidator implements ConstraintValidator<ValidPercent, GenerateRequest> {
+public class PercentSumValidator implements ConstraintValidator<ValidPercent, GenerateDataRequest> {
     @Override
-    public boolean isValid(GenerateRequest request,
+    public boolean isValid(GenerateDataRequest request,
                            ConstraintValidatorContext context) {
         if (request == null) {
             return true;

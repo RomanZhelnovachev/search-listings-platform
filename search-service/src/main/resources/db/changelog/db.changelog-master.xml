@@ -28,6 +28,7 @@
     <include file="db/changelog/004-projections/002-create-purpose-projection.xml"/>
 
     <include file="db/changelog/005-indexes/001-create-price-index.xml"/>
+    <include file="db/changelog/005-indexes/002-create-square-index.xml"/>
 
 
 </databaseChangeLog>
