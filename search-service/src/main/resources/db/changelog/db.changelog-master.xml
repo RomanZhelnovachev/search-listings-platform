@@ -27,5 +27,7 @@
     <include file="db/changelog/004-projections/001-create-communication-projection.xml"/>
     <include file="db/changelog/004-projections/002-create-purpose-projection.xml"/>
 
+    <include file="db/changelog/005-indexes/001-create-price-index.xml"/>
+
 
 </databaseChangeLog>

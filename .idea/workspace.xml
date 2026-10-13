@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Написал генератор тестовых данных">
+    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Продолжил написание тестов">
+      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/005-indexes/001-create-price-index.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/ListingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/ListingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/ListingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/ListingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/PropertyReferenceUpdateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/PropertyReferenceUpdateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/PropertyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/service/impl/PropertyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listing-service/src/test/java/ru/romzheln/listing/service/impl/ListingServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/test/java/ru/romzheln/listing/service/impl/ListingServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,32 +66,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.ListingServiceImplTest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldAddMortgageProgramsWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdateProperty.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdatePropertyWithNewRegion.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldSuccessAddPromotionWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldSuccessChangePriceWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldSuccessDisablePromotionWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenInvalidNewPrice.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPriceIsEqualToOldPrice.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsEqualsOldPromotionID.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsNull.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenPromotionAlreadyDisabled.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "feature/111",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Etagi/search-listings-platform/data-generator/src/main/java/ru/romzheln/data_generator/enums",
-    "settings.editor.selected.configurable": "google-java-format.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.ListingServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldAddMortgageProgramsWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdateProperty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdatePropertyWithNewRegion.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldSuccessAddPromotionWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldSuccessChangePriceWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldSuccessDisablePromotionWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenInvalidNewPrice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPriceIsEqualToOldPrice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsEqualsOldPromotionID.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenPromotionAlreadyDisabled.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/111&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Etagi/search-listings-platform/data-generator/src/main/java/ru/romzheln/data_generator/enums&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;google-java-format.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Etagi\search-listings-platform\data-generator\src\main\java\ru\romzheln\data_generator\enums" />
@@ -235,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791237595320</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Продолжил написание тестов">
+      <option name="closed" value="true" />
+      <created>1791562425699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1791562425699</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -243,6 +248,7 @@
     <MESSAGE value="Пишу генератор" />
     <MESSAGE value="Тестим генератор. LandUse больше, чем значений - исправь" />
     <MESSAGE value="Написал генератор тестовых данных" />
-    <option name="LAST_COMMIT_MESSAGE" value="Написал генератор тестовых данных" />
+    <MESSAGE value="Продолжил написание тестов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Продолжил написание тестов" />
   </component>
 </project>
