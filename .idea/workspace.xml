@@ -4,31 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Начал писать индексы">
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/ApartmentPhysicalCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommercialPhysicalCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonLandCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonPhysicalCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonSearchCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/ApartmentSearchRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/CommercialSearchRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/GenerateRequestsRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/HouseSearchRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/LandPlotSearchRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/exception/UnknownRegionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/SearchClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/RequestGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/005-indexes/002-create-square-index.xml" afterDir="false" />
+    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Пишу генератор для Search">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/GenerateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/GenerateDataRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/enums/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/validator/PercentSumValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/validator/PercentSumValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/ApartmentPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/ApartmentPhysicalCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommercialPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommercialPhysicalCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonPhysicalCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/CommercialSearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/CommercialSearchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/RequestGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/RequestGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,32 +69,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.ListingServiceImplTest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldAddMortgageProgramsWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdateProperty.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdatePropertyWithNewRegion.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldSuccessAddPromotionWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldSuccessChangePriceWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldSuccessDisablePromotionWhenValidRequest.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenInvalidNewPrice.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPriceIsEqualToOldPrice.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsEqualsOldPromotionID.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsNull.executor": "Run",
-    "JUnit.ListingServiceImplTest.shouldThrowExceptionWhenPromotionAlreadyDisabled.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "feature/111",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Etagi/search-listings-platform/data-generator/src/main/java/ru/romzheln/data_generator/dto/request",
-    "settings.editor.selected.configurable": "google-java-format.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.ListingServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldAddMortgageProgramsWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdateProperty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldCreateOutboxEventWhenUpdatePropertyWithNewRegion.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldSuccessAddPromotionWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldSuccessChangePriceWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldSuccessDisablePromotionWhenValidRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenInvalidNewPrice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPriceIsEqualToOldPrice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsEqualsOldPromotionID.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenNewPromotionIdIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ListingServiceImplTest.shouldThrowExceptionWhenPromotionAlreadyDisabled.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/111&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Etagi/search-listings-platform/data-generator/src/main/java/ru/romzheln/data_generator/dto/request&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;google-java-format.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Etagi\search-listings-platform\data-generator\src\main\java\ru\romzheln\data_generator\dto\request" />
@@ -272,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791883091708</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Пишу генератор для Search">
+      <option name="closed" value="true" />
+      <created>1791912683443</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1791912683443</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -282,6 +272,7 @@
     <MESSAGE value="Написал генератор тестовых данных" />
     <MESSAGE value="Продолжил написание тестов" />
     <MESSAGE value="Начал писать индексы" />
-    <option name="LAST_COMMIT_MESSAGE" value="Начал писать индексы" />
+    <MESSAGE value="Пишу генератор для Search" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пишу генератор для Search" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 package ru.romzheln.data_generator.dto.criteria;
 
+import lombok.Builder;
 import ru.romzheln.data_generator.enums.Line;
 import ru.romzheln.data_generator.enums.PropertyLocationType;
 import ru.romzheln.data_generator.enums.TerritorialZone;
@@ -7,6 +8,7 @@ import ru.romzheln.data_generator.enums.TerritorialZone;
 import java.util.Set;
 
 
+@Builder
 public record CommercialPhysicalCriteria(
 
         Integer floorFrom,

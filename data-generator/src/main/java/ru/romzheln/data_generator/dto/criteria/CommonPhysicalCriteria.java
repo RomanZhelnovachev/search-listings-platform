@@ -1,11 +1,13 @@
 package ru.romzheln.data_generator.dto.criteria;
 
+import lombok.Builder;
 import ru.romzheln.data_generator.enums.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
+@Builder
 public record CommonPhysicalCriteria(
 
         Set<Integer> roomsNumber,

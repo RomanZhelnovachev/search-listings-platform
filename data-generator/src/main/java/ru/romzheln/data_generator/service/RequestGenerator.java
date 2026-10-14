@@ -3,11 +3,18 @@ package ru.romzheln.data_generator.service;
 import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;
 import org.springframework.stereotype.Component;
+import ru.romzheln.data_generator.dto.criteria.ApartmentPhysicalCriteria;
+import ru.romzheln.data_generator.dto.criteria.CommercialPhysicalCriteria;
+import ru.romzheln.data_generator.dto.criteria.CommonPhysicalCriteria;
 import ru.romzheln.data_generator.dto.criteria.CommonSearchCriteria;
 import ru.romzheln.data_generator.dto.request.ApartmentSearchRequest;
-import ru.romzheln.data_generator.enums.Own;
-import ru.romzheln.data_generator.enums.Region;
+import ru.romzheln.data_generator.dto.request.CommercialSearchRequest;
+import ru.romzheln.data_generator.enums.*;
 
+import javax.swing.text.View;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Component
@@ -17,6 +24,7 @@ public class RequestGenerator {
     private final Faker faker;
 
     private static final double PERCENT_NULL = 0.3;
+    private static final Long MAX_ID = 100L;
     private static final Random random = new Random();
 
     public String getRegion(){
@@ -27,34 +35,141 @@ public class RequestGenerator {
     public Map<String, List<String>> getApartmentParams(){
         Map<String, List<String>> params = new HashMap<>();
         var request = getApartmentSearchRequest();
+//        TODO: дописать логику
+        return params;
+    }
+
+    public Map<String, List<String>> getCommercialParams(){
+        Map<String, List<String>> params = new HashMap<>();
+        var request = getCommercialSearchRequest();
+//        TODO: дописать логику
+        return params;
+    }
+
+    public Map<String, List<String>> getHouseParams(){
+        Map<String, List<String>> params = new HashMap<>();
+        var request = getHouseSearchRequest();
+//        TODO: дописать логику
+        return params;
+    }
+
+    public Map<String, List<String>> getLandPlotParams(){
+        Map<String, List<String>> params = new HashMap<>();
+        var request = getLandPlotSearchRequest();
+//        TODO: дописать логику
         return params;
     }
 
     private ApartmentSearchRequest getApartmentSearchRequest(){
         return ApartmentSearchRequest.builder()
                 .commonSearchCriteria(nullable(generateCommonSearchCriteria()))
-                .apartmentTypes()
-                .commonPhysicalCriteria()
-                .apartmentPhysicalCriteria()
-                .developerIds()
-                .complexIds()
+                .apartmentTypes(nullable(getSetEnum(ApartmentType.class)))
+                .commonPhysicalCriteria(nullable(generateCommonPhysicalCriteria()))
+                .apartmentPhysicalCriteria(nullable(generateApartmentPhysicalCriteria()))
+                .developerIds(nullable(getSetLong(MAX_ID)))
+                .complexIds(nullable(getSetLong(MAX_ID)))
+                .build();
+    }
+
+    private CommercialSearchRequest getCommercialSearchRequest(){
+        return CommercialSearchRequest.builder()
+                .commonSearchCriteria(nullable(generateCommonSearchCriteria()))
+                .commonPhysicalCriteria(nullable(generateCommonPhysicalCriteria()))
+                .commercialPhysicalCriteria(nullable(generateCommercialPhysicalCriteria()))
+                .purposeIds(nullable(getSetLong(MAX_ID)))
                 .build();
     }
 
     private CommonSearchCriteria generateCommonSearchCriteria(){
-
+        BigDecimal squareFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 15, 80)));
+        Integer min = squareFrom == null ? null : squareFrom.intValueExact();
+        BigDecimal priceFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 0, 500000)));
+        Integer minPrice = priceFrom == null ? null : priceFrom.intValueExact();
         return CommonSearchCriteria.builder()
                 .hasImage(nullable(faker.bool().bool()))
                 .owns(nullable(getSetEnum(Own.class)))
-                .squareFrom()
-                .squareTo()
-                .firstOwner()
-                .dealTypes()
-                .priceFrom()
-                .priceTo()
-                .mortgageProgramIds()
-                .promotionId()
+                .squareFrom(squareFrom)
+                .squareTo(nullable(getBigDecimalTo(min, 300)))
+                .firstOwner(nullable(faker.bool().bool()))
+                .dealTypes(nullable(getSetEnum(DealType.class)))
+                .priceFrom(priceFrom)
+                .priceTo(nullable(getBigDecimalTo(minPrice, 50000000)))
+                .mortgageProgramIds(nullable(getSetLong(MAX_ID)))
+                .promotionId(nullable(faker.number().numberBetween(1, MAX_ID)))
                 .build();
+    }
+
+    private CommonPhysicalCriteria generateCommonPhysicalCriteria(){
+        BigDecimal ceilingHeightFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 3)));
+        Integer min = ceilingHeightFrom == null ? null : ceilingHeightFrom.intValueExact();
+        Integer yearBuiltFrom = faker.number().numberBetween(1950, 2026);
+        Integer floorsNumberFrom = faker.number().numberBetween(1, 20);
+        return CommonPhysicalCriteria.builder()
+                .roomsNumber(nullable(getSetInteger(5)))
+                .ceilingHeightFrom(ceilingHeightFrom)
+                .ceilingHeightTo(nullable(getBigDecimalTo(min, 4)))
+                .renovations(nullable(getSetEnum(Renovation.class)))
+                .bathrooms(nullable(getSetEnum(Bathroom.class)))
+                .wallMaterials(nullable(getSetEnum(WallMaterial.class)))
+                .completionDate(nullable(faker.timeAndDate().between(LocalDate.of(2010, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant(),
+                        LocalDate.of(2030, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()).atZone(ZoneId.systemDefault()).toLocalDate()))
+                .yearBuiltFrom(nullable(yearBuiltFrom))
+                .yearBuiltTo(nullable(getIntegerTo(yearBuiltFrom, 2035)))
+                .floorsNumberFrom(nullable(floorsNumberFrom))
+                .floorsNumberTo(nullable(getIntegerTo(floorsNumberFrom, 25)))
+                .views(nullable(getSetEnum(WindowView.class)))
+                .balconies(nullable(getSetEnum(Balcony.class)))
+                .windowTypes(nullable(getSetEnum(WindowType.class)))
+                .windowMaterials(nullable(getSetEnum(WindowMaterial.class)))
+                .layoutFeatures(nullable(getSetEnum(LayoutFeature.class)))
+                .layoutTypes(nullable(getSetEnum(LayoutType.class)))
+                .build();
+    }
+
+    private ApartmentPhysicalCriteria generateApartmentPhysicalCriteria(){
+        BigDecimal kitchenSquareFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 5, 20)));
+        Integer min = kitchenSquareFrom == null ? null : kitchenSquareFrom.intValueExact();
+        Integer floorFrom = faker.number().numberBetween(1, 20);
+        return ApartmentPhysicalCriteria.builder()
+                .kitchenSquareFrom(kitchenSquareFrom)
+                .kitchenSquareTo(nullable(getBigDecimalTo(min, 30)))
+                .floorFrom(nullable(floorFrom))
+                .floorTo(nullable(getIntegerTo(floorFrom, 25)))
+                .elevators(nullable(getSetEnum(Elevator.class)))
+                .ramps(nullable(getSetEnum(Ramp.class)))
+                .sides(nullable(getSetEnum(Side.class)))
+                .build();
+    }
+
+    private CommercialPhysicalCriteria generateCommercialPhysicalCriteria(){
+        Integer floorFrom = nullable(faker.number().numberBetween(1, 20));
+        Integer entrancesNumberFrom = nullable(faker.number().numberBetween(1, 5));
+        Integer electricalPowerKwFrom = nullable(faker.number().numberBetween(1, 20));
+        return CommercialPhysicalCriteria.builder()
+                .floorFrom(floorFrom)
+                .floorTo(nullable(getIntegerTo(floorFrom, 25)))
+                .lines(nullable(getSetEnum(Line.class)))
+                .propertyLocationTypes(nullable(getSetEnum(PropertyLocationType.class)))
+                .territorialZones(nullable(getSetEnum(TerritorialZone.class)))
+                .separateEntrance(nullable(faker.bool().bool()))
+                .ventilation(nullable(faker.bool().bool()))
+                .tenantExists(nullable(faker.bool().bool()))
+                .entrancesNumberFrom(entrancesNumberFrom)
+                .entrancesNumberTo(nullable(getIntegerTo(entrancesNumberFrom, 7)))
+                .electricalPowerKwFrom(electricalPowerKwFrom)
+                .electricalPowerKwTo(nullable(getIntegerTo(electricalPowerKwFrom, 100)))
+                .railwayDeadEnd(nullable(faker.bool().bool()))
+                .build();
+    }
+
+    private BigDecimal getBigDecimalTo(Integer from, int max){
+        int min = from == null ? 0 : from;
+        return BigDecimal.valueOf(faker.number().randomDouble(2, min, max));
+    }
+
+    private Integer getIntegerTo(Integer from, int max){
+        int min = from == null ? 0 : from;
+        return faker.number().numberBetween(min, max);
     }
 
     private <T extends Enum<T>> Set<T> getSetEnum(Class<T> enumClass){
@@ -71,4 +186,24 @@ public class RequestGenerator {
     private <T> T nullable(T value){
         return Math.random() < PERCENT_NULL ? null : value;
     }
+
+    private Set<Long> getSetLong(long maxValue){
+    int count = random.nextInt(1, 10);
+    Set<Long> ids = new HashSet<>();
+    for(int i = 0; i < count; i++) {
+        Long id = faker.number().numberBetween(1, maxValue);
+        ids.add(id);
+    }
+    return ids;
+  }
+
+  private Set<Integer> getSetInteger(int max){
+        int count = random.nextInt(1, max);
+        Set<Integer> result = new HashSet<>();
+        for(int i = 0; i < count; i++) {
+            Integer element = faker.number().numberBetween(1, max);
+            result.add(element);
+        }
+        return result;
+  }
 }
