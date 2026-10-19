@@ -8,4 +8,6 @@ public interface GeneratorService {
 void dataGenerate(GenerateDataRequest request);
 
 void requestGenerate(GenerateRequestsRequest request);
+
+void cleanupDatabases();
 }

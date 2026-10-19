@@ -277,7 +277,7 @@
 
             CREATE TABLE listing_apartment_search_tombov
             PARTITION OF listing_apartment_search
-            FOR VALUES IN ('ТОМБОВСКАЯ_ОБЛАСТЬ');
+            FOR VALUES IN ('ТАМБОВСКАЯ_ОБЛАСТЬ');
 
             CREATE TABLE listing_apartment_search_tver
             PARTITION OF listing_apartment_search

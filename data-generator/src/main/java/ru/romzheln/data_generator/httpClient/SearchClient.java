@@ -2,12 +2,15 @@ package ru.romzheln.data_generator.httpClient;
 
 import java.util.List;
 import java.util.Map;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import ru.romzheln.data_generator.enums.PropertyType;
 
 @Component
+@Slf4j
 public class SearchClient {
 
     private final RestClient restClient;
@@ -26,7 +29,7 @@ public class SearchClient {
 
     public void createSearchRequest(String region, Map<String, List<String>> params, Pageable pageable, PropertyType type) {
         String path = getPath(type);
-        restClient.get()
+        var response = restClient.get()
                 .uri(uriBuilder -> {
                     uriBuilder.path(path)
                             .queryParam("page", pageable.getPageNumber())
@@ -40,7 +43,10 @@ public class SearchClient {
                     return uriBuilder.build(Map.of("region", region));
                 })
                 .retrieve()
-                .toBodilessEntity();
+                .toEntity(String.class);
+        log.info("Search-сервис: HTTP {}, ответ: {}",
+                response.getStatusCode(),
+                response.getBody());
     }
 
     private String getPath(PropertyType type){

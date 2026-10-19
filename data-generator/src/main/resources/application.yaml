@@ -1,3 +1,22 @@
 spring:
   application:
     name: data-generator
+
+  datasource:
+    listing:
+      url: jdbc:postgresql://postgres:5432/${POSTGRES_DB:listings_db}
+      username: ${POSTGRES_USER:postgres}
+      password: ${POSTGRES_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+
+    search:
+      url: jdbc:postgresql://search-postgres:5432/search_db
+      username: ${POSTGRES_USER:postgres}
+      password: ${POSTGRES_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    admin:
+      properties:
+        delete.records.timeout.ms: 10000

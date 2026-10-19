@@ -21,4 +21,9 @@ public class DataGeneratorControllerImpl implements DataGeneratorController{
     public void generateRequest(GenerateRequestsRequest request) {
         service.requestGenerate(request);
     }
+
+    @Override
+    public void cleanUp() {
+        service.cleanupDatabases();
+    }
 }

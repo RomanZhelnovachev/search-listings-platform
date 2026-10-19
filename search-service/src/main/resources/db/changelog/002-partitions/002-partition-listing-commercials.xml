@@ -277,7 +277,7 @@
 
             CREATE TABLE listing_commercial_search_tombov
             PARTITION OF listing_commercial_search
-            FOR VALUES IN ('ТОМБОВСКАЯ_ОБЛАСТЬ');
+            FOR VALUES IN ('ТАМБОВСКАЯ_ОБЛАСТЬ');
 
             CREATE TABLE listing_commercial_search_tver
             PARTITION OF listing_commercial_search

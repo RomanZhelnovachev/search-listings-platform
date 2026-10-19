@@ -1,14 +1,18 @@
 package ru.romzheln.data_generator.service;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.romzheln.data_generator.dto.PercentDto;
-import ru.romzheln.data_generator.dto.request.GenerateDataRequest;
-import ru.romzheln.data_generator.dto.request.GenerateRequestsRequest;
+import ru.romzheln.data_generator.dto.request.*;
 import ru.romzheln.data_generator.enums.CommunicationType;
 import ru.romzheln.data_generator.enums.LandUse;
 import ru.romzheln.data_generator.enums.PropertyType;
@@ -22,13 +26,20 @@ import ru.romzheln.data_generator.util.ExecutorUtil;
 
 @Service
 @RequiredArgsConstructor
-public class GeneratorServiseImpl implements GeneratorService{
+@Slf4j
+public class GeneratorServiceImpl implements GeneratorService{
 
     private final AuthClient authClient;
     private final ListingClient listingClient;
     private final SearchClient searchClient;
     private final ResponseGenerator responseGenerator;
     private final RequestGenerator requestGenerator;
+    private final DatabaseCleanupService databaseCleanupService;
+    private final KafkaCleanupService kafkaCleanupService;
+
+    private final AtomicLong approveId = new AtomicLong(1);
+    private final AtomicLong publishId = new AtomicLong(1);
+    private final AtomicBoolean operationInProgress = new AtomicBoolean(false);
 
     private static final int POOL_SIZE = 10;
     private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(POOL_SIZE);
@@ -43,8 +54,15 @@ public class GeneratorServiseImpl implements GeneratorService{
 
     @Override
     public void dataGenerate(GenerateDataRequest request) {
-        String token = authClient.getToken();
+        if (!operationInProgress.compareAndSet(false, true)) {
+            throw new IllegalStateException(
+                    "Другая операция уже выполняется"
+            );
+        }
+        try{
+            String token = authClient.getToken();
         if(token == null || token.isBlank()){
+            log.error("Не удалось получить токен");
             throw new AuthorisationException("Не удалось получить токен");
         }
         int apartmentCount = getPropertyCount(request.total(), request.percents(), APARTMENT);
@@ -59,31 +77,110 @@ public class GeneratorServiseImpl implements GeneratorService{
         int purposeCount = Purpose.values().length;
 
         generateDeveloper(developerCount, token);
+        log.info("Сгенерировано {} застройщиков", developerCount);
         generateResidentialComplex(complexCount, token);
+        log.info("Сгенерировано {} жилых комплексов", complexCount);
         generateAdditionalBuilding(additionalBuildingCount, token);
+        log.info("Сгенерировано {} дополнительных построек", additionalBuildingCount);
         generateCommunication(token);
+        log.info("Сгенерировано {} коммуникаций", communicationCount);
         generateLandUse(token);
+        log.info("Сгенерировано {} земельных целей", landUseCount);
         generatePurpose(token);
+        log.info("Сгенерировано {} коммерческих целей", purposeCount);
         generateApartment(apartmentCount, token, (long) developerCount, (long) complexCount, communicationCount);
+        log.info("Сгенерировано {} квартир", apartmentCount);
         generateCommercial(commercialCount, token, purposeCount, communicationCount);
+        log.info("Сгенерировано {} объектов коммерческой недвижимости", commercialCount);
         generateHouse(houseCount, token, (long) landUseCount,(long) developerCount, (long) complexCount, additionalBuildingCount, communicationCount);
+        log.info("Сгенерировано {} домов", houseCount);
         generateLandPlot(landPlotCount, token, (long) landUseCount, additionalBuildingCount, communicationCount);
+        log.info("Сгенерировано {} земельных участков", landPlotCount);
         generateListing(apartmentCount, commercialCount, houseCount, landPlotCount, token);
+        log.info("Сгенерировано {} объявлений", request.total());
+        approveListings(request.total(), token);
+        publishListings(request.total(), token);
+        } finally{
+            operationInProgress.set(false);
+        }
     }
 
     @Override
     public void requestGenerate(GenerateRequestsRequest request) {
-        int count = request.count();
+        if (!operationInProgress.compareAndSet(false, true)) {
+            throw new IllegalStateException(
+                    "Другая операция уже выполняется"
+            );
+        }
+        try{
+            int count = request.count();
     for (int i = 0; i < count; i++) {
-      generateApartmentSearchRequest(PAGEABLE);
-      generateCommercialSearchRequest(PAGEABLE);
-      generateHouseSearchRequest(PAGEABLE);
-      generateLandPlotSearchRequest(PAGEABLE);
+      var apartmentRequest = generateApartmentSearchRequest();
+      log.info("Сгенерирован запрос на поиск квартир с параметрами {}", apartmentRequest);
+      var commercialRequest = generateCommercialSearchRequest();
+        log.info("Сгенерирован запрос на поиск коммерческой недвижимости с параметрами {}", commercialRequest);
+      var houseRequest = generateHouseSearchRequest();
+        log.info("Сгенерирован запрос на поиск домов с параметрами {}", houseRequest);
+      var landPlotRequest = generateLandPlotSearchRequest();
+        log.info("Сгенерирован запрос на поиск земельных участков с параметрами {}", landPlotRequest);
     }
+    } finally{
+            operationInProgress.set(false);
+        }
   }
 
-  private void generateApartmentSearchRequest(Pageable pageable) {
-        searchClient.createSearchRequest(requestGenerator.getRegion(), requestGenerator.getApartmentParams(), pageable, PropertyType.APARTMENT);
+    public void cleanupDatabases() {
+        if (!operationInProgress.compareAndSet(false, true)) {
+            throw new IllegalStateException(
+                    "Другая операция уже выполняется"
+            );
+        }
+        try {
+            kafkaCleanupService.cleanupTopic();
+            databaseCleanupService.clearSearchDatabase();
+            databaseCleanupService.clearListingDatabase();
+            approveId.set(1);
+            publishId.set(1);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Очистка прервана", e);
+        } catch (java.util.concurrent.ExecutionException e) {
+            throw new IllegalStateException("Не удалось очистить Kafka", e);
+        } finally {
+            operationInProgress.set(false);
+        }
+    }
+
+  private ApartmentSearchRequest generateApartmentSearchRequest() {
+        var request = requestGenerator.getApartmentSearchRequest();
+      String region = requestGenerator.getRegion();
+      log.info("Регион поискового запроса квартиры: {}", region);
+        searchClient.createSearchRequest(region, requestGenerator.getApartmentParams(request), PAGEABLE, PropertyType.APARTMENT);
+        return request;
+    }
+
+    private CommercialSearchRequest generateCommercialSearchRequest() {
+        var request = requestGenerator.getCommercialSearchRequest();
+        String region = requestGenerator.getRegion();
+        log.info("Регион поискового запроса коммерции: {}", region);
+        searchClient.createSearchRequest(region, requestGenerator.getCommercialParams(request), PAGEABLE, PropertyType.COMMERCIAL);
+        return request;
+    }
+
+    private HouseSearchRequest generateHouseSearchRequest() {
+        var request = requestGenerator.getHouseSearchRequest();
+        String region = requestGenerator.getRegion();
+        log.info("Регион поискового запроса дома: {}", region);
+        searchClient.createSearchRequest(region, requestGenerator.getHouseParams(request), PAGEABLE, PropertyType.HOUSE);
+        return request;
+    }
+
+    private LandPlotSearchRequest generateLandPlotSearchRequest() {
+        var request = requestGenerator.getLandPlotSearchRequest();
+        String region = requestGenerator.getRegion();
+        log.info("Регион поискового запроса земельного участка: {}", region);
+        searchClient.createSearchRequest(region, requestGenerator.getLandPlotParams(request), PAGEABLE, PropertyType.LAND_PLOT);
+        return request;
     }
 
     private int getDeveloperCount(int apartmentCount) {
@@ -174,5 +271,14 @@ public class GeneratorServiseImpl implements GeneratorService{
         ExecutorUtil.execute((int) houseCount, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(responseGenerator.getListingResponse(apartmentCount + commercialCount + 1, apartmentCount + commercialCount + houseCount), token));
 
         ExecutorUtil.execute((int) landPlotCount, POOL_SIZE, EXECUTOR, ()-> listingClient.createListing(responseGenerator.getListingResponse(apartmentCount + commercialCount + houseCount + 1, apartmentCount + commercialCount + houseCount + landPlotCount), token));
+    }
+
+    private void approveListings(int total, String token) {
+        ExecutorUtil.execute(total, POOL_SIZE, EXECUTOR, ()-> listingClient.approveListing(approveId.getAndIncrement(), token));
+    }
+
+    private void publishListings(@NotNull @Positive Integer total,
+                                 String token) {
+        ExecutorUtil.execute(total, POOL_SIZE, EXECUTOR, ()-> listingClient.publishListing(publishId.getAndIncrement(), token));
     }
 }

@@ -277,7 +277,7 @@
 
             CREATE TABLE listing_land_plot_search_tombov
             PARTITION OF listing_land_plot_search
-            FOR VALUES IN ('ТОМБОВСКАЯ_ОБЛАСТЬ');
+            FOR VALUES IN ('ТАМБОВСКАЯ_ОБЛАСТЬ');
 
             CREATE TABLE listing_land_plot_search_tver
             PARTITION OF listing_land_plot_search

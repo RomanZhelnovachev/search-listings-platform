@@ -1,27 +1,28 @@
 package ru.romzheln.data_generator.service;
 
-import lombok.RequiredArgsConstructor;
-import net.datafaker.Faker;
-import org.springframework.stereotype.Component;
-import ru.romzheln.data_generator.dto.criteria.ApartmentPhysicalCriteria;
-import ru.romzheln.data_generator.dto.criteria.CommercialPhysicalCriteria;
-import ru.romzheln.data_generator.dto.criteria.CommonPhysicalCriteria;
-import ru.romzheln.data_generator.dto.criteria.CommonSearchCriteria;
-import ru.romzheln.data_generator.dto.request.ApartmentSearchRequest;
-import ru.romzheln.data_generator.dto.request.CommercialSearchRequest;
-import ru.romzheln.data_generator.enums.*;
-
-import javax.swing.text.View;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+import lombok.RequiredArgsConstructor;
+import net.datafaker.Faker;
+import org.springframework.stereotype.Component;
+import ru.romzheln.data_generator.dto.criteria.*;
+import ru.romzheln.data_generator.dto.request.ApartmentSearchRequest;
+import ru.romzheln.data_generator.dto.request.CommercialSearchRequest;
+import ru.romzheln.data_generator.dto.request.HouseSearchRequest;
+import ru.romzheln.data_generator.dto.request.LandPlotSearchRequest;
+import ru.romzheln.data_generator.enums.*;
+import ru.romzheln.data_generator.mapper.SearchStringMapper;
+
+import static ru.romzheln.data_generator.util.MapperUtil.putSetToMap;
 
 @Component
 @RequiredArgsConstructor
 public class RequestGenerator {
 
     private final Faker faker;
+    private final SearchStringMapper mapper;
 
     private static final double PERCENT_NULL = 0.3;
     private static final Long MAX_ID = 100L;
@@ -32,35 +33,23 @@ public class RequestGenerator {
         return region.getUrl();
     }
 
-    public Map<String, List<String>> getApartmentParams(){
-        Map<String, List<String>> params = new HashMap<>();
-        var request = getApartmentSearchRequest();
-//        TODO: дописать логику
-        return params;
+    public Map<String, List<String>> getApartmentParams(ApartmentSearchRequest request){
+       return mapper.mapFromApartmentSearchRequest(request);
     }
 
-    public Map<String, List<String>> getCommercialParams(){
-        Map<String, List<String>> params = new HashMap<>();
-        var request = getCommercialSearchRequest();
-//        TODO: дописать логику
-        return params;
+    public Map<String, List<String>> getCommercialParams(CommercialSearchRequest request){
+        return mapper.mapFromCommercialSearchRequest(request);
     }
 
-    public Map<String, List<String>> getHouseParams(){
-        Map<String, List<String>> params = new HashMap<>();
-        var request = getHouseSearchRequest();
-//        TODO: дописать логику
-        return params;
+    public Map<String, List<String>> getHouseParams(HouseSearchRequest request){
+        return mapper.mapFromHouseSearchRequest(request);
     }
 
-    public Map<String, List<String>> getLandPlotParams(){
-        Map<String, List<String>> params = new HashMap<>();
-        var request = getLandPlotSearchRequest();
-//        TODO: дописать логику
-        return params;
+    public Map<String, List<String>> getLandPlotParams(LandPlotSearchRequest request){
+        return mapper.mapFromLandPlotSearchRequest(request);
     }
 
-    private ApartmentSearchRequest getApartmentSearchRequest(){
+    public ApartmentSearchRequest getApartmentSearchRequest(){
         return ApartmentSearchRequest.builder()
                 .commonSearchCriteria(nullable(generateCommonSearchCriteria()))
                 .apartmentTypes(nullable(getSetEnum(ApartmentType.class)))
@@ -71,7 +60,7 @@ public class RequestGenerator {
                 .build();
     }
 
-    private CommercialSearchRequest getCommercialSearchRequest(){
+    public CommercialSearchRequest getCommercialSearchRequest(){
         return CommercialSearchRequest.builder()
                 .commonSearchCriteria(nullable(generateCommonSearchCriteria()))
                 .commonPhysicalCriteria(nullable(generateCommonPhysicalCriteria()))
@@ -80,11 +69,41 @@ public class RequestGenerator {
                 .build();
     }
 
+    public HouseSearchRequest getHouseSearchRequest(){
+        BigDecimal landPlotSquareFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 100)));
+        Integer min = landPlotSquareFrom == null ? null : landPlotSquareFrom.intValue();
+        return HouseSearchRequest.builder()
+               .commonSearchCriteria(nullable(generateCommonSearchCriteria()))
+               .commonPhysicalCriteria(nullable(generateCommonPhysicalCriteria()))
+               .commonLandCriteria(nullable(generateCommonLandCriteria()))
+               .developerIds(nullable(getSetLong(MAX_ID)))
+               .complexIds(nullable(getSetLong(MAX_ID)))
+               .constructionStages(nullable(getSetEnum(ConstructionStage.class)))
+               .additionalBuildingIds(nullable(getSetLong(MAX_ID)))
+               .landPlotSquareFrom(landPlotSquareFrom)
+               .landPlotSquareTo(nullable(getBigDecimalTo(min, 1000)))
+               .build();
+    }
+    
+    public LandPlotSearchRequest getLandPlotSearchRequest(){
+        return LandPlotSearchRequest.builder()
+                .commonSearchCriteria(nullable(generateCommonSearchCriteria()))
+                .commonLandCriteria(nullable(generateCommonLandCriteria()))
+                .additionalBuildingIds(nullable(getSetLong(MAX_ID)))
+                .build();
+    }
+
+    private CommonLandCriteria generateCommonLandCriteria(){
+        return CommonLandCriteria.builder()
+                .landUseIds(nullable(getSetLong(MAX_ID)))
+                .build();
+    }
+
     private CommonSearchCriteria generateCommonSearchCriteria(){
         BigDecimal squareFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 15, 80)));
-        Integer min = squareFrom == null ? null : squareFrom.intValueExact();
+        Integer min = squareFrom == null ? null : squareFrom.intValue();
         BigDecimal priceFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 0, 500000)));
-        Integer minPrice = priceFrom == null ? null : priceFrom.intValueExact();
+        Integer minPrice = priceFrom == null ? null : priceFrom.intValue();
         return CommonSearchCriteria.builder()
                 .hasImage(nullable(faker.bool().bool()))
                 .owns(nullable(getSetEnum(Own.class)))
@@ -101,7 +120,7 @@ public class RequestGenerator {
 
     private CommonPhysicalCriteria generateCommonPhysicalCriteria(){
         BigDecimal ceilingHeightFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 1, 3)));
-        Integer min = ceilingHeightFrom == null ? null : ceilingHeightFrom.intValueExact();
+        Integer min = ceilingHeightFrom == null ? null : ceilingHeightFrom.intValue();
         Integer yearBuiltFrom = faker.number().numberBetween(1950, 2026);
         Integer floorsNumberFrom = faker.number().numberBetween(1, 20);
         return CommonPhysicalCriteria.builder()
@@ -128,7 +147,7 @@ public class RequestGenerator {
 
     private ApartmentPhysicalCriteria generateApartmentPhysicalCriteria(){
         BigDecimal kitchenSquareFrom = nullable(BigDecimal.valueOf(faker.number().randomDouble(2, 5, 20)));
-        Integer min = kitchenSquareFrom == null ? null : kitchenSquareFrom.intValueExact();
+        Integer min = kitchenSquareFrom == null ? null : kitchenSquareFrom.intValue();
         Integer floorFrom = faker.number().numberBetween(1, 20);
         return ApartmentPhysicalCriteria.builder()
                 .kitchenSquareFrom(kitchenSquareFrom)

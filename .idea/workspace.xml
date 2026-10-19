@@ -4,13 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Пишу генератор для Search">
+    <list default="true" id="ff7bc98a-2d99-4c4a-88e4-c50259b432d3" name="Changes" comment="Продолжаю писать генератор для Search">
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/config/DatabaseConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/mapper/SearchStringMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/DatabaseCleanupService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/KafkaCleanupService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/util/MapperUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monitoring/prometheus.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reset-test-data.ps1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/ApartmentPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/ApartmentPhysicalCriteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommercialPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommercialPhysicalCriteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonPhysicalCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonPhysicalCriteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/CommercialSearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/CommercialSearchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/controller/DataGeneratorControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonLandCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/criteria/CommonLandCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/HouseSearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/HouseSearchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/LandPlotSearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/dto/request/LandPlotSearchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/ListingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/ListingClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/SearchClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/httpClient/SearchClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/GeneratorServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/RequestGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/RequestGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/ResponseGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/java/ru/romzheln/data_generator/service/ResponseGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-generator/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data-generator/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/enums/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/model/enums/Region.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/java/ru/romzheln/listing/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/listing-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/001-partition-listing-apartments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/001-partition-listing-apartments.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/002-partition-listing-commercials.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/002-partition-listing-commercials.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/003-partition-listing-houses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/003-partition-listing-houses.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/004-partition-listing-land-plots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/search-service/src/main/resources/db/changelog/002-partitions/004-partition-listing-land-plots.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791912683443</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Продолжаю писать генератор для Search">
+      <option name="closed" value="true" />
+      <created>1791997897587</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1791997897587</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -273,6 +308,7 @@
     <MESSAGE value="Продолжил написание тестов" />
     <MESSAGE value="Начал писать индексы" />
     <MESSAGE value="Пишу генератор для Search" />
-    <option name="LAST_COMMIT_MESSAGE" value="Пишу генератор для Search" />
+    <MESSAGE value="Продолжаю писать генератор для Search" />
+    <option name="LAST_COMMIT_MESSAGE" value="Продолжаю писать генератор для Search" />
   </component>
 </project>

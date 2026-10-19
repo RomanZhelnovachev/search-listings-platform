@@ -15,4 +15,7 @@ public interface DataGeneratorController {
 
     @PostMapping("/request")
     void generateRequest(@Valid @RequestBody GenerateRequestsRequest request);
+
+    @PostMapping("/cleanup")
+    void cleanUp();
 }
