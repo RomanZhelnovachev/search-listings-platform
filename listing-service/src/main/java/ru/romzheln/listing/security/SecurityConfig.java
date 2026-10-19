@@ -17,7 +17,7 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers("/actuator/health").permitAll().anyRequest().hasRole("ADMIN"))
+                auth.requestMatchers("/actuator/health", "/actuator/prometheus").permitAll().anyRequest().hasRole("ADMIN"))
         .oauth2ResourceServer(
             oauth2 ->
                 oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));

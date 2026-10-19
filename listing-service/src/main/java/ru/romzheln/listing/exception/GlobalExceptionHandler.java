@@ -1,6 +1,8 @@
 package ru.romzheln.listing.exception;
 
 import java.util.stream.Collectors;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,6 +13,7 @@ import ru.romzheln.listing.exception.notFound.*;
 import ru.romzheln.listing.exception.serverError.InternalServerException;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
 @ExceptionHandler(NotFoundException.class)
@@ -40,6 +43,8 @@ public ResponseEntity<AppError> catchServerError(InternalServerException e){
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<AppError> catchException(Exception e) {
+        log.error("Unexpected error in listing-service", e);
+
         return buildError(
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 "Internal server error"

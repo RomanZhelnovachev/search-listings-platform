@@ -98,4 +98,20 @@ public class ListingClient {
                 .retrieve()
                 .toBodilessEntity();
     }
+
+    public void approveListing(Long id, String token) {
+        restClient.post()
+                .uri(LISTING_URI + "/{id}/approve", id)
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .toBodilessEntity();
+    }
+
+    public void publishListing(Long id, String token) {
+        restClient.post()
+                .uri(LISTING_URI + "/{id}/publish", id)
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .toBodilessEntity();
+    }
 }

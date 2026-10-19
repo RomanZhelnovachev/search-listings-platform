@@ -56,7 +56,7 @@ public class PropertyServiceImpl implements PropertyService {
     PropertyStrategy strategy = getStrategy(property.getPropertyType());
     strategy.update(id, request);
     listingService.updateProperty(
-        EventType.UPDATED_PROPERTY, property.getId(), eventMapper.toPropertyEvent(property), oldRegion);
+        EventType.UPDATED_PROPERTY, property.getId(), eventMapper.toPropertyEvent(property), oldRegion, request.getLocationDto().region());
     log.info("Объект недвижимости с ID {} успешно изменён", property.getId());
     return responseMapper.toResponse(property);
   }

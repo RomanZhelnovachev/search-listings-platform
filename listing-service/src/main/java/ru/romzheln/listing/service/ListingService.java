@@ -15,7 +15,7 @@ public interface ListingService {
 
   ListingResponse updateListing(Long id, UpdateListingRequest request);
 
-  void updateProperty(EventType type, Long propertyId, PropertyPayload payload, Region oldRegion);
+  void updateProperty(EventType type, Long propertyId, PropertyPayload payload, Region oldRegion, Region newRegion);
 
   ListingResponse changePrice(Long id, ChangePriceRequest request);
 

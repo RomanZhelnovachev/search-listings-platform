@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
+
 import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;
 import org.springframework.stereotype.Component;
@@ -17,13 +19,15 @@ import ru.romzheln.data_generator.enums.*;
 public class ResponseGenerator {
 
     private final Faker faker;
+    private final AtomicLong developerCounter = new AtomicLong();
+    private final AtomicLong complexCounter = new AtomicLong();
 
     public DeveloperResponse getDeveloperResponse(){
-      return new DeveloperResponse(faker.company().name());
+      return new DeveloperResponse(faker.company().name() + developerCounter.incrementAndGet());
     }
 
     public ResidentialComplexResponse getComplexResponse(){
-        return new ResidentialComplexResponse("ЖК " + faker.company().name());
+        return new ResidentialComplexResponse("ЖК " + faker.company().name() + complexCounter.incrementAndGet());
     }
 
     public AdditionalBuildingResponse getAdditionalBuildingResponse(){

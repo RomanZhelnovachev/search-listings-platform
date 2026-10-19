@@ -29,3 +29,16 @@ spring:
       enable-auto-commit: false
     topic:
       listing-events: listing-events
+
+management:
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      access: read-only
